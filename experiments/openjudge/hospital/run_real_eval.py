@@ -36,14 +36,14 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ── 1. 真实 Agent 运行（并发）─────────────────────────────────
 
-async def run_all_agents(client) -> list[dict]:
+async def run_all_agents(client, agent_model: str) -> list[dict]:
     """30 样本 × 3 trial 并发跑真实 Agent，返回 [{task_id, trial, query, trajectory, final}]。"""
     sem = asyncio.Semaphore(CONCURRENCY)
     results: list[dict] = []
 
     async def _one(sample: dict, trial: int) -> dict:
         async with sem:
-            traj, final = await run_agent(client, AGENT_MODEL, sample["input"])
+            traj, final = await run_agent(client, agent_model, sample["input"])
             return {"task_id": sample["task_id"], "scenario": sample["scenario"],
                     "trial": trial, "query": sample["input"],
                     "trajectory": traj, "final": final}
@@ -106,24 +106,26 @@ async def score_llm(client, traces: list[dict]) -> list[dict]:
 
 # ── 主流程 ────────────────────────────────────────────────────
 
-async def main() -> None:
+async def main(agent_model: str = "deepseek-flash", out_name: str = "real_eval") -> None:
     from openai import OpenAI
     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"), base_url=os.getenv("OPENAI_BASE_URL"))
+    out_dir = Path(__file__).resolve().parents[3] / "reports" / "openjudge" / out_name
+    out_dir.mkdir(parents=True, exist_ok=True)
 
-    print(f"=== 真实 Agent 全量评测：30 样本 × {N_TRIALS} trial（Agent={AGENT_MODEL}）===")
-    traces = await run_all_agents(client)
-    (OUT_DIR / "real_traces.jsonl").write_text(
+    print(f"=== 真实 Agent 全量评测：30 样本 × {N_TRIALS} trial（Agent={agent_model}）===")
+    traces = await run_all_agents(client, agent_model)
+    (out_dir / "real_traces.jsonl").write_text(
         "\n".join(json.dumps(t, ensure_ascii=False) for t in traces) + "\n", encoding="utf-8")
     print(f"✅ 轨迹保存 → real_traces.jsonl（{len(traces)} 条）")
 
     print("\n=== rule-based 8 维评分 ===")
     rule = await score_rule_based(traces)
-    (OUT_DIR / "rule_scores.json").write_text(json.dumps(rule, ensure_ascii=False, indent=2), encoding="utf-8")
+    (out_dir / "rule_scores.json").write_text(json.dumps(rule, ensure_ascii=False, indent=2), encoding="utf-8")
     print("✅ rule-based 评分 → rule_scores.json")
 
     print(f"\n=== LLM-as-Judge 评分（{JUDGE_MODEL}，30 条 trial 0）===")
     llm = await score_llm(client, traces)
-    (OUT_DIR / "llm_scores.jsonl").write_text(
+    (out_dir / "llm_scores.jsonl").write_text(
         "\n".join(json.dumps(r, ensure_ascii=False) for r in llm) + "\n", encoding="utf-8")
     print("✅ LLM-as-Judge 评分 → llm_scores.jsonl")
 
@@ -131,4 +133,9 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    import argparse
+    p = argparse.ArgumentParser(description="真实 Agent 全量评测")
+    p.add_argument("--agent-model", default="deepseek-flash")
+    p.add_argument("--out", default="real_eval")
+    args = p.parse_args()
+    asyncio.run(main(args.agent_model, args.out))

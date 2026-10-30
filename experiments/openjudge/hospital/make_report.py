@@ -52,10 +52,10 @@ def pass_hat_k(scores: list[float], k: int, threshold: float = 0.75) -> float:
     return (c / n) ** k
 
 
-def load_data() -> tuple[list, dict, list]:
-    traces = [json.loads(l) for l in open(OUT_DIR / "real_traces.jsonl", encoding="utf-8")]
-    rule = json.load(open(OUT_DIR / "rule_scores.json", encoding="utf-8"))
-    llm = [json.loads(l) for l in open(OUT_DIR / "llm_scores.jsonl", encoding="utf-8")]
+def load_data(out_dir: Path = OUT_DIR) -> tuple[list, dict, list]:
+    traces = [json.loads(l) for l in open(out_dir / "real_traces.jsonl", encoding="utf-8")]
+    rule = json.load(open(out_dir / "rule_scores.json", encoding="utf-8"))
+    llm = [json.loads(l) for l in open(out_dir / "llm_scores.jsonl", encoding="utf-8")]
     return traces, rule, llm
 
 
@@ -273,6 +273,15 @@ def build_report(metrics: dict, rule: dict, llm: list, traces: list) -> str:
 
 
 def main() -> None:
+    import argparse
+    p = argparse.ArgumentParser(description="生成评测报告")
+    p.add_argument("out", nargs="?", default="real_eval")
+    args = p.parse_args()
+    global OUT_DIR, FIG_DIR
+    OUT_DIR = Path(__file__).resolve().parents[3] / "reports" / "openjudge" / args.out
+    FIG_DIR = OUT_DIR / "figures"
+    FIG_DIR.mkdir(parents=True, exist_ok=True)
+
     traces, rule, llm = load_data()
     metrics = compute_metrics(rule, llm, traces)
     metrics["scenarios"] = SCENARIOS
