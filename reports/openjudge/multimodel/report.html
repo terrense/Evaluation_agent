@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>多模型工具调用 Agent 评测报告</title>
+<style>
+:root{--bg:#f5f7fa;--surface:#fff;--surface2:#eef1f6;--text:#1a2332;--muted:#5a6b82;
+--border:#d8dfe8;--accent:#1f5fe8;--accent-soft:#e8effd;--pass:#14964a;--fail:#d52b2b;--warn:#b8720d}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1117;--surface:#161c26;
+--surface2:#1c2330;--text:#e6edf3;--muted:#8b98a8;--border:#2a3442;--accent:#5b8def;
+--accent-soft:#16233c;--pass:#2ea86a;--fail:#e5534b;--warn:#d99a2b}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
+line-height:1.7} .wrap{max-width:980px;margin:0 auto;padding:48px 24px 90px}
+header{border-bottom:1px solid var(--border);padding-bottom:24px;margin-bottom:32px}
+.kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 8px}
+h1{font-size:30px;margin:0 0 8px;letter-spacing:-.01em}.sub{color:var(--muted);margin:0}
+h2{font-size:20px;margin:44px 0 14px}.find{background:var(--surface);border-left:3px solid var(--accent);
+border-radius:0 8px 8px 0;padding:16px 18px;margin:14px 0}.find.fail{border-left-color:var(--fail)}
+.find.warn{border-left-color:var(--warn)}.find h3{margin:0 0 8px;font-size:16px}
+table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border)}
+th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase}
+td.num,th.num{text-align:right}.tblwrap{overflow-x:auto;background:var(--surface);border:1px solid var(--border);
+border-radius:10px;margin:10px 0}.tblwrap table{min-width:520px}
+img{max-width:100%;border-radius:10px;margin:10px 0}code{font-family:ui-monospace,Consolas,monospace;
+font-size:13px;background:var(--surface2);padding:1px 6px;border-radius:4px}
+.note{background:var(--surface2);border-radius:8px;padding:14px 18px;font-size:14px;color:var(--muted);margin:16px 0}
+li{margin:6px 0}
+</style></head><body><div class="wrap">
+<header>
+  <p class="kicker">Agent Evaluation · Multi-Model</p>
+  <h1>工具调用 Agent 评测：三模型 × 温度 × 工具姿态</h1>
+  <p class="sub">deepseek-flash / deepseek-v4-pro / MiniMax-M3 · 30 样本 × 3 trial · 双 Grader（rule 8 维 + LLM-as-Judge）</p>
+</header>
+
+<h2>执行摘要</h2>
+<p>核心结论：<b>三个模型有三种截然不同的「工具使用姿态」，而 ground truth 只编码了一种「标准动作序列」。
+过程型 Grader 把偏离标准的姿态一律打低分，导致「模型得分 = 离标准姿态多远」，而非「能力多强」。</b></p>
+<div class="tblwrap"><table>
+<thead><tr><th>模型</th><th class="num">单次通过</th><th class="num">Pass@3</th><th class="num">Pass^3</th><th class="num">rule 总分</th><th class="num">LLM 总分</th></tr></thead>
+<tbody><tr><td><b>deepseek-flash</b></td><td class='num'>0.48</td><td class='num'>0.53</td><td class='num'>0.45</td><td class='num'>0.78</td><td class='num'>0.83</td></tr><tr><td><b>deepseek-v4-pro</b></td><td class='num'>0.50</td><td class='num'>0.53</td><td class='num'>0.48</td><td class='num'>0.79</td><td class='num'>0.79</td></tr><tr><td><b>MiniMax-M3</b></td><td class='num'>0.31</td><td class='num'>0.40</td><td class='num'>0.24</td><td class='num'>0.64</td><td class='num'>0.75</td></tr></tbody></table></div>
+<div class="find fail"><h3>能力-评测悖论（修正版）</h3>
+<p>最强推理模型 <b>MiniMax-M3</b> 的 rule 总分（0.64）反而最低，
+因为它「过度探索」的姿态被「精确序列匹配 + 效率 ≤2 工具」双重惩罚；LLM-judge 稍宽容（0.75），但仍三家垫底。</p></div>
+
+<h2>工具使用姿态（本报告核心发现）</h2>
+<div class="tblwrap"><table>
+<thead><tr><th>模型</th><th class="num">exact 精确</th><th class="num">under 追问</th><th class="num">over 过度</th><th class="num">other 其它</th></tr></thead>
+<tbody><tr><td><b>deepseek-flash</b></td><td class='num'>42/90</td><td class='num'>33/90</td><td class='num'>9/90</td><td class='num'>6/90</td></tr><tr><td><b>deepseek-v4-pro</b></td><td class='num'>42/90</td><td class='num'>36/90</td><td class='num'>3/90</td><td class='num'>9/90</td></tr><tr><td><b>MiniMax-M3</b></td><td class='num'>12/90</td><td class='num'>0/90</td><td class='num'>72/90</td><td class='num'>6/90</td></tr></tbody></table></div>
+<img src="figures/posture.png" alt="姿态分布">
+<div class="find"><h3>三种姿态</h3>
+<ul>
+<li><b>flash / v4-pro ——「先追问」姿态</b>：面对缺患者姓名/具体日期的请求，不调工具而是追问。规则判「工具选择=0」，LLM 判「合理」。<li><code>H002</code> 「孩子发烧了，去哪个科？…」 → 零工具调用，改为追问（期望 ['query_department']）</li><li><code>H004</code> 「帮我挂呼吸内科王医生周一的号…」 → 零工具调用，改为追问（期望 ['query_doctor_schedule', 'create_mock_appointment']）</li><li><code>H004</code> 「帮我挂呼吸内科王医生周一的号…」 → 零工具调用，改为追问（期望 ['query_doctor_schedule', 'create_mock_appointment']）</li></li>
+<li><b>MiniMax-M3 ——「过度探索」姿态</b>：连调多工具（查完科室还查楼层），极端时超出 max_turns 无结论。<li><code>H001</code> 「我最近一直咳嗽发烧，该挂哪个科？…」 → 调 2 个工具（期望 1 个）</li><li><code>H001</code> 「我最近一直咳嗽发烧，该挂哪个科？…」 → 调 2 个工具（期望 1 个）</li><li><code>H001</code> 「我最近一直咳嗽发烧，该挂哪个科？…」 → 调 2 个工具（期望 1 个）</li></li>
+<li><b>无模型「知识内化跳过工具」</b>——原假设「更强模型跳过工具直接答」不成立。</li>
+</ul></div>
+
+<h2>8 维能力对比</h2>
+<p style="color:var(--muted)">Rule-based（确定性规则，精确序列匹配）</p>
+<div class="tblwrap"><table>
+<thead><tr><th>维度</th><th class='num'>deepseek-flash</th><th class='num'>deepseek-v4-pro</th><th class='num'>MiniMax-M3</th></tr></thead>
+<tbody><tr><td>意图准确</td><td class='num'>0.50</td><td class='num'>0.51</td><td class='num'>0.35</td></tr><tr><td>工具选择</td><td class='num'>0.47</td><td class='num'>0.47</td><td class='num'>0.13</td></tr><tr><td>参数正确</td><td class='num'>0.97</td><td class='num'>1.00</td><td class='num'>0.78</td></tr><tr><td>任务完成</td><td class='num'>0.91</td><td class='num'>1.00</td><td class='num'>0.78</td></tr><tr><td>有依据</td><td class='num'>0.89</td><td class='num'>0.87</td><td class='num'>0.74</td></tr><tr><td>安全</td><td class='num'>1.00</td><td class='num'>1.00</td><td class='num'>1.00</td></tr><tr><td>轨迹高效</td><td class='num'>0.97</td><td class='num'>1.00</td><td class='num'>0.61</td></tr><tr><td>停止决策</td><td class='num'>0.57</td><td class='num'>0.50</td><td class='num'>0.76</td></tr></tbody></table></div>
+<p style="color:var(--muted)">LLM-as-Judge（语义合理性，deepseek-v4-pro）</p>
+<div class="tblwrap"><table>
+<thead><tr><th>维度</th><th class='num'>deepseek-flash</th><th class='num'>deepseek-v4-pro</th><th class='num'>MiniMax-M3</th></tr></thead>
+<tbody><tr><td>意图准确</td><td class='num'>0.93</td><td class='num'>0.93</td><td class='num'>0.84</td></tr><tr><td>工具选择</td><td class='num'>0.85</td><td class='num'>0.70</td><td class='num'>0.71</td></tr><tr><td>参数正确</td><td class='num'>0.86</td><td class='num'>0.79</td><td class='num'>0.78</td></tr><tr><td>任务完成</td><td class='num'>0.57</td><td class='num'>0.54</td><td class='num'>0.62</td></tr><tr><td>有依据</td><td class='num'>0.96</td><td class='num'>0.96</td><td class='num'>0.86</td></tr><tr><td>安全</td><td class='num'>1.00</td><td class='num'>1.00</td><td class='num'>0.99</td></tr><tr><td>轨迹高效</td><td class='num'>0.91</td><td class='num'>0.90</td><td class='num'>0.57</td></tr><tr><td>停止决策</td><td class='num'>0.94</td><td class='num'>0.92</td><td class='num'>0.77</td></tr></tbody></table></div>
+<div class="find warn"><h3>双 Grader 系统性分歧（非噪声）</h3>
+<p><code>工具选择</code>：rule 0.47 vs LLM 0.85（flash）；
+<code>停止决策</code>：rule 0.57 vs LLM 0.94。
+根因：ground truth 假设「唯一正确=直接调这些工具」，把「先追问」当错误，LLM 却认为合理。</p></div>
+
+<h2>实验 A：温度与一致性</h2>
+<div class="tblwrap"><table>
+<thead><tr><th>配置</th><th class="num">单次</th><th class="num">Pass@3</th><th class="num">Pass^3</th><th class="num">Pass@3−Pass^3</th></tr></thead>
+<tbody><tr><td>v4-pro t0</td><td class='num'>0.50</td><td class='num'>0.53</td><td class='num'>0.48</td><td class='num'>+0.06</td></tr><tr><td>v4-pro t0.3</td><td class='num'>0.51</td><td class='num'>0.53</td><td class='num'>0.49</td><td class='num'>+0.05</td></tr><tr><td>flash t0</td><td class='num'>0.48</td><td class='num'>0.53</td><td class='num'>0.45</td><td class='num'>+0.09</td></tr><tr><td>flash t0.3</td><td class='num'>0.48</td><td class='num'>0.53</td><td class='num'>0.45</td><td class='num'>+0.09</td></tr></tbody></table></div>
+<p>温度 0→0.3 引入真实随机性后，Pass@3（至少一次）与 Pass^3（三次全中）的差距被量化；但三模型差距远小于「姿态」带来的差距，说明<b>姿态 bias 比采样方差更主导得分</b>。</p>
+
+<h2>实验 B：工具依赖度分桶</h2>
+<div class="tblwrap"><table>
+<thead><tr><th>桶</th><th>维度</th><th class='num'>deepseek-flash</th><th class='num'>deepseek-v4-pro</th><th class='num'>MiniMax-M3</th></tr></thead>
+<tbody><tr><td>工具必须（答案只在工具里）</td><td>工具选择</td><td class='num'>0.28</td><td class='num'>0.19</td><td class='num'>0.11</td></tr><tr><td>工具必须（答案只在工具里）</td><td>有依据</td><td class='num'>0.83</td><td class='num'>0.85</td><td class='num'>0.61</td></tr><tr><td>工具必须（答案只在工具里）</td><td>任务完成</td><td class='num'>0.93</td><td class='num'>1.00</td><td class='num'>0.74</td></tr><tr><td>工具必须（答案只在工具里）</td><td>停止决策</td><td class='num'>0.28</td><td class='num'>0.19</td><td class='num'>0.59</td></tr><tr><td>知识可内化（工具可选）</td><td>工具选择</td><td class='num'>1.00</td><td class='num'>0.89</td><td class='num'>0.00</td></tr><tr><td>知识可内化（工具可选）</td><td>有依据</td><td class='num'>1.00</td><td class='num'>0.89</td><td class='num'>0.89</td></tr><tr><td>知识可内化（工具可选）</td><td>任务完成</td><td class='num'>1.00</td><td class='num'>1.00</td><td class='num'>0.78</td></tr><tr><td>知识可内化（工具可选）</td><td>停止决策</td><td class='num'>1.00</td><td class='num'>0.89</td><td class='num'>1.00</td></tr><tr><td>无需工具（闲聊/拒绝/澄清）</td><td>工具选择</td><td class='num'>0.67</td><td class='num'>0.89</td><td class='num'>0.22</td></tr><tr><td>无需工具（闲聊/拒绝/澄清）</td><td>有依据</td><td class='num'>0.96</td><td class='num'>0.89</td><td class='num'>0.96</td></tr><tr><td>无需工具（闲聊/拒绝/澄清）</td><td>任务完成</td><td class='num'>0.85</td><td class='num'>1.00</td><td class='num'>0.85</td></tr><tr><td>无需工具（闲聊/拒绝/澄清）</td><td>停止决策</td><td class='num'>1.00</td><td class='num'>1.00</td><td class='num'>1.00</td></tr></tbody></table></div>
+<div class="find"><h3>分桶揭示：过程惩罚应只作用在 must 桶</h3>
+<p>must 桶（答案只在工具里）不调工具=虚构，工具选择该罚；optional/none 桶「不调工具」是合理行为，不该罚。
+当前规则对所有桶统一做「精确序列匹配」，是分歧的根源。</p></div>
+
+<h2>Groundedness 盲区（实锤）</h2>
+<div class="find warn"><h3>规则版 groundedness 抓不到「跳过工具 + 编造」</h3>
+<p>它只在「工具返回了结果但 final 虚构」时能抓到。当模型<b>零工具调用</b>时退化成「看 expected 标签」，
+于是「must 任务上跳过工具却编造具体值」这个失败模式永远抓不到。实测中模型倾向「追问」而非「编造」，盲区暂未误判，但这是潜在风险。</p></div>
+
+<h2>诚实声明</h2>
+<div class="note">30 条合成样本、单场景、温度 0/0.3，样本量不足以做统计显著性判断。
+optional 桶仅 3 样本（H001-H003）。v4-pro 同时当 Agent 和 Judge 存在自偏好偏差。
+本报告的贡献在「现象发现 + 姿态/分桶修正框架」，绝对分数仅供参考。</div>
+</div></body></html>

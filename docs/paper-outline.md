@@ -1,0 +1,69 @@
+# 论文骨架：工具调用 Agent 评测中的「姿态-评测错配」
+
+> 目标：Workshop / Short Paper（先投 arXiv + 评测/Agent 方向 workshop，再图正会）。
+> 现状：30 样本 / 单场景 / 三模型（flash、v4-pro、MiniMax-M3）× 温度 0/0.3，足以支撑一篇「现象发现 + 修正框架」的 workshop paper；
+> 正会需扩到 5-6 模型 × 2-3 场景 × ≥100 样本。
+
+## 1. 候选标题（按锋芒排序）
+
+1. **Posture–Grader Misalignment: Single Canonical Tool-Sequences Penalize Diverse Tool-Use Strategies in Agent Evaluation**
+2. One Ground Truth, Three Strategies: How Process-Oriented Graders Underscore Capable Tool-Using Agents
+3. 分桶 + 姿态感知：工具调用 Agent 评测中「标准动作」与「合理偏离」的错配（中文投稿备选）
+
+## 2. 一句话贡献
+
+> 现有工具调用 Agent 评测的 ground truth 只编码**一种标准工具序列**（correct_tools），
+> 而真实模型表现出至少**三种工具使用姿态**：先追问（under-execute）、标准执行（exact）、过度探索（over-execute）。
+> 过程型 Grader（精确序列匹配）把偏离标准的前者与后者一律打低分，导致「模型得分被离标准姿态的距离系统性扭曲」。
+> 我们提出**工具依赖度标注（must/optional/none）+ 姿态感知评分**的修正框架；消融显示它能把被放大的差距收窄 ~56%。
+
+## 3. 核心发现（已用三模型 × 90 trial 验证）
+
+| 发现 | 证据 |
+|---|---|
+| F1 三种工具姿态并存 | flash/v4-pro「先追问」占主导（must 桶零工具追问普遍），MiniMax-M3「过度探索」（极端 13 工具/无结论） |
+| F2 双 Grader 系统性分歧 | rule vs LLM 在「工具选择」0.47 vs 0.85、「停止决策」0.57 vs 0.94（flash） |
+| F3 差距放大（gap inflation） | MiniMax-M3 有真实结果短板（intent .35 / grounded .74）；rule 把本不大的真实差（~0.04）放大 2–3× 到 0.149，全修复后回落 0.065 |
+| F4 温度是烟雾弹 | 0→0.3 时 Pass@3 纹丝不动（0.533）、Pass^3 只挪 ≤0.01；姿态差（0.13 vs 0.47）远大于采样方差 |
+
+## 4. 方法（可复现）
+
+1. **合成医院导诊 Agent**：5 工具，30 样本 × 3 trial，温度 0/0.3。
+2. **双 Grader**：rule-based 8 维（确定性，pytest 校验）+ LLM-as-Judge（交叉 provider）。
+3. **姿态分类**：每 trial 相对 expected 序列分为 exact / under（零工具追问）/ over（多余工具）/ other。
+4. **工具依赖度标注**：must（答案只在工具）/ optional（知识可内化）/ none（无需工具）。
+5. **修正框架**：optional/none 桶关闭「工具选择/停止决策」的过程惩罚；must 桶保留但改为「结果正确性 + 是否调用必要工具」而非「精确序列」。
+
+## 5. 实验设计
+
+- 实验 A（一致性）：温度 0 vs 0.3，单次/Pass@3/Pass^3。
+- 实验 B（分桶）：must/optional/none 三桶 × 关键维度。
+- 姿态分析：under/over/exact 分布 + 极端案例（MiniMax 13 工具）。
+
+## 6. 相关工作的差异定位
+
+| 已有工作 | 关注点 | 我们的差异 |
+|---|---|---|
+| SABench（副作用） | 完成了但做错 | 我们看「合理偏离标准序列却被罚」 |
+| Oracle audit | 评测器有 bug | 我们看「评测设计有系统性 bias（单一 ground truth）」 |
+| Judge bias | judge 的 prompt/尺度偏差 | 我们看「ground truth 的粒度 + 姿态多样性」 |
+| Pass@k / Pass^k（claw-eval） | 采样方差 | 我们证明「姿态 bias >> 采样方差」 |
+
+## 7. 待补（正会门槛）
+
+- [ ] 模型数 5-6（+ Qwen2.5/Qwen3、Llama、Claude/GPT）
+- [ ] 场景 2-3（医院 + 金融/客服 + 编码）
+- [ ] 样本 ≥100，optional 桶 20+（当前仅 3）
+- [ ] 与 SABench / oracle-audit 的 head-to-head
+- [ ] 开源评测集 + 姿态标注工具（可被他人复用，novelty 关键）
+- [ ] 统计显著性（bootstrap / McNemar）
+
+## 8. 诚实边界
+
+- optional 桶仅 3 样本（H001-H003），分桶结论是方向性证据。
+- v4-pro 同时当 Agent 和 Judge，存在自偏好偏差。
+- 单场景合成数据，外部效度有限；mock 工具的日期参数脆弱（只认字面"周四"），可能夸大 over-explore 姿态。
+
+---
+
+*下一阶段：填数字 → 写 Intro/Related Work 全文 → 扩到 5 模型 → arXiv 草稿。*

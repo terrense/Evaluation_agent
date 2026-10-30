@@ -1,0 +1,405 @@
+{
+  "overview": [
+    {
+      "key": "flash",
+      "disp": "deepseek-flash",
+      "temp": 0.0,
+      "single_pass": 0.4777777777777778,
+      "pass_at_3": 0.5333333333333333,
+      "pass_hat_3": 0.44567901234567897,
+      "rule_overall": 0.7833333333333333,
+      "llm_overall": 0.8323333333333333,
+      "dim_rule": {
+        "intent_accuracy": 0.5,
+        "tool_selection": 0.4666666666666667,
+        "argument_correctness": 0.9666666666666667,
+        "task_completion": 0.9111111111111111,
+        "groundedness": 0.8888888888888888,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9666666666666667,
+        "stop_decision": 0.5666666666666667
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.9283333333333333,
+        "tool_selection": 0.8466666666666666,
+        "argument_correctness": 0.86,
+        "task_completion": 0.5733333333333334,
+        "groundedness": 0.9616666666666667,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.91,
+        "stop_decision": 0.94
+      }
+    },
+    {
+      "key": "v4pro",
+      "disp": "deepseek-v4-pro",
+      "temp": 0.0,
+      "single_pass": 0.5,
+      "pass_at_3": 0.5333333333333333,
+      "pass_hat_3": 0.47777777777777775,
+      "rule_overall": 0.7930555555555555,
+      "llm_overall": 0.7941666666666667,
+      "dim_rule": {
+        "intent_accuracy": 0.5111111111111111,
+        "tool_selection": 0.4666666666666667,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.8666666666666667,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.5
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.9299999999999999,
+        "tool_selection": 0.6966666666666667,
+        "argument_correctness": 0.7866666666666667,
+        "task_completion": 0.5399999999999999,
+        "groundedness": 0.9616666666666667,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.895,
+        "stop_decision": 0.9233333333333333
+      }
+    },
+    {
+      "key": "minimax-m3",
+      "disp": "MiniMax-M3",
+      "temp": 0.0,
+      "single_pass": 0.3111111111111111,
+      "pass_at_3": 0.4,
+      "pass_hat_3": 0.24197530864197528,
+      "rule_overall": 0.6439305555555556,
+      "llm_overall": 0.751,
+      "dim_rule": {
+        "intent_accuracy": 0.35144444444444445,
+        "tool_selection": 0.13333333333333333,
+        "argument_correctness": 0.7777777777777778,
+        "task_completion": 0.7777777777777778,
+        "groundedness": 0.7444444444444445,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.6111111111111112,
+        "stop_decision": 0.7555555555555555
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.84,
+        "tool_selection": 0.7133333333333333,
+        "argument_correctness": 0.7799999999999999,
+        "task_completion": 0.6216666666666666,
+        "groundedness": 0.8616666666666667,
+        "safety": 0.99,
+        "trajectory_efficiency": 0.575,
+        "stop_decision": 0.7716666666666666
+      }
+    },
+    {
+      "key": "v4pro-t0.3",
+      "disp": "deepseek-v4-pro",
+      "temp": 0.3,
+      "single_pass": 0.5111111111111111,
+      "pass_at_3": 0.5333333333333333,
+      "pass_hat_3": 0.4864197530864197,
+      "rule_overall": 0.79375,
+      "llm_overall": 0.8179166666666667,
+      "dim_rule": {
+        "intent_accuracy": 0.5055555555555555,
+        "tool_selection": 0.4666666666666667,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.8666666666666667,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.5111111111111111
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.9316666666666666,
+        "tool_selection": 0.81,
+        "argument_correctness": 0.8733333333333333,
+        "task_completion": 0.5933333333333334,
+        "groundedness": 0.9216666666666666,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.8933333333333333,
+        "stop_decision": 0.9166666666666666
+      }
+    },
+    {
+      "key": "flash-t0.3",
+      "disp": "deepseek-flash",
+      "temp": 0.3,
+      "single_pass": 0.4777777777777778,
+      "pass_at_3": 0.5333333333333333,
+      "pass_hat_3": 0.44567901234567897,
+      "rule_overall": 0.779625,
+      "llm_overall": 0.7941666666666667,
+      "dim_rule": {
+        "intent_accuracy": 0.4925555555555555,
+        "tool_selection": 0.45555555555555555,
+        "argument_correctness": 0.9666666666666667,
+        "task_completion": 0.9,
+        "groundedness": 0.8888888888888888,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9666666666666667,
+        "stop_decision": 0.5666666666666667
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.9516666666666667,
+        "tool_selection": 0.815,
+        "argument_correctness": 0.8866666666666667,
+        "task_completion": 0.5416666666666666,
+        "groundedness": 0.9,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9433333333333334,
+        "stop_decision": 0.9583333333333334
+      }
+    }
+  ],
+  "consistency": {
+    "flash": {
+      "single_pass": 0.4777777777777778,
+      "pass_at_3": 0.5333333333333333,
+      "pass_hat_3": 0.44567901234567897
+    },
+    "v4pro": {
+      "single_pass": 0.5,
+      "pass_at_3": 0.5333333333333333,
+      "pass_hat_3": 0.47777777777777775
+    },
+    "minimax-m3": {
+      "single_pass": 0.3111111111111111,
+      "pass_at_3": 0.4,
+      "pass_hat_3": 0.24197530864197528
+    },
+    "v4pro-t0.3": {
+      "single_pass": 0.5111111111111111,
+      "pass_at_3": 0.5333333333333333,
+      "pass_hat_3": 0.4864197530864197
+    },
+    "flash-t0.3": {
+      "single_pass": 0.4777777777777778,
+      "pass_at_3": 0.5333333333333333,
+      "pass_hat_3": 0.44567901234567897
+    }
+  },
+  "bucket": {
+    "flash": {
+      "must": {
+        "intent_accuracy": 0.3333333333333333,
+        "tool_selection": 0.2777777777777778,
+        "argument_correctness": 0.9444444444444444,
+        "task_completion": 0.9259259259259259,
+        "groundedness": 0.8333333333333334,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9444444444444444,
+        "stop_decision": 0.2777777777777778
+      },
+      "optional": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "none": {
+        "intent_accuracy": 0.6666666666666666,
+        "tool_selection": 0.6666666666666666,
+        "argument_correctness": 1.0,
+        "task_completion": 0.8518518518518519,
+        "groundedness": 0.9629629629629629,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      }
+    },
+    "v4pro": {
+      "must": {
+        "intent_accuracy": 0.25925925925925924,
+        "tool_selection": 0.18518518518518517,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.8518518518518519,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.18518518518518517
+      },
+      "optional": {
+        "intent_accuracy": 0.8888888888888888,
+        "tool_selection": 0.8888888888888888,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.8888888888888888,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.8888888888888888
+      },
+      "none": {
+        "intent_accuracy": 0.8888888888888888,
+        "tool_selection": 0.8888888888888888,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.8888888888888888,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      }
+    },
+    "minimax-m3": {
+      "must": {
+        "intent_accuracy": 0.40370370370370373,
+        "tool_selection": 0.1111111111111111,
+        "argument_correctness": 0.7407407407407407,
+        "task_completion": 0.7407407407407407,
+        "groundedness": 0.6111111111111112,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.5648148148148148,
+        "stop_decision": 0.5925925925925926
+      },
+      "optional": {
+        "intent_accuracy": 0.4255555555555556,
+        "tool_selection": 0.0,
+        "argument_correctness": 0.7777777777777778,
+        "task_completion": 0.7777777777777778,
+        "groundedness": 0.8888888888888888,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.6666666666666666,
+        "stop_decision": 1.0
+      },
+      "none": {
+        "intent_accuracy": 0.2222222222222222,
+        "tool_selection": 0.2222222222222222,
+        "argument_correctness": 0.8518518518518519,
+        "task_completion": 0.8518518518518519,
+        "groundedness": 0.9629629629629629,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.6851851851851852,
+        "stop_decision": 1.0
+      }
+    },
+    "v4pro-t0.3": {
+      "must": {
+        "intent_accuracy": 0.26851851851851855,
+        "tool_selection": 0.2037037037037037,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.8333333333333334,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.2037037037037037
+      },
+      "optional": {
+        "intent_accuracy": 0.8888888888888888,
+        "tool_selection": 0.8888888888888888,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.8888888888888888
+      },
+      "none": {
+        "intent_accuracy": 0.8518518518518519,
+        "tool_selection": 0.8518518518518519,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.8888888888888888,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      }
+    },
+    "flash-t0.3": {
+      "must": {
+        "intent_accuracy": 0.3209259259259259,
+        "tool_selection": 0.25925925925925924,
+        "argument_correctness": 0.9444444444444444,
+        "task_completion": 0.9444444444444444,
+        "groundedness": 0.8333333333333334,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9444444444444444,
+        "stop_decision": 0.2777777777777778
+      },
+      "optional": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 0.8888888888888888,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "none": {
+        "intent_accuracy": 0.6666666666666666,
+        "tool_selection": 0.6666666666666666,
+        "argument_correctness": 1.0,
+        "task_completion": 0.8148148148148148,
+        "groundedness": 0.9629629629629629,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      }
+    }
+  },
+  "correct_but_sequence_mismatch": {
+    "flash": {
+      "counts": {
+        "must": 29,
+        "optional": 0,
+        "none": 4
+      },
+      "total": {
+        "must": 54,
+        "optional": 9,
+        "none": 27
+      }
+    },
+    "v4pro": {
+      "counts": {
+        "must": 36,
+        "optional": 1,
+        "none": 3
+      },
+      "total": {
+        "must": 54,
+        "optional": 9,
+        "none": 27
+      }
+    },
+    "minimax-m3": {
+      "counts": {
+        "must": 15,
+        "optional": 6,
+        "none": 16
+      },
+      "total": {
+        "must": 54,
+        "optional": 9,
+        "none": 27
+      }
+    },
+    "v4pro-t0.3": {
+      "counts": {
+        "must": 34,
+        "optional": 1,
+        "none": 4
+      },
+      "total": {
+        "must": 54,
+        "optional": 9,
+        "none": 27
+      }
+    },
+    "flash-t0.3": {
+      "counts": {
+        "must": 30,
+        "optional": 0,
+        "none": 4
+      },
+      "total": {
+        "must": 54,
+        "optional": 9,
+        "none": 27
+      }
+    }
+  }
+}

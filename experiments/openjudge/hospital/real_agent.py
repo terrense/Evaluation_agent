@@ -13,6 +13,7 @@ from __future__ import annotations
 import asyncio
 import json
 import os
+import re
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -20,6 +21,13 @@ from dotenv import load_dotenv
 from tools import TOOLS, SYMPTOM_TO_DEPARTMENT
 
 load_dotenv(Path(__file__).resolve().parents[3] / ".env")
+
+
+def _clean_content(text: str) -> str:
+    """剥离推理模型（MiniMax-M3 等）在 content 里嵌入的 <think>...</think> 块。"""
+    if not text:
+        return ""
+    return re.sub(r"<think>.*?</think>\s*", "", text, flags=re.DOTALL).strip()
 
 # 工具 → OpenAI function-calling 格式的 JSON schema
 TOOL_SCHEMAS = [
@@ -69,8 +77,12 @@ SYSTEM_PROMPT = """你是 XX 医院智能导诊助手。根据用户问题，调
 皮疹→皮肤科，儿童发热→儿科，骨折→骨科，牙痛→口腔科，视力模糊→眼科。"""
 
 
-async def run_agent(client, model: str, query: str, max_turns: int = 6) -> tuple[list[dict], str]:
-    """跑一次真实 agent，返回 (trajectory, final_answer)。"""
+async def run_agent(client, model: str, query: str, max_turns: int = 6,
+                    temperature: float = 0.0) -> tuple[list[dict], str]:
+    """跑一次真实 agent，返回 (trajectory, final_answer)。
+
+    temperature>0 时轨迹具备真实随机性，可用于量化一致性（单次 vs Pass@k vs Pass^k）。
+    """
     messages = [{"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": query}]
     trajectory: list[dict] = []
@@ -80,12 +92,12 @@ async def run_agent(client, model: str, query: str, max_turns: int = 6) -> tuple
         resp = await asyncio.to_thread(
             client.chat.completions.create,
             model=model, messages=messages, tools=TOOL_SCHEMAS,
-            tool_choice="auto", temperature=0.0,
+            tool_choice="auto", temperature=temperature,
         )
         msg = resp.choices[0].message
 
         if not msg.tool_calls:
-            final_answer = msg.content or ""
+            final_answer = _clean_content(msg.content or "")
             break
 
         # 记录本轮所有工具调用 + 执行 + 观察
