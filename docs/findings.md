@@ -45,9 +45,24 @@ pytest 校验暴露并修复了 2 个 grader bug：
 2. groundedness 抓不到「工具返回肯定但 final 编造工具结果之外的实体」。
 - 教训：**rule-based 判定必须用「校验测试」兜底，否则 grader 自身的 bug 会污染所有评测结论**。
 
+### 发现 6：LLM Judge 与 Rule-based 互补（RQ4，真实数据）
+
+接入 DeepSeek 后，LLM-as-Judge 对 30 条样本端到端跑通（`deepseek-v4-pro`），与 rule-based 对比 **30 条中 10 条不一致**：
+
+| 类型 | 代表样本 | 结论 |
+|---|---|---|
+| Verifier FAIL 但 Judge PASS（4 条） | H009 正确报告"心理科不存在"、H022/H023 正确报告预约失败 | **rule-based 误判**：把"如实报告失败"当失败；LLM 理解语义判对 |
+| Verifier PASS 但 Judge FAIL（6 条） | H028 虚构医生张伟、H030 虚构排班 | **rule-based 漏判**（虚构被平均分稀释到 0.88）；LLM 抓到"工具返回无张伟，Agent 却说张伟出诊" |
+
+**RQ4 结论（真实数据验证了设计原则）**：
+1. LLM Judge 抓语义虚构（H028/H030 的 reason 精确指出"工具返回只有王医生李医生，Agent 却说张伟出诊"），rule-based 漏判。
+2. rule-based 误判"正确报告失败"（H009/H022/H023），LLM 更准。
+3. 两者互补：确定性 Verifier 管可形式化维度，LLM Judge 管语义维度；不一致时保守偏向安全（Verifier FAIL 优先）。
+4. LLM 也有盲区：H022 抓到"虚构参数"却没扣到 fail，H006 没扣"工具选择错误"——所以不能完全依赖单一 Judge。
+
 ## 3. 局限（诚实标注）
 
-1. **无 LLM API**：所有 LLM-as-Judge、LLM 驱动 Agent、AI-Infra-Guard 的 LLM 审计均未真实运行（本机无 key、H20 5133 端口不可达）。已实现代码骨架 + fake-model 链路验证 + 配置模板，但**未端到端验证**。
+1. **LLM-as-Judge 已跑通**（DeepSeek `deepseek-v4-pro`，30 条样本 + RQ4 对比）。**仍待接入**：LLM 驱动的真实 Agent（当前 Agent 是确定性模拟）、AI-Infra-Guard 的 LLM 完整审计（Code Audit → Verdict Review）、MCP/Agent 动态扫描。
 2. **Agent 是确定性模拟**：Phase 3 的 MockAgent、Phase 2 的预录轨迹均为模拟，非真实 LLM Agent。评分公式/Pass@k/Pass^k 是真实源码，但「被评对象」是模拟的。
 3. **样本规模小**：30 条医院样本、3 个轻量任务、6 个安全用例，不足以做统计显著性判断。
 4. **本机 DLP 透明加密**：`.md`/`.go` 被加密成密文，读文档需 `git show`；Go 服务端无法编译（`.go` 密文），故 AI-Infra-Guard 只用了 Python 扫描器。
