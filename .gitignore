@@ -1,0 +1,9 @@
+# 环境
+experiments/.venv-*/
+__pycache__/
+.pytest_cache/
+*.pyc
+.env
+
+# 上游仓库（各自独立 git，不进本仓库）
+upstream/
