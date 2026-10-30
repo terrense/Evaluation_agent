@@ -138,12 +138,11 @@ async def grade_groundedness(trajectory: list[dict], expected: dict, **kw) -> Gr
             grounded = False
             evidence.append("工具返回否定但 final 给出肯定断言")
 
-    # 模式 2：final 提及工具返回之外的医生名
-    tool_doctors: set[str] = set()
-    for r in results:
-        tool_doctors.update(r.get("doctors", []))
-    mentioned = set(re.findall(r"[一-龥]+医生", final))
-    if mentioned:
+    # 模式 2：final 提及工具返回之外的医生名（仅当工具返回了医生列表时才检查，
+    # 否则 "医生排班/医生出诊" 这类一般名词会被误判为虚构的医生名）
+    tool_doctors: set[str] = {d.replace("医生", "") for r in results for d in r.get("doctors", [])}
+    if tool_doctors:
+        mentioned = set(re.findall(r"([一-龥]{1,2})医生", final))
         fabricated = mentioned - tool_doctors
         if fabricated:
             grounded = False
