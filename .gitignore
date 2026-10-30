@@ -7,3 +7,5 @@ __pycache__/
 
 # 上游仓库（各自独立 git，不进本仓库）
 upstream/
+logs/
+*.log
