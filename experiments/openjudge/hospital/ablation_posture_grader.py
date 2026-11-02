@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """修正后 grader 的消融：姿态感知评分能否消除「能力-评测倒挂」。
 
+状态：当前仅对已跑出的 3 模型（30 样本）做消融；22 模型 × 100 样本重跑完成后重写（task #21）。
+
 读现有 rule_scores.json + real_traces.jsonl + samples.py，对 temp=0 三模型重新聚合，
 比较 5 个 grader 变体下 MiniMax-M3 的倒挂是否消失：
 

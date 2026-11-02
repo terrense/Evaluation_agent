@@ -7,6 +7,9 @@
   多模型  —— 全部 temp=0 模型 × 8 维对比（在 MODELS 登记即自动并入）
 
 输出：reports/openjudge/multimodel/comparison.md + figures/*.png
+
+状态：当前仅分析已跑出的 3 模型（flash / v4pro / minimax-m3，30 样本）；
+22 模型 × 100 样本重跑完成后重写（见 docs/research-brief.md，task #21）。
 """
 from __future__ import annotations
 

@@ -62,8 +62,8 @@ pytest 校验暴露并修复了 2 个 grader bug：
 
 ## 3. 局限（诚实标注）
 
-1. **LLM-as-Judge 已跑通**（DeepSeek `deepseek-v4-pro`，30 条样本 + RQ4 对比）。**仍待接入**：LLM 驱动的真实 Agent（当前 Agent 是确定性模拟）、AI-Infra-Guard 的 LLM 完整审计（Code Audit → Verdict Review）、MCP/Agent 动态扫描。
-2. **Agent 是确定性模拟**：Phase 3 的 MockAgent、Phase 2 的预录轨迹均为模拟，非真实 LLM Agent。评分公式/Pass@k/Pass^k 是真实源码，但「被评对象」是模拟的。
+1. **LLM-as-Judge 已跑通**（DeepSeek `deepseek-v4-pro`，30 条样本 + RQ4 对比）；**真实 LLM Agent 已接入**（`run_multimodel.py`，22 模型 × 100 样本重跑中，2026-11-02）。**仍待接入**：AI-Infra-Guard 的 LLM 完整审计（Code Audit → Verdict Review）、MCP/Agent 动态扫描。
+2. **Agent 是确定性模拟**（历史，已解决）：Phase 3 的 MockAgent、Phase 2 的预录轨迹均为模拟，非真实 LLM Agent。评分公式/Pass@k/Pass^k 是真实源码，但「被评对象」是模拟的。→ 已由 `run_multimodel.py` 接入真实 LLM Agent（22 模型 × 100 样本重跑中，2026-11-02）。
 3. **样本规模小**：30 条医院样本、3 个轻量任务、6 个安全用例，不足以做统计显著性判断。
 4. **本机 DLP 透明加密**：`.md`/`.go` 被加密成密文，读文档需 `git show`；Go 服务端无法编译（`.go` 密文），故 AI-Infra-Guard 只用了 Python 扫描器。
 5. **RQ2/RQ6 未执行**：RQ2 需同一 LLM 跑两套 Harness，RQ6 需 GPU 训练，均受预算限制（用户明确可跳过）。

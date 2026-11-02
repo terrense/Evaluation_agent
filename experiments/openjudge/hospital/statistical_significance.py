@@ -10,6 +10,8 @@
 3. McNemar 检验（trial 0，30 配对任务）：rule pass vs llm pass 的不对称性
 
 输出：reports/openjudge/multimodel/statistical_significance.json + 打印
+
+状态：当前仅对已跑出的 3 模型（30 样本）做显著性；22 模型 × 100 样本重跑完成后重写（task #21）。
 """
 from __future__ import annotations
 

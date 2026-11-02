@@ -3,6 +3,8 @@
 
 修正版：核心发现从「能力-评测悖论（跳过工具）」改为「工具使用姿态多样性被单一 ground truth 惩罚」。
 输出：reports/openjudge/multimodel/report.html + figures/posture.png
+
+状态：当前仅渲染已跑出的 3 模型（30 样本）；22 模型 × 100 样本重跑完成后重写（task #21）。
 """
 from __future__ import annotations
 
