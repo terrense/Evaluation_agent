@@ -31,7 +31,7 @@ OUTCOME_DIMS = ["intent_accuracy", "argument_correctness", "task_completion",
 MODELS_T0 = [
     ("flash",       "deepseek-flash",  "real_eval"),
     ("v4pro",       "deepseek-v4-pro", "real_eval_pro"),
-    ("minimax-m3",  "MiniMax-M3",      "multimodel/minimax-m3__t0.0"),
+    ("minimax-m3",  "MiniMax-M3",      "multimodel/minimax-m3__t0.0_fixed"),
 ]
 EXPECTED = {s["task_id"]: s["expected"]["correct_tools"] for s in SAMPLES}
 
@@ -93,7 +93,7 @@ def main() -> None:
             rows[v][key] = {"mean": sum(scores) / len(scores), "single_pass": single}
 
     # ── 校验 baseline 精确复现 ──
-    known = {"flash": 0.783, "v4pro": 0.793, "minimax-m3": 0.644}
+    known = {"flash": 0.783, "v4pro": 0.793, "minimax-m3": 0.605}
     ok = all(abs(rows["baseline"][k]["mean"] - known[k]) < 0.005 for k in known)
     print("校验 baseline（应全 True）：")
     for k in known:

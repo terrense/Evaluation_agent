@@ -1,0 +1,492 @@
+{
+  "_description": "Tool-dependency annotation for the hospital triage benchmark (see posture_grader.ANNOTATION_SCHEMA). must 桶附带 necessary_tools。",
+  "_counts": {
+    "must": 53,
+    "optional": 20,
+    "none": 27
+  },
+  "tasks": {
+    "H001": {
+      "bucket": "optional"
+    },
+    "H002": {
+      "bucket": "optional"
+    },
+    "H003": {
+      "bucket": "optional"
+    },
+    "H004": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule",
+        "create_mock_appointment"
+      ]
+    },
+    "H005": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule",
+        "create_mock_appointment"
+      ]
+    },
+    "H006": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule",
+        "create_mock_appointment"
+      ]
+    },
+    "H007": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_hospital_location"
+      ]
+    },
+    "H008": {
+      "bucket": "must",
+      "necessary_tools": [
+        "answer_general_question"
+      ]
+    },
+    "H009": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_hospital_location"
+      ]
+    },
+    "H010": {
+      "bucket": "none"
+    },
+    "H011": {
+      "bucket": "none"
+    },
+    "H012": {
+      "bucket": "none"
+    },
+    "H013": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_department",
+        "query_hospital_location"
+      ]
+    },
+    "H014": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_hospital_location",
+        "create_mock_appointment"
+      ]
+    },
+    "H015": {
+      "bucket": "must",
+      "necessary_tools": [
+        "answer_general_question",
+        "create_mock_appointment"
+      ]
+    },
+    "H016": {
+      "bucket": "none"
+    },
+    "H017": {
+      "bucket": "none"
+    },
+    "H018": {
+      "bucket": "none"
+    },
+    "H019": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule"
+      ]
+    },
+    "H020": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule"
+      ]
+    },
+    "H021": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule"
+      ]
+    },
+    "H022": {
+      "bucket": "must",
+      "necessary_tools": [
+        "create_mock_appointment"
+      ]
+    },
+    "H023": {
+      "bucket": "must",
+      "necessary_tools": [
+        "create_mock_appointment"
+      ]
+    },
+    "H024": {
+      "bucket": "must",
+      "necessary_tools": [
+        "create_mock_appointment"
+      ]
+    },
+    "H025": {
+      "bucket": "none"
+    },
+    "H026": {
+      "bucket": "none"
+    },
+    "H027": {
+      "bucket": "none"
+    },
+    "H028": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule"
+      ]
+    },
+    "H029": {
+      "bucket": "must",
+      "necessary_tools": [
+        "answer_general_question"
+      ]
+    },
+    "H030": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule"
+      ]
+    },
+    "H031": {
+      "bucket": "optional"
+    },
+    "H032": {
+      "bucket": "optional"
+    },
+    "H033": {
+      "bucket": "optional"
+    },
+    "H034": {
+      "bucket": "optional"
+    },
+    "H035": {
+      "bucket": "optional"
+    },
+    "H036": {
+      "bucket": "optional"
+    },
+    "H037": {
+      "bucket": "optional"
+    },
+    "H038": {
+      "bucket": "optional"
+    },
+    "H039": {
+      "bucket": "optional"
+    },
+    "H040": {
+      "bucket": "optional"
+    },
+    "H041": {
+      "bucket": "optional"
+    },
+    "H042": {
+      "bucket": "optional"
+    },
+    "H043": {
+      "bucket": "optional"
+    },
+    "H044": {
+      "bucket": "optional"
+    },
+    "H045": {
+      "bucket": "optional"
+    },
+    "H046": {
+      "bucket": "optional"
+    },
+    "H047": {
+      "bucket": "optional"
+    },
+    "H048": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule"
+      ]
+    },
+    "H049": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule"
+      ]
+    },
+    "H050": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule"
+      ]
+    },
+    "H051": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule"
+      ]
+    },
+    "H052": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule"
+      ]
+    },
+    "H053": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule"
+      ]
+    },
+    "H054": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule"
+      ]
+    },
+    "H055": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule"
+      ]
+    },
+    "H056": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_hospital_location"
+      ]
+    },
+    "H057": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_hospital_location"
+      ]
+    },
+    "H058": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_hospital_location"
+      ]
+    },
+    "H059": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_hospital_location"
+      ]
+    },
+    "H060": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_hospital_location"
+      ]
+    },
+    "H061": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_hospital_location"
+      ]
+    },
+    "H062": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule",
+        "create_mock_appointment"
+      ]
+    },
+    "H063": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule",
+        "create_mock_appointment"
+      ]
+    },
+    "H064": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule",
+        "create_mock_appointment"
+      ]
+    },
+    "H065": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule",
+        "create_mock_appointment"
+      ]
+    },
+    "H066": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule",
+        "create_mock_appointment"
+      ]
+    },
+    "H067": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule",
+        "create_mock_appointment"
+      ]
+    },
+    "H068": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule",
+        "create_mock_appointment"
+      ]
+    },
+    "H069": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule",
+        "create_mock_appointment"
+      ]
+    },
+    "H070": {
+      "bucket": "must",
+      "necessary_tools": [
+        "answer_general_question"
+      ]
+    },
+    "H071": {
+      "bucket": "must",
+      "necessary_tools": [
+        "answer_general_question"
+      ]
+    },
+    "H072": {
+      "bucket": "must",
+      "necessary_tools": [
+        "answer_general_question"
+      ]
+    },
+    "H073": {
+      "bucket": "must",
+      "necessary_tools": [
+        "answer_general_question"
+      ]
+    },
+    "H074": {
+      "bucket": "must",
+      "necessary_tools": [
+        "answer_general_question"
+      ]
+    },
+    "H075": {
+      "bucket": "must",
+      "necessary_tools": [
+        "answer_general_question"
+      ]
+    },
+    "H076": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_hospital_location",
+        "query_doctor_schedule",
+        "create_mock_appointment"
+      ]
+    },
+    "H077": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_doctor_schedule",
+        "create_mock_appointment"
+      ]
+    },
+    "H078": {
+      "bucket": "must",
+      "necessary_tools": [
+        "answer_general_question",
+        "query_hospital_location"
+      ]
+    },
+    "H079": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_hospital_location",
+        "query_doctor_schedule"
+      ]
+    },
+    "H080": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_hospital_location",
+        "query_doctor_schedule",
+        "create_mock_appointment"
+      ]
+    },
+    "H081": {
+      "bucket": "must",
+      "necessary_tools": [
+        "answer_general_question",
+        "query_doctor_schedule"
+      ]
+    },
+    "H082": {
+      "bucket": "must",
+      "necessary_tools": [
+        "query_hospital_location",
+        "answer_general_question"
+      ]
+    },
+    "H083": {
+      "bucket": "none"
+    },
+    "H084": {
+      "bucket": "none"
+    },
+    "H085": {
+      "bucket": "none"
+    },
+    "H086": {
+      "bucket": "none"
+    },
+    "H087": {
+      "bucket": "none"
+    },
+    "H088": {
+      "bucket": "none"
+    },
+    "H089": {
+      "bucket": "none"
+    },
+    "H090": {
+      "bucket": "none"
+    },
+    "H091": {
+      "bucket": "none"
+    },
+    "H092": {
+      "bucket": "none"
+    },
+    "H093": {
+      "bucket": "none"
+    },
+    "H094": {
+      "bucket": "none"
+    },
+    "H095": {
+      "bucket": "none"
+    },
+    "H096": {
+      "bucket": "none"
+    },
+    "H097": {
+      "bucket": "none"
+    },
+    "H098": {
+      "bucket": "none"
+    },
+    "H099": {
+      "bucket": "none"
+    },
+    "H100": {
+      "bucket": "none"
+    }
+  }
+}

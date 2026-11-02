@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """多模型 × 温度 统一评测 runner。
 
-每个 (provider, temperature) 配置：30 样本 × 3 trial 真实 Agent → rule 8 维 → LLM-as-Judge。
+每个 (provider, temperature) 配置：100 样本 × 3 trial 真实 Agent → rule 8 维 → LLM-as-Judge。
 输出到 reports/openjudge/multimodel/{out}/
 
 - 实验 A（一致性）：temp=0.3 引入真实随机性，量化 单次 vs Pass@3 vs Pass^3
 - 实验 B（分桶）  ：由 analyze_multimodel.py 对 temp=0 数据按 tool_requirement 分桶
-- 多模型对比     ：flash / v4pro / minimax-m3 三模型 × 8 维
+- 多模型对比     ：5 家族 22 模型（DeepSeek / MiniMax / Qwen / Kimi / GLM）× 8 维
 """
 from __future__ import annotations
 
@@ -29,10 +29,45 @@ CONCURRENCY = 6
 JUDGE_PROVIDER = "v4pro"  # 统一 judge（v4pro 自评存在自偏好偏差，报告里会注明）
 
 # (provider, temperature, 输出目录名)
+# 2026-11-02 扩到 5 家族 22 模型 × temp=0（主对比，100 样本确定性）：
+#   DeepSeek: flash / v4pro；MiniMax: m3 / m2.5；Qwen: 自托管 32b/8b + 云端 3.5~3.8 全线；
+#   Kimi: k3 / k2.7-code；GLM: 5.3 / 5.3-prime / 5.2。
+#   注：qwen3-max 已于 2026-10-10 下线，改用 qwen3.8-max（见 providers.py）。
+# 注：tools.py 已内置日期归一化，此轮重跑的所有目录天然是「fixed」版，
+#     不再需要 minimax-m3__t0.0_fixed 这类单独修补目录。
 CONFIGS = [
-    ("minimax-m3", 0.0, "minimax-m3__t0.0"),
-    ("v4pro", 0.3, "v4pro__t0.3"),
-    ("flash", 0.3, "flash__t0.3"),
+    # ── 主对比（temp=0，100 样本 × 3 trial，5 家族 22 模型）──
+    # DeepSeek
+    ("flash",        0.0, "flash__t0.0"),
+    ("v4pro",        0.0, "v4pro__t0.0"),
+    # MiniMax
+    ("minimax-m3",   0.0, "minimax-m3__t0.0"),
+    ("minimax-m2.5", 0.0, "minimax-m2.5__t0.0"),
+    # Qwen 自托管（H20）
+    ("qwen3-32b",    0.0, "qwen3-32b__t0.0"),
+    ("qwen3-8b",     0.0, "qwen3-8b__t0.0"),
+    # Qwen 云端
+    ("qwen3.8-max",  0.0, "qwen3.8-max__t0.0"),
+    ("qwen3.7-max",  0.0, "qwen3.7-max__t0.0"),
+    ("qwen3.8-flash",0.0, "qwen3.8-flash__t0.0"),
+    ("qwen3.8-2.4t-a95b", 0.0, "qwen3.8-2.4t-a95b__t0.0"),
+    ("qwen3.7-flash",0.0, "qwen3.7-flash__t0.0"),
+    ("qwen3.7-plus", 0.0, "qwen3.7-plus__t0.0"),
+    ("qwen3.6-plus", 0.0, "qwen3.6-plus__t0.0"),
+    ("qwen3.5-plus", 0.0, "qwen3.5-plus__t0.0"),
+    ("qwen-max",     0.0, "qwen-max__t0.0"),
+    ("qwen-plus",    0.0, "qwen-plus__t0.0"),
+    ("qwen-flash",   0.0, "qwen-flash__t0.0"),
+    # Kimi
+    ("kimi-k3",      0.0, "kimi-k3__t0.0"),
+    ("kimi-k2.7-code", 0.0, "kimi-k2.7-code__t0.0"),
+    # GLM
+    ("glm-5.3",      0.0, "glm-5.3__t0.0"),
+    ("glm-5.3-prime",0.0, "glm-5.3-prime__t0.0"),
+    ("glm-5.2",      0.0, "glm-5.2__t0.0"),
+    # ── 实验 A（一致性，temp=0.3，可选，跑完主对比再开）──
+    # ("flash",      0.3, "flash__t0.3"),
+    # ("v4pro",      0.3, "v4pro__t0.3"),
 ]
 
 

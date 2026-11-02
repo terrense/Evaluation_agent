@@ -96,10 +96,10 @@ def test_stop_early_stop_missing_intent():
     assert _run(grade_stop, "H014") == 0.0
 
 
-# ── 维度覆盖：30 条样本全部能产出合法分数 ─────────────────────
+# ── 维度覆盖：100 条样本全部能产出合法分数 ─────────────────────
 
 def test_all_samples_have_8_scores():
-    """30 条样本 × 8 维度，每条每维都有 [0,1] 合法分数。"""
+    """100 条样本 × 8 维度，每条每维都有 [0,1] 合法分数。"""
     for dim, fn in RULE_GRADERS.items():
         for s in SAMPLES:
             score = asyncio.run(fn(trajectory=s["trajectory"], expected=s["expected"])).score

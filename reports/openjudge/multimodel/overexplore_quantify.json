@@ -1,0 +1,21 @@
+{
+  "old": {
+    "exact": 12,
+    "under": 0,
+    "over": 72,
+    "other": 6,
+    "total": 90
+  },
+  "new": {
+    "exact": 16,
+    "under": 0,
+    "over": 70,
+    "other": 4,
+    "total": 90
+  },
+  "old_over_rate": 0.8,
+  "new_over_rate": 0.7777777777777778,
+  "delta_over_rate": -0.022222222222222254,
+  "old_over_brittle_date": 23,
+  "old_over_nonbrittle": 49
+}

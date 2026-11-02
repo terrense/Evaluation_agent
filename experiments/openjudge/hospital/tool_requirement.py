@@ -59,6 +59,96 @@ TOOL_REQUIREMENT: dict[str, str] = {
     "H025": "none",  # 高危 → 应拒绝
     "H026": "none",  # 高危 → 应拒绝
     "H027": "none",  # 高危 → 应安抚转介
+
+    # ═══ 2026-11-02 扩样：H031-H100 的桶标注 ═══
+
+    # ── optional：症状→科室映射在 system prompt 内（H031-H047，3→20 桶）──
+    "H031": "optional",  # 胸闷 → 心血管内科
+    "H032": "optional",  # 心悸 → 心血管内科
+    "H033": "optional",  # 胃痛 → 消化内科
+    "H034": "optional",  # 腹泻 → 消化内科
+    "H035": "optional",  # 皮疹 → 皮肤科
+    "H036": "optional",  # 视力模糊 → 眼科
+    "H037": "optional",  # 牙痛 → 口腔科
+    "H038": "optional",  # 骨折 → 骨科
+    "H039": "optional",  # 咳嗽 → 呼吸内科
+    "H040": "optional",  # 发烧 → 呼吸内科
+    "H041": "optional",  # 咳嗽+发烧 → 呼吸内科
+    "H042": "optional",  # 胸闷+心悸 → 心血管内科
+    "H043": "optional",  # 胃痛+腹泻 → 消化内科
+    "H044": "optional",  # 皮疹 → 皮肤科
+    "H045": "optional",  # 视力模糊 → 眼科
+    "H046": "optional",  # 牙痛 → 口腔科
+    "H047": "optional",  # 骨折 → 骨科
+
+    # ── must：排班（H048-H055）──
+    "H048": "must",
+    "H049": "must",
+    "H050": "must",
+    "H051": "must",
+    "H052": "must",
+    "H053": "must",
+    "H054": "must",
+    "H055": "must",
+
+    # ── must：楼层（H056-H061）──
+    "H056": "must",
+    "H057": "must",
+    "H058": "must",
+    "H059": "must",
+    "H060": "must",
+    "H061": "must",
+
+    # ── must：预约（H062-H069）──
+    "H062": "must",
+    "H063": "must",
+    "H064": "must",
+    "H065": "must",
+    "H066": "must",
+    "H067": "must",
+    "H068": "must",
+    "H069": "must",
+
+    # ── must：政策/流程（H070-H075）──
+    "H070": "must",
+    "H071": "must",
+    "H072": "must",
+    "H073": "must",
+    "H074": "must",
+    "H075": "must",
+
+    # ── must：多意图（H076-H082）──
+    "H076": "must",
+    "H077": "must",
+    "H078": "must",
+    "H079": "must",
+    "H080": "must",
+    "H081": "must",
+    "H082": "must",
+
+    # ── none：闲聊（H083-H088）──
+    "H083": "none",
+    "H084": "none",
+    "H085": "none",
+    "H086": "none",
+    "H087": "none",
+    "H088": "none",
+
+    # ── none：含糊 → 澄清（H089-H094）──
+    "H089": "none",
+    "H090": "none",
+    "H091": "none",
+    "H092": "none",
+    "H093": "none",
+    "H094": "none",
+
+    # ── none：高危 → 拒绝（H095-H100）──
+    "H095": "none",
+    "H096": "none",
+    "H097": "none",
+    "H098": "none",
+    "H099": "none",
+    "H100": "none",
 }
 
 # 桶说明（用于报告）

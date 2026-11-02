@@ -105,7 +105,10 @@ async def run_agent(client, model: str, query: str, max_turns: int = 6,
         for tc in msg.tool_calls:
             fn_name = tc.function.name
             args = json.loads(tc.function.arguments or "{}")
-            result = TOOLS[fn_name](**args)  # 真实执行 mock 工具
+            try:
+                result = TOOLS[fn_name](**args)  # 真实执行 mock 工具
+            except Exception as e:  # 参数缺失/类型不符等：记 error 让模型观察并恢复，不崩整个 run
+                result = {"error": f"工具调用异常：{type(e).__name__}: {e}"}
             trajectory.append({"type": "tool_call", "tool": fn_name,
                                "args": args, "result": result})
             messages.append({"role": "tool", "tool_call_id": tc.id,

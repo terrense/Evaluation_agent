@@ -1,8 +1,10 @@
 # 论文骨架：工具调用 Agent 评测中的「姿态-评测错配」
 
 > 目标：Workshop / Short Paper（先投 arXiv + 评测/Agent 方向 workshop，再图正会）。
-> 现状：30 样本 / 单场景 / 三模型（flash、v4-pro、MiniMax-M3）× 温度 0/0.3，足以支撑一篇「现象发现 + 修正框架」的 workshop paper；
-> 正会需扩到 5-6 模型 × 2-3 场景 × ≥100 样本。
+> 现状：**100 样本已设计**（optional 20 / must 53 / none 27，见 samples.py + tool_requirement.py + annotation.json），
+> 但仅前 30 条有三模型真实分数（flash、v4-pro、MiniMax-M3 × 温度 0/0.3），后 70 条待重跑。
+> 模型注册已扩到 **5 家族 22 模型**（DeepSeek / MiniMax / Qwen / Kimi / GLM，见 providers.py），待充值重跑。
+> 现有分数足以支撑 workshop paper；正会需重跑 100 样本 + 多模型 × 2-3 场景。
 
 ## 1. 候选标题（按锋芒排序）
 
@@ -23,7 +25,7 @@
 |---|---|
 | F1 三种工具姿态并存 | flash/v4-pro「先追问」占主导（must 桶零工具追问普遍），MiniMax-M3「过度探索」（极端 13 工具/无结论） |
 | F2 双 Grader 系统性分歧 | rule vs LLM 在「工具选择」0.47 vs 0.85、「停止决策」0.57 vs 0.94（flash） |
-| F3 差距放大（gap inflation） | MiniMax-M3 有真实结果短板（intent .35 / grounded .74）；rule 把本不大的真实差（~0.04）放大 2–3× 到 0.149，全修复后回落 0.065 |
+| F3 差距放大（gap inflation） | MiniMax-M3 有真实结果短板（intent .37 / grounded .60）；rule 造出显著差 −0.19，而 LLM 判定无显著差（+0.03），全修复后回落 0.110 |
 | F4 温度是烟雾弹 | 0→0.3 时 Pass@3 纹丝不动（0.533）、Pass^3 只挪 ≤0.01；姿态差（0.13 vs 0.47）远大于采样方差 |
 
 ## 4. 方法（可复现）
@@ -51,18 +53,19 @@
 
 ## 7. 待补（正会门槛）
 
-- [ ] 模型数 5-6（+ Qwen2.5/Qwen3、Llama、Claude/GPT）
+- [ ] 模型数 5-6 → **代码已登记 5 家族 22 模型**（DeepSeek / MiniMax / Qwen / Kimi / GLM；qwen3-max 已下线改 qwen3.8-max），真实分数待重跑
 - [ ] 场景 2-3（医院 + 金融/客服 + 编码）
-- [ ] 样本 ≥100，optional 桶 20+（当前仅 3）
+- [x] 样本 ≥100，optional 桶 20+（**设计完成**：100 样本，optional 20 / must 53 / none 27，2026-11-02）
+- [ ] 重跑 100 样本得新分数（需模型 + API 额度，建议与 #17 扩模型一并跑）
 - [ ] 与 SABench / oracle-audit 的 head-to-head
 - [ ] 开源评测集 + 姿态标注工具（可被他人复用，novelty 关键）
 - [ ] 统计显著性（bootstrap / McNemar）
 
 ## 8. 诚实边界
 
-- optional 桶仅 3 样本（H001-H003），分桶结论是方向性证据。
+- optional 桶已扩到 20 样本（H001-H003 + H031-H047），但后 70 条的新分数尚未重跑——现有分桶结论仍基于前 30 条。
 - v4-pro 同时当 Agent 和 Judge，存在自偏好偏差。
-- 单场景合成数据，外部效度有限；mock 工具的日期参数脆弱（只认字面"周四"），可能夸大 over-explore 姿态。
+- 单场景合成数据，外部效度有限；mock 工具的日期参数脆弱性已修复并量化（over-explore 率 80%→78%，仅 −2pp，非 artifact）。
 
 ---
 
