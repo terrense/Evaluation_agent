@@ -22,6 +22,8 @@
 """
 from __future__ import annotations
 
+from symptom_expansion import TOOL_REQ_ENTRIES
+
 # task_id -> 桶
 TOOL_REQUIREMENT: dict[str, str] = {
     # ── optional：症状→科室映射在 system prompt 内，模型可直接回答 ──
@@ -150,6 +152,9 @@ TOOL_REQUIREMENT: dict[str, str] = {
     "H099": "none",
     "H100": "none",
 }
+
+# 2026-11-02 扩样：合并 72 条新症状样本的桶标注（H101-H172，全 optional）
+TOOL_REQUIREMENT.update(TOOL_REQ_ENTRIES)
 
 # 桶说明（用于报告）
 BUCKET_ZH = {

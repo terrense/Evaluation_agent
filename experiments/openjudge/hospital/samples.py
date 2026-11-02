@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-"""100 条测试样本：覆盖 10 类场景。
+"""172 条测试样本：覆盖 10 类场景 + 18 类新症状。
 
 每条样本 = {task_id, scenario, input, trajectory(预录轨迹), expected(ground truth)}。
 轨迹是「已被 Agent 执行过的记录」，是 Grader 的输入；其中故意混入正确/错误轨迹，
 用于验证 Grader 能否正确区分。工具调用结果与 tools.py 语义一致（合成数据）。
 
-样本量：H001-H030 为原始 30 条（2026-10 首版）；H031-H100 为 2026-11-02 扩样，
-目标是把 optional 桶从 3 条扩到 20 条（症状→科室映射已在 real_agent.SYSTEM_PROMPT），
-把 must 桶扩到 53 条、none 桶扩到 27 条，支撑「≥100 样本」的会议/SCI 门槛。
+样本量：H001-H030 为原始 30 条（2026-10 首版）；H031-H100 为 2026-11-02 扩样
+（optional 3→20、must 53、none 27）；H101-H172 为同批症状扩样
+（symptom_expansion.py，optional 20→92，72 条新症状口语问法）。
 
 8 个评测维度对应的 expected 字段：
   intent          意图准确（Intent Accuracy）
@@ -20,6 +20,8 @@
   stop_correct    停止决策正确（Stop Decision）
 """
 from __future__ import annotations
+
+from symptom_expansion import EXPANSION_SAMPLES
 
 # 轨迹 step 简写：tc(tool, args, result) / fa(text)
 def tc(tool: str, args: dict, result: dict) -> dict:
@@ -1322,4 +1324,7 @@ SAMPLES: list[dict] = [
     },
 ]
 
-assert len(SAMPLES) == 100, f"期望 100 条样本，实际 {len(SAMPLES)}"
+# 2026-11-02 扩样：合并 72 条新症状样本（H101-H172，optional 桶 20→92）
+SAMPLES += EXPANSION_SAMPLES
+
+assert len(SAMPLES) == 172, f"期望 172 条样本，实际 {len(SAMPLES)}"

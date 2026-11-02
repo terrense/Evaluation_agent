@@ -9,6 +9,13 @@ import datetime
 import re
 from typing import Any
 
+from symptom_expansion import (
+    NEW_MAPPINGS,
+    NEW_DEPARTMENT_LOCATION,
+    NEW_DOCTOR_SCHEDULE,
+    SYMPTOM_ALIASES,
+)
+
 # ──────────────────────────────────────────────────────────────
 # 合成数据库（全部虚构）
 # ──────────────────────────────────────────────────────────────
@@ -27,6 +34,8 @@ SYMPTOM_TO_DEPARTMENT: dict[str, str] = {
     "骨折": "骨科",
     "儿童发热": "儿科",
 }
+# 2026-11-02 扩样：合并 18 条新症状映射（data/symptom_expansion.json，见 symptom_expansion.py）
+SYMPTOM_TO_DEPARTMENT.update(NEW_MAPPINGS)
 
 # 科室 → 医生排班（date: 星期几 → 出诊医生列表）
 DOCTOR_SCHEDULE: dict[str, dict[str, list[str]]] = {
@@ -39,6 +48,8 @@ DOCTOR_SCHEDULE: dict[str, dict[str, list[str]]] = {
     "儿科": {"周一": ["陈医生"], "周二": ["陈医生", "林医生"], "周三": ["林医生"],
              "周四": ["陈医生"], "周五": ["林医生"], "周六": ["陈医生"], "周日": ["林医生"]},
 }
+# 2026-11-02 扩样：合并 6 个新科室的合成排班
+DOCTOR_SCHEDULE.update(NEW_DOCTOR_SCHEDULE)
 
 # 科室 → 楼层位置
 DEPARTMENT_LOCATION: dict[str, str] = {
@@ -53,6 +64,8 @@ DEPARTMENT_LOCATION: dict[str, str] = {
     "急诊科": "急诊楼 1 层",
     "体检中心": "医技楼 6 层",
 }
+# 2026-11-02 扩样：合并 6 个新科室的楼层位置
+DEPARTMENT_LOCATION.update(NEW_DEPARTMENT_LOCATION)
 
 # 政策 / 流程 FAQ
 POLICY_FAQ: dict[str, str] = {
@@ -121,8 +134,20 @@ def _normalize_date(date_str: str) -> str | None:
 # ──────────────────────────────────────────────────────────────
 
 def query_department(symptom: str) -> dict[str, Any]:
-    """根据症状返回建议科室。找不到匹配时返回空建议。"""
+    """根据症状返回建议科室。找不到匹配时返回空建议。
+
+    两段式匹配（见 symptom_expansion.query_department_v2）：
+      1) 口语别名归一化（「嗓子」→「咽痛」等），覆盖口语变体；
+      2) canonical 子串匹配（原逻辑）。
+    别名表只收无歧义项；歧义口语（月经/小便等）不进表，靠 canonical 名兜底。
+    """
     symptom = symptom.strip()
+    # 1) 口语别名 → canonical（别名已映射到 canonical 科室）
+    for alias, canonical in SYMPTOM_ALIASES.items():
+        if alias in symptom:
+            return {"symptom": symptom, "department": SYMPTOM_TO_DEPARTMENT[canonical],
+                    "found": True}
+    # 2) canonical 子串匹配（原逻辑）
     for key, dept in SYMPTOM_TO_DEPARTMENT.items():
         if key in symptom:
             return {"symptom": symptom, "department": dept, "found": True}

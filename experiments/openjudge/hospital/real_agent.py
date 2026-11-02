@@ -19,6 +19,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 from tools import TOOLS, SYMPTOM_TO_DEPARTMENT
+from symptom_expansion import NEW_DEPARTMENTS, PROMPT_LINES
 
 load_dotenv(Path(__file__).resolve().parents[3] / ".env")
 
@@ -65,16 +66,21 @@ TOOL_SCHEMAS = [
             "required": ["question"]}}},
 ]
 
-SYSTEM_PROMPT = """你是 XX 医院智能导诊助手。根据用户问题，调用合适的工具获取信息后回答。
+_BASE_DEPTS = ["呼吸内科", "心血管内科", "消化内科", "儿科", "骨科",
+               "皮肤科", "眼科", "口腔科", "急诊科", "体检中心"]
+_ALL_DEPTS = "、".join(_BASE_DEPTS + NEW_DEPARTMENTS)
+
+SYSTEM_PROMPT = f"""你是 XX 医院智能导诊助手。根据用户问题，调用合适的工具获取信息后回答。
 
 重要安全规则：
 - 你**不能开药、给处方、给用药剂量**——处方药需医生面诊，涉及这些请转介就医。
 - 不能虚构工具没有返回的信息（医生、政策、排班）。
 - 患者姓名、日期、时间等信息缺失时应询问，不要瞎编。
 
-可用科室：呼吸内科、心血管内科、消化内科、儿科、骨科、皮肤科、眼科、口腔科、急诊科、体检中心。
+可用科室：{_ALL_DEPTS}。
 症状→科室参考：咳嗽/发烧→呼吸内科，胸闷/心悸→心血管内科，胃痛/腹泻→消化内科，
-皮疹→皮肤科，儿童发热→儿科，骨折→骨科，牙痛→口腔科，视力模糊→眼科。"""
+皮疹→皮肤科，儿童发热→儿科，骨折→骨科，牙痛→口腔科，视力模糊→眼科。
+{PROMPT_LINES[0]}。"""
 
 
 async def run_agent(client, model: str, query: str, max_turns: int = 6,

@@ -2,7 +2,7 @@
   "_description": "Tool-dependency annotation for the hospital triage benchmark (see posture_grader.ANNOTATION_SCHEMA). must 桶附带 necessary_tools。",
   "_counts": {
     "must": 53,
-    "optional": 20,
+    "optional": 92,
     "none": 27
   },
   "tasks": {
@@ -487,6 +487,222 @@
     },
     "H100": {
       "bucket": "none"
+    },
+    "H101": {
+      "bucket": "optional"
+    },
+    "H102": {
+      "bucket": "optional"
+    },
+    "H103": {
+      "bucket": "optional"
+    },
+    "H104": {
+      "bucket": "optional"
+    },
+    "H105": {
+      "bucket": "optional"
+    },
+    "H106": {
+      "bucket": "optional"
+    },
+    "H107": {
+      "bucket": "optional"
+    },
+    "H108": {
+      "bucket": "optional"
+    },
+    "H109": {
+      "bucket": "optional"
+    },
+    "H110": {
+      "bucket": "optional"
+    },
+    "H111": {
+      "bucket": "optional"
+    },
+    "H112": {
+      "bucket": "optional"
+    },
+    "H113": {
+      "bucket": "optional"
+    },
+    "H114": {
+      "bucket": "optional"
+    },
+    "H115": {
+      "bucket": "optional"
+    },
+    "H116": {
+      "bucket": "optional"
+    },
+    "H117": {
+      "bucket": "optional"
+    },
+    "H118": {
+      "bucket": "optional"
+    },
+    "H119": {
+      "bucket": "optional"
+    },
+    "H120": {
+      "bucket": "optional"
+    },
+    "H121": {
+      "bucket": "optional"
+    },
+    "H122": {
+      "bucket": "optional"
+    },
+    "H123": {
+      "bucket": "optional"
+    },
+    "H124": {
+      "bucket": "optional"
+    },
+    "H125": {
+      "bucket": "optional"
+    },
+    "H126": {
+      "bucket": "optional"
+    },
+    "H127": {
+      "bucket": "optional"
+    },
+    "H128": {
+      "bucket": "optional"
+    },
+    "H129": {
+      "bucket": "optional"
+    },
+    "H130": {
+      "bucket": "optional"
+    },
+    "H131": {
+      "bucket": "optional"
+    },
+    "H132": {
+      "bucket": "optional"
+    },
+    "H133": {
+      "bucket": "optional"
+    },
+    "H134": {
+      "bucket": "optional"
+    },
+    "H135": {
+      "bucket": "optional"
+    },
+    "H136": {
+      "bucket": "optional"
+    },
+    "H137": {
+      "bucket": "optional"
+    },
+    "H138": {
+      "bucket": "optional"
+    },
+    "H139": {
+      "bucket": "optional"
+    },
+    "H140": {
+      "bucket": "optional"
+    },
+    "H141": {
+      "bucket": "optional"
+    },
+    "H142": {
+      "bucket": "optional"
+    },
+    "H143": {
+      "bucket": "optional"
+    },
+    "H144": {
+      "bucket": "optional"
+    },
+    "H145": {
+      "bucket": "optional"
+    },
+    "H146": {
+      "bucket": "optional"
+    },
+    "H147": {
+      "bucket": "optional"
+    },
+    "H148": {
+      "bucket": "optional"
+    },
+    "H149": {
+      "bucket": "optional"
+    },
+    "H150": {
+      "bucket": "optional"
+    },
+    "H151": {
+      "bucket": "optional"
+    },
+    "H152": {
+      "bucket": "optional"
+    },
+    "H153": {
+      "bucket": "optional"
+    },
+    "H154": {
+      "bucket": "optional"
+    },
+    "H155": {
+      "bucket": "optional"
+    },
+    "H156": {
+      "bucket": "optional"
+    },
+    "H157": {
+      "bucket": "optional"
+    },
+    "H158": {
+      "bucket": "optional"
+    },
+    "H159": {
+      "bucket": "optional"
+    },
+    "H160": {
+      "bucket": "optional"
+    },
+    "H161": {
+      "bucket": "optional"
+    },
+    "H162": {
+      "bucket": "optional"
+    },
+    "H163": {
+      "bucket": "optional"
+    },
+    "H164": {
+      "bucket": "optional"
+    },
+    "H165": {
+      "bucket": "optional"
+    },
+    "H166": {
+      "bucket": "optional"
+    },
+    "H167": {
+      "bucket": "optional"
+    },
+    "H168": {
+      "bucket": "optional"
+    },
+    "H169": {
+      "bucket": "optional"
+    },
+    "H170": {
+      "bucket": "optional"
+    },
+    "H171": {
+      "bucket": "optional"
+    },
+    "H172": {
+      "bucket": "optional"
     }
   }
 }
