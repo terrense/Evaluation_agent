@@ -33,6 +33,8 @@ CONFIGS = [
     ("minimax-m3", 0.0, "minimax-m3__t0.0"),
     ("v4pro", 0.3, "v4pro__t0.3"),
     ("flash", 0.3, "flash__t0.3"),
+    ("qwen3-32b", 0.0, "qwen3-32b__t0.0"),
+    ("qwen3-max",  0.0, "qwen3-max__t0.0"),
 ]
 
 

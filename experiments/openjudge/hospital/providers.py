@@ -24,7 +24,7 @@ PROVIDERS: dict[str, dict] = {
     "qwen3-32b":    {"key_env": "QWEN_H20_KEY", "base_env": "QWEN_H20_BASE", "model": "qwen3-32b"},
     "qwen3-30b-a3b":{"key_env": "QWEN_H20_KEY", "base_env": "QWEN_H20_BASE", "model": "qwen3-30b-a3b"},
     # Qwen3-Max 专有模型（阿里云百炼 DashScope 兼容模式；不可自托管）
-    "qwen3-max":    {"key_env": "DASHSCOPE_API_KEY", "base_env": "DASHSCOPE_BASE_URL", "model": "qwen3-max"},
+    "qwen3-max":    {"key_env": "DASHSCOPE_API_KEY", "base_env": "DASHSCOPE_BASE_URL", "model": "qwen3.8-max"},
 }
 
 

@@ -4,7 +4,7 @@
 读 reports/openjudge/ 下各模型配置的原始结果，产出三块：
   实验 A —— 一致性：温度 0 vs 0.3 的 单次/Pass@3/Pass^3 真实差距
   实验 B —— 分桶：按 tool_requirement(must/optional/none) 揭示「工具调用 bias」
-  多模型  —— flash / v4pro / minimax-m3 三模型 × 8 维对比
+  多模型  —— 全部 temp=0 模型 × 8 维对比（在 MODELS 登记即自动并入）
 
 输出：reports/openjudge/multimodel/comparison.md + figures/*.png
 """
@@ -44,6 +44,8 @@ MODELS = [
     ("minimax-m3",  "MiniMax-M3",      "multimodel/minimax-m3__t0.0",  0.0),
     ("v4pro-t0.3",  "deepseek-v4-pro", "multimodel/v4pro__t0.3",       0.3),
     ("flash-t0.3",  "deepseek-flash",  "multimodel/flash__t0.3",       0.3),
+    ("qwen3-32b",   "Qwen3-32B",       "multimodel/qwen3-32b__t0.0",   0.0),
+    ("qwen3-max",   "Qwen3-Max",       "multimodel/qwen3-max__t0.0",   0.0),
 ]
 
 
@@ -137,6 +139,9 @@ def main() -> None:
 
     for key, disp, rel, temp in MODELS:
         md = REPORTS / rel
+        if not (md / "real_traces.jsonl").exists():
+            print(f"  [skip] {key}: 缺结果目录 {md}（先跑对应 eval 再分析）")
+            continue
         traces, rule, llm = load(md)
         cons = consistency(rule)
         dimr = dim_means(rule)
@@ -163,16 +168,17 @@ def main() -> None:
     (OUT_DIR / "comparison.json").write_text(json.dumps(dump, ensure_ascii=False, indent=2), encoding="utf-8")
 
     # ── 图 1：三模型 8 维对比（rule，temp=0）──
-    t0 = [r for r in rows if r["temp"] == 0.0 and r["key"] in ("flash", "v4pro", "minimax-m3")]
+    t0 = [r for r in rows if r["temp"] == 0.0]
     fig, ax = plt.subplots(figsize=(12, 5))
     x = range(len(DIMS))
-    w = 0.26
+    n = len(t0)
+    w = 0.8 / n
     for i, r in enumerate(t0):
         vals = [r["dim_rule"][d] for d in DIMS]
-        ax.bar([xi + (i - 1) * w for xi in x], vals, w, label=r["disp"])
+        ax.bar([xi + (i - (n - 1) / 2) * w for xi in x], vals, w, label=r["disp"])
     ax.set_xticks(list(x)); ax.set_xticklabels([DIM_ZH[d] for d in DIMS])
     ax.set_ylim(0, 1.05); ax.set_ylabel("rule-based 平均分")
-    ax.set_title("三模型 × 8 维能力（rule-based，temp=0）")
+    ax.set_title(f"{n} 模型 × 8 维能力（rule-based，temp=0）")
     ax.legend(); ax.grid(axis="y", alpha=0.3)
     plt.tight_layout(); fig.savefig(FIG_DIR / "multi_dim.png", dpi=120); plt.close(fig)
 
@@ -190,12 +196,14 @@ def main() -> None:
 
     # ── 图 3：实验 B 分桶（tool_selection vs groundedness，temp=0 三模型）──
     fig, axes = plt.subplots(1, 3, figsize=(14, 4.5), sharey=True)
+    n = len(t0)
+    w = 0.8 / n
     for bi, b in enumerate(BUCKETS):
         ax = axes[bi]
-        for j, (key, disp) in enumerate((("flash", "flash"), ("v4pro", "v4-pro"), ("minimax-m3", "MiniMax-M3"))):
-            bd = model_bucket[key][b]
-            ax.bar([0 + (j - 1) * 0.24, 1 + (j - 1) * 0.24],
-                   [bd["tool_selection"], bd["groundedness"]], 0.24, label=disp)
+        for j, r in enumerate(t0):
+            bd = model_bucket[r["key"]][b]
+            ax.bar([0 + (j - (n - 1) / 2) * w, 1 + (j - (n - 1) / 2) * w],
+                   [bd["tool_selection"], bd["groundedness"]], w, label=r["disp"])
         ax.set_title(BUCKET_ZH[b], fontsize=11)
         ax.set_ylim(0, 1.05)
         ax.set_xticks([0, 1]); ax.set_xticklabels(["工具选择", "有依据"], fontsize=10)
@@ -208,7 +216,7 @@ def main() -> None:
     L = []
     L.append("# 多模型 × 温度 × 工具依赖分桶 分析报告\n")
     L.append("> 数据：30 样本 × 3 trial，双 Grader（rule 8 维 + LLM-as-Judge）。")
-    L.append("> 三模型：deepseek-flash / deepseek-v4-pro / MiniMax-M3；温度 0 与 0.3。\n")
+    L.append("> 多模型（temp=0）：" + " / ".join(r["disp"] for r in t0) + "；另有 temp=0.3 一致性实验。\n")
 
     L.append("## 1. 多模型总览（temp=0）\n")
     L.append("| 模型 | 单次通过 | Pass@3 | Pass^3 | rule 总分 | LLM 总分 |")
@@ -245,9 +253,9 @@ def main() -> None:
         L.append(f"\n**{BUCKET_ZH[b]}**（{len([t for t in TOOL_REQUIREMENT if TOOL_REQUIREMENT[t]==b])} 条样本）")
         L.append("| 模型 | 工具选择 | 有依据 | 任务完成 | 意图 | 停止决策 |")
         L.append("|---|:--:|:--:|:--:|:--:|:--:|")
-        for key, disp in (("flash", "flash"), ("v4pro", "v4-pro"), ("minimax-m3", "MiniMax-M3")):
-            bd = model_bucket[key][b]
-            L.append(f"| {disp} | {bd['tool_selection']:.2f} | {bd['groundedness']:.2f} | "
+        for r in t0:
+            bd = model_bucket[r["key"]][b]
+            L.append(f"| {r['disp']} | {bd['tool_selection']:.2f} | {bd['groundedness']:.2f} | "
                      f"{bd['task_completion']:.2f} | {bd['intent_accuracy']:.2f} | {bd['stop_decision']:.2f} |")
     L.append("")
     L.append("### 3.2 核心信号：`结果正确但工具序列不匹配` 的 trial 数")
@@ -256,10 +264,10 @@ def main() -> None:
     L.append(">       **并非**「跳过工具」。该签名量化的是「结果对、但过程被精确序列匹配判错」的比例。")
     L.append("| 模型 | must | optional | none |")
     L.append("|---|:--:|:--:|:--:|")
-    for key, disp in (("flash", "flash"), ("v4pro", "v4-pro"), ("minimax-m3", "MiniMax-M3")):
-        cnt = model_correct_notool[key]["counts"]
-        tot = model_correct_notool[key]["total"]
-        L.append(f"| {disp} | {cnt['must']}/{tot['must']} | {cnt['optional']}/{tot['optional']} | {cnt['none']}/{tot['none']} |")
+    for r in t0:
+        cnt = model_correct_notool[r["key"]]["counts"]
+        tot = model_correct_notool[r["key"]]["total"]
+        L.append(f"| {r['disp']} | {cnt['must']}/{tot['must']} | {cnt['optional']}/{tot['optional']} | {cnt['none']}/{tot['none']} |")
     L.append("")
     L.append("**结论**：")
     L.append("- 三模型都不存在「知识内化后跳过工具」——must 桶不调工具必虚构（有依据=0），该签名几乎不出现。")
