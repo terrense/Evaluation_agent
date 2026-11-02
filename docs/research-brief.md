@@ -34,14 +34,14 @@
 
 ---
 
-## 3. 核心发现（真实数据，三模型 × 90 trial 已验证）
+## 3. 核心发现（真实数据，21 模型 × 100 样本 × 3 trial 已验证）
 
 | # | 发现 | 证据 |
 |---|---|---|
-| F1 | 三种工具姿态并存 | flash/v4-pro 偏「先追问」（must 桶零工具追问普遍）；MiniMax-M3 偏「过度探索」（78% trial 多调工具，极端反复 8~13 次） |
-| F2 | 双 Grader 系统性分歧 | rule vs LLM：工具选择 0.47 vs 0.85、停止决策 0.57 vs 0.94（flash） |
-| F3 | 差距放大（gap inflation） | MiniMax 有真实结果短板（intent .37 / grounded .60）；rule 造出显著差 −0.19，LLM 判定无显著差（+0.03）；消融剥掉姿态惩罚后 0.188 → 0.110（收窄 ~41%） |
-| F4 | 温度是烟雾弹 | 0→0.3 时 Pass@3 纹丝不动（0.533）、Pass^3 只挪 ≤0.01；姿态差（0.13 vs 0.47）远大于采样方差 |
+| F1 | 姿态是模型级特征 | MiniMax-M3「过度探索」73%（其余 ≤20%）；Flash/Qwen3.8-Max「先追问」~27%；Qwen-Max/Qwen-Flash「标准执行」75-85% |
+| F2 | 双 Grader 只中等一致 | rule 与 LLM 对 21 模型排序 Spearman=0.63；分歧集中在过度探索模型 |
+| F3 | 差距放大由 over 驱动 | over% 与 (rule−LLM) 差 r=−0.79（bootstrap CI [−0.93,−0.02]）；rule 拉开 0.71–0.92（全距 0.20），LLM 挤在 0.84–0.92（全距 0.08）；消融把 MiniMax 差距 0.145→0.075 |
+| F4 | 温度是烟雾弹 | （30 样本遗留）0→0.3 时 Pass@3 纹丝不动（0.533）、Pass^3 只挪 ≤0.01；姿态差远大于采样方差 |
 
 其他支持性发现（Phase 2-6）：outcome-only 漏判 0.667；hard gate 减漏判增误判；静态正则 recall=1.0
 但仅因用例教科书式明显；rule grader 的两个经典 bug 靠 pytest 校验兜底。
@@ -69,7 +69,7 @@
   证明「过度探索不是 artifact」）；全部引用已核实（SABench arXiv:2610.34167、Executable-Contract Audit
   arXiv:2609.37315 均真实）；样本设计扩到 100（optional 20 / must 53 / none 27）；30 样本上已做
   cluster bootstrap + McNemar（rule gap −0.189 显著、LLM gap +0.034 不显著、gap inflation −0.197 显著）。
-- **P1 进行中**：模型 2 家族 → 5 家族 22 模型（DeepSeek/MiniMax/Qwen/Kimi/GLM）正在重跑；100 样本新分数待出。
+- **P1 已完成**：模型 2 家族 → 5 家族 21 模型（DeepSeek/MiniMax/Qwen/Kimi/GLM）已重跑；100 样本新分数已出（2026-11-02）。
 - **P2 待补（补了才能投会议/SCI）**：**单场景**（只医院导诊，未验证金融/客服/编码）是最大硬伤；
   无 head-to-head（未与 SABench / oracle-audit 同 benchmark 正面比）；开源姿态标注工具未落地；
   v4-pro 既当 agent 又当 judge 的自偏好偏差未消除。
@@ -91,7 +91,7 @@
 **核心代码（experiments/openjudge/hospital/）**
 - `samples.py` —— 100 样本（H001-H100）；`tool_requirement.py` —— must/optional/none 标注
 - `graders_rule.py` —— 8 维确定性 grader；`posture_grader.py` —— 姿态重打分（分桶消融 A/B/C/D）
-- `providers.py` —— 多 provider 注册（5 家族 22 模型）；`real_agent.py` —— 真实 LLM agent
+- `providers.py` —— 多 provider 注册（5 家族 21 模型）；`real_agent.py` —— 真实 LLM agent
 - `llm_judge.py` —— LLM-as-Judge；`run_multimodel.py` —— 多模型 × 温度 runner
 - `tools.py` —— mock 工具（含 `_normalize_date` 日期归一化）；`export_annotation.py` —— 生成 annotation.json
 - `test_grader.py` —— grader pytest 校验
@@ -110,4 +110,4 @@
    需要给出「合理过度探索」与「真乱调」的可判定标准。
 3. **润色 Related Work 与 Intro**：把「方向性分歧 + gap inflation」的定位讲清，与 SABench / oracle-audit /
    BFCL / τ-bench 的差异表写实。
-4. **统计方法复核**：22 模型跑完后，cluster bootstrap + McNemar 需按多模型重算，确认显著性结论的稳健性。
+4. **统计方法复核**：21 模型跑完后，cluster bootstrap + McNemar 需按多模型重算，确认显著性结论的稳健性。

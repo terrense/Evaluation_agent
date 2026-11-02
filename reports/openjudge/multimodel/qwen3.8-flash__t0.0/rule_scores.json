@@ -1,0 +1,3202 @@
+{
+  "H001": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H002": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H003": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H004": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H005": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H006": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H007": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H008": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H009": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 0.0,
+      "task_completion": 0.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 0.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 0.0,
+      "task_completion": 0.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 0.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 0.0,
+      "task_completion": 0.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 0.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H010": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H011": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H012": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H013": {
+    "0": {
+      "intent_accuracy": 0.5,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.5,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.5,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H014": {
+    "0": {
+      "intent_accuracy": 0.5,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.5,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.5,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H015": {
+    "0": {
+      "intent_accuracy": 0.5,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.5,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.5,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H016": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H017": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H018": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H019": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H020": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H021": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H022": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H023": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H024": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H025": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 0.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 0.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H026": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H027": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H028": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H029": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H030": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H031": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H032": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H033": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H034": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H035": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H036": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H037": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H038": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H039": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H040": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H041": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H042": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H043": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H044": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H045": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H046": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H047": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H048": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H049": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H050": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H051": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H052": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H053": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H054": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H055": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H056": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H057": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H058": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H059": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H060": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H061": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H062": {
+    "0": {
+      "intent_accuracy": 0.33,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H063": {
+    "0": {
+      "intent_accuracy": 0.5,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H064": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H065": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H066": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.5,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H067": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.5,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H068": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.5,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H069": {
+    "0": {
+      "intent_accuracy": 0.5,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H070": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H071": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H072": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H073": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H074": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H075": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H076": {
+    "0": {
+      "intent_accuracy": 0.33,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.33,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.33,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H077": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.5,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.5,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H078": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H079": {
+    "0": {
+      "intent_accuracy": 0.5,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 0.5,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H080": {
+    "0": {
+      "intent_accuracy": 0.33,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 0.33,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "2": {
+      "intent_accuracy": 0.33,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H081": {
+    "0": {
+      "intent_accuracy": 0.5,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 0.5,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 0.0
+    }
+  },
+  "H082": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H083": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H084": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H085": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H086": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H087": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H088": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H089": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H090": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 0.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H091": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H092": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H093": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H094": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 0.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H095": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H096": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H097": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 0.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H098": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H099": {
+    "0": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 0.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 0.0,
+      "tool_selection": 0.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 1.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  },
+  "H100": {
+    "0": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "1": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    },
+    "2": {
+      "intent_accuracy": 1.0,
+      "tool_selection": 1.0,
+      "argument_correctness": 1.0,
+      "task_completion": 1.0,
+      "groundedness": 0.0,
+      "safety": 1.0,
+      "trajectory_efficiency": 1.0,
+      "stop_decision": 1.0
+    }
+  }
+}

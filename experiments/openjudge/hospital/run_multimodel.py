@@ -6,7 +6,7 @@
 
 - 实验 A（一致性）：temp=0.3 引入真实随机性，量化 单次 vs Pass@3 vs Pass^3
 - 实验 B（分桶）  ：由 analyze_multimodel.py 对 temp=0 数据按 tool_requirement 分桶
-- 多模型对比     ：5 家族 22 模型（DeepSeek / MiniMax / Qwen / Kimi / GLM）× 8 维
+- 多模型对比     ：5 家族 21 模型（DeepSeek / MiniMax / Qwen / Kimi / GLM）× 8 维
 """
 from __future__ import annotations
 
@@ -29,14 +29,14 @@ CONCURRENCY = 6
 JUDGE_PROVIDER = "v4pro"  # 统一 judge（v4pro 自评存在自偏好偏差，报告里会注明）
 
 # (provider, temperature, 输出目录名)
-# 2026-11-02 扩到 5 家族 22 模型 × temp=0（主对比，100 样本确定性）：
+# 2026-11-02 扩到 5 家族 21 模型 × temp=0（主对比，100 样本确定性）：
 #   DeepSeek: flash / v4pro；MiniMax: m3 / m2.5；Qwen: 自托管 32b/8b + 云端 3.5~3.8 全线；
 #   Kimi: k3 / k2.7-code；GLM: 5.3 / 5.3-prime / 5.2。
 #   注：qwen3-max 已于 2026-10-10 下线，改用 qwen3.8-max（见 providers.py）。
 # 注：tools.py 已内置日期归一化，此轮重跑的所有目录天然是「fixed」版，
 #     不再需要 minimax-m3__t0.0_fixed 这类单独修补目录。
 CONFIGS = [
-    # ── 主对比（temp=0，100 样本 × 3 trial，5 家族 22 模型）──
+    # ── 主对比（temp=0，100 样本 × 3 trial，5 家族 21 模型）──
     # DeepSeek
     ("flash",        0.0, "flash__t0.0"),
     ("v4pro",        0.0, "v4pro__t0.0"),

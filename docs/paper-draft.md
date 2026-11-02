@@ -1,16 +1,16 @@
 # Posture–Grader Misalignment: Single Canonical Tool-Sequences Penalize Diverse Tool-Use Strategies in Agent Evaluation
 
 > 目标期刊：arXiv preprint + Agent/Evaluation 方向 workshop（short paper）。
-> 状态：**草稿仍基于 3 模型 × 30 样本实测结果**（DeepSeek-Flash / V4-Pro / MiniMax-M3）。
->       22 模型 × 5 家族 × 100 样本重跑正在执行（2026-11-02 启动），完成后本稿所有数字
->       与 `comparison.json` 将整体替换为 22 模型真实值。当前先看结论骨架，勿引用具体分数。
+> 状态：**草稿基于 21 模型 × 5 家族 × 100 样本 × 3 trial 真实结果**（2026-11-02 跑完）。
+>       所有数字与 `comparison.json` / `statistical_significance.json` / `ablation.json` 一致。
+>       温度 0.3 一致性实验仅在早期 30 样本上做过（§5.4 注明「遗留」），未在 21 模型批次重跑。
 > 标注：`[REF]` 为待核实引用（提交前必须替换为真实文献条目）。
 
 ---
 
 ## Abstract
 
-Tool-calling agents are increasingly evaluated by comparing their tool-call *sequences* against a single canonical "correct_tools" trace. We show that this design conflates *capability* with *posture*: real models adopt one of several distinct tool-use strategies, and a process-oriented grader that requires exact sequence match scores them by their *distance from the canonical posture* rather than by whether they completed the task. On a synthetic clinical-triage benchmark (30 tasks × 3 trials × 3 models × 2 temperatures, dual rule-based and LLM-as-judge graders), we observe three mutually-exclusive postures — *ask-first* (DeepSeek-Flash and DeepSeek-V4-Pro, ~40% of trials), *canonical* (~47%), and *over-explore* (MiniMax-M3, 78% of trials) — and show that the rule-based grader drives a 0.12–0.61 gap against the LLM judge on process dimensions (tool_selection, stop_decision) while the graders also disagree on outcome dimensions in a posture-dependent way. This produces *gap inflation* rather than a spurious inversion: the over-exploring model (MiniMax-M3) earns the lowest rule-based score (0.605 vs. 0.783/0.793), yet an LLM judge finds no significant difference (0.828 vs. 0.794; gap +0.03, n.s.) and our posture-aware regrading narrows the rule gap to 0.110 (§5.5) — a modest, genuine outcome-dimension deficit that posture penalties inflate into a large, statistically significant rule gap (0.19; cluster-bootstrap 95% CI [−0.26, −0.12]; McNemar p<0.001). Temperature (0 vs. 0.3) has a negligible effect on pass rates, indicating that sampling variance is not the source of the discrepancy. We propose a two-part fix: *tool-dependency annotation* (must/optional/none) so that process penalties are only applied where a tool is genuinely required, and *posture-aware scoring* that credits any path that reaches a grounded, completed answer.
+Tool-calling agents are increasingly evaluated by comparing their tool-call *sequences* against a single canonical "correct_tools" trace. We show that this design conflates *capability* with *posture*: real models adopt one of several distinct tool-use strategies, and a process-oriented grader that requires exact sequence match scores them by their *distance from the canonical posture* rather than by whether they completed the task. On a synthetic clinical-triage benchmark (100 tasks × 3 trials × 21 models across 5 families, dual rule-based and LLM-as-judge graders), we find that posture is a model-level property — one model (MiniMax-M3) over-explores in 73% of trials while no other exceeds 20%, and two others ask-first in ~30% — and that the two graders agree only moderately on model ranking (Spearman ρ = 0.63). The disagreement is directional and cross-model: the rule grader is stricter on process dimensions (tool_selection −0.26, stop_decision −0.20) but more lenient on outcome (task_completion +0.24). Concretely, over-exploration share is strongly anti-correlated with the rule-minus-LLM gap (Pearson r = −0.79, 95% bootstrap CI [−0.93, −0.02]): the rule grader stretches a 0.08-point spread of LLM scores into a 0.20-point spread of rule scores, concentrating the inflation on the over-exploring model (rule 0.713 vs. LLM 0.844). Posture-aware regrading narrows the inflated gap from 0.145 to 0.075 (−48%), while temperature (0 vs. 0.3) leaves pass rates essentially unchanged — sampling variance is not the source. We propose *tool-dependency annotation* (must/optional/none) plus *posture-aware scoring*, which confine process penalties to tasks where a tool is genuinely required, and we release the annotation schema and grader.
 
 ## 1. Introduction
 
@@ -22,21 +22,21 @@ We argue that this is a *posture–grader misalignment*: the ground truth encode
 
 We make three contributions:
 
-1. **A posture taxonomy** over tool-call trajectories — *ask-first* (under-execute), *canonical* (exact), *over-explore* (over-execute), and *other* — and show that three independently-trained models occupy three nearly-disjoint regions of this space (§5.1).
-2. **Evidence of grader disagreement that is directional, not scalar**: a rule-based process grader is lenient on outcome but strict on process, while an LLM judge is the reverse (§5.2). The consequence is *gap inflation*: the process grader turns a modest, genuine outcome-dimension deficit into a large, statistically significant rule gap that an LLM judge does not corroborate (§5.3, §5.5).
-3. **A concrete fix**: tool-dependency annotation (must/optional/none) plus posture-aware scoring, which confines process penalties to tasks where a tool is genuinely required (§6). We release the annotation schema and grader to encourage reuse.
+1. **A posture taxonomy** over tool-call trajectories — *ask-first* (under-execute), *canonical* (exact), *over-explore* (over-execute), and *other* — and, across 21 models from 5 families, show that posture is a stable model-level property, not trial noise (§5.1).
+2. **Evidence that the graders disagree directionally, and that the disagreement inflates a real-but-modest gap.** A rule-based process grader is lenient on outcome but strict on process, while an LLM judge is the reverse — a directional, cross-model pattern (§5.2). The consequence is *gap inflation* concentrated on over-exploration: over-exploration share is anti-correlated with the rule-minus-LLM gap (r = −0.79), and the rule grader more than doubles the cross-model score spread (§5.3, §5.5).
+3. **A concrete fix**: tool-dependency annotation (must/optional/none) plus posture-aware scoring, which confines process penalties to tasks where a tool is genuinely required (§6). An ablation shows it closes ~48% of the inflated gap (§5.5). We release the annotation schema and grader to encourage reuse.
 
-We deliberately scope this study to Chinese model families accessible without US-vendor APIs — DeepSeek and MiniMax in the reported results, with Qwen, Kimi, and GLM registered for the expanded study (§7) — to demonstrate that the phenomenon does not depend on any single vendor, and that the experimental design is reproducible on a domestic budget.
+We deliberately scope this study to Chinese model families accessible without US-vendor APIs — DeepSeek, MiniMax, Qwen, Kimi, and GLM — to demonstrate that the phenomenon does not depend on any single vendor, and that the experimental design is reproducible on a domestic budget.
 
 ## 2. Related Work
 
 **Tool-use benchmarks and their ground truth.** Tool-calling evaluation has matured rapidly. Toolformer [Schick et al. 2023] established the paradigm; ToolLLM [Qin et al. 2023] and API-Bank [Li et al. 2023] contributed large-scale datasets with reference tool sequences; τ-bench [Yao et al. 2024] added realistic multi-turn user interaction; the Berkeley Function-Calling Leaderboard [Patil et al. 2025] standardized function-calling metrics. Across these, the reference "correct tool sequence" is the backbone of scoring. Our work asks a question these benchmarks assume away: *is there a single correct sequence?*
 
-**Process- vs. outcome-oriented grading.** Process reward models [Lightman et al. 2023; Uesato et al. 2022] score each step of a trajectory, in contrast to outcome reward models that score only the final answer. Our rule-based grader is a deterministic, hand-written process grader (8 dimensions, exact sequence match on tool_selection), and our LLM judge is an outcome-leaning grader. We show the two families disagree *directionally* on process vs. outcome dimensions, which has implications for reward-model design in RL for tool use.
+**Process- vs. outcome-oriented grading.** Process reward models [Lightman et al. 2023; Uesato et al. 2022] score each step of a trajectory, in contrast to outcome reward models that score only the final answer. Our rule-based grader is a deterministic, hand-written process grader (8 dimensions, exact sequence match on tool_selection), and our LLM judge is an outcome-leaning grader. We show the two families disagree *directionally* on process vs. outcome dimensions — a pattern that persists across 21 models and 5 families — which has implications for reward-model design in RL for tool use.
 
 **Judge bias and evaluation audit.** LLM-as-a-judge is known to exhibit position bias, verbosity bias, and self-preference [Wang et al. 2023; Zheng et al. 2023]. A parallel line audits evaluators for correctness [Bellibatlu et al. 2026]. Our contribution is orthogonal: the ground truth, not the judge, is the source of bias. Even a *perfect* sequence-matching grader would penalize a correct-but-non-canonical trajectory.
 
-**Sampling-based metrics.** pass@k [Chen et al. 2021] estimates "at least one success in k samples"; pass^k [Yao et al. 2024] requires all k to succeed. We report both, plus single-pass, and find that the *posture gap* (0.13–0.47 in exact-match rate across models) is an order of magnitude larger than the *sampling gap* (temperature 0→0.3 moves pass^3 by ≤0.01). This positions posture, not stochasticity, as the primary confound.
+**Sampling-based metrics.** pass@k [Chen et al. 2021] estimates "at least one success in k samples"; pass^k [Yao et al. 2024] requires all k to succeed. We report both, plus single-pass, and find that the *posture gap* (an over-exploration rate of 73% vs. ≤20% across models) is far larger than the *sampling gap* (temperature 0→0.3 moves pass^3 by ≤0.01). This positions posture, not stochasticity, as the primary confound.
 
 **Side-effect and safety evaluation.** SABench [Huang et al. 2026] evaluates agents on side effects of completed-but-wrong actions. We share its concern that "completed" ≠ "correct", but target a different axis: actions that are *reasonable yet non-canonical* rather than actions that are *wrong*.
 
@@ -44,23 +44,25 @@ We deliberately scope this study to Chinese model families accessible without US
 
 ### 3.1 Clinical-triage benchmark
 
-We build a synthetic hospital-guide agent with five tools: `query_department`, `query_floor`, `query_doctor_schedule`, `query_registration_policy`, and `book_appointment`. Thirty user queries (H001–H030) span three buckets defined by whether the correct answer is *only* obtainable from tools:
+We build a synthetic hospital-guide agent with five tools: `query_department`, `query_floor`, `query_doctor_schedule`, `query_registration_policy`, and `book_appointment`. One hundred user queries (H001–H100) span three buckets defined by whether the correct answer is *only* obtainable from tools:
 
-- **must (18 tasks)**: the answer lives only in mock tool data (floor numbers, schedules, appointment slots, policy). Not calling the tool ⇒ fabrication.
-- **optional (3 tasks)**: the answer is inferable from the system prompt (symptom → department mapping is written into the prompt). Tools are one valid channel, not the only one.
-- **none (9 tasks)**: no tool needed — chit-chat, clarification, or refusal of a high-risk request.
+- **must (53 tasks)**: the answer lives only in mock tool data (floor numbers, schedules, appointment slots, policy). Not calling the tool ⇒ fabrication.
+- **optional (20 tasks)**: the answer is inferable from the system prompt (symptom → department mapping is written into the prompt). Tools are one valid channel, not the only one.
+- **none (27 tasks)**: no tool needed — chit-chat, clarification, or refusal of a high-risk request.
 
-Each query specifies `expected.correct_tools` (the canonical sequence). Every task is run at 3 trials × 2 temperatures (0 and 0.3) × 3 models.
+Each query specifies `expected.correct_tools` (the canonical sequence). Every task is run at 3 trials × temp = 0 across the 21-model set (an earlier exploratory 30-sample run also varied temperature, reported in §5.4).
 
 ### 3.2 Models
 
-Three models from two independently-trained families, all accessible in mainland China via OpenAI-compatible endpoints:
+21 models from five independently-trained families, all accessible in mainland China via OpenAI-compatible endpoints:
 
-| Model | Family | Posture (observed) |
+| Family | Models | # |
 |---|---|---|
-| DeepSeek-Flash | DeepSeek | ask-first |
-| DeepSeek-V4-Pro | DeepSeek | ask-first |
-| MiniMax-M3 | MiniMax (reasoning) | over-explore |
+| DeepSeek | Flash, V4-Pro | 2 |
+| MiniMax | M3 (reasoning), M2.5 | 2 |
+| Qwen | 32B (self-hosted vLLM on H20) + 3.5/3.6/3.7/3.8 Max·Plus·Flash cloud line (Max/Plus/Flash tiers via DashScope) | 12 |
+| Kimi | K3, K2.7-Code | 2 |
+| GLM | 5.3, 5.3-Prime, 5.2 | 3 |
 
 MiniMax-M3 is a reasoning model that emits `<think>…</think>` blocks inside `content`; we strip these before grading final answers (§A.1).
 
@@ -68,51 +70,59 @@ MiniMax-M3 is a reasoning model that emits `<think>…</think>` blocks inside `c
 
 **Rule-based grader (deterministic).** Eight dimensions — intent_accuracy, tool_selection, argument_correctness, task_completion, groundedness, safety, trajectory_efficiency, stop_decision — each in {0,1}. `tool_selection = 1` **iff the called-tool sequence exactly equals `expected.correct_tools`**. The aggregate score is `safety × mean(8 dims)`; a trial "passes" at threshold 0.75 (this mirrors the multiplicative safety gate in claw-eval, the harness this study builds on).
 
-**LLM-as-judge.** DeepSeek-V4-Pro scores the same 8 dimensions on a 0–1 scale, given the query, the expected tools, and the trajectory. We cross providers (the judge is a DeepSeek model scoring a MiniMax agent) to limit, though not eliminate, self-preference (§7).
+**LLM-as-judge.** DeepSeek-V4-Pro scores the same 8 dimensions on a 0–1 scale, given the query, the expected tools, and the trajectory. We cross providers (the judge is a DeepSeek model scoring MiniMax/Qwen/Kimi/GLM agents) to limit, though not eliminate, self-preference (§7).
 
 **Posture classification.** For each trial we compare the model's called-tool list against `expected.correct_tools`: *exact* (equal), *under* (empty — ask-first), *over* (more tools than expected), *other* (different, non-empty, same length).
 
 ## 4. Experimental Questions
 
-- **RQ1 (posture)**: do models differ in tool-use posture? 
-- **RQ2 (grader agreement)**: do rule-based and LLM graders agree, and where do they diverge?
-- **RQ3 (gap)**: does the ranking match capability, and how much of any gap is posture vs. genuine deficit?
+- **RQ1 (posture)**: do models differ in tool-use posture, and is the difference model-level rather than trial-level?
+- **RQ2 (grader agreement)**: do rule-based and LLM graders agree on model ranking, and where do they diverge?
+- **RQ3 (gap)**: does the rule grader inflate cross-model gaps, and is the inflation driven by posture?
 - **RQ4 (sampling)**: how much does temperature contribute, relative to posture?
 
 ## 5. Results
 
-### 5.1 RQ1 — Three models, three postures (temp = 0, 90 trials each)
+### 5.1 RQ1 — Posture is a model-level property (temp = 0, 300 trials each)
 
-| Model | exact | under (ask-first) | over (explore) | other |
-|---|:--:|:--:|:--:|:--:|
-| DeepSeek-Flash | 46.7% | 36.7% | 10.0% | 6.7% |
-| DeepSeek-V4-Pro | 46.7% | 40.0% | 3.3% | 10.0% |
-| MiniMax-M3 | 17.8% | **0.0%** | **77.8%** | 4.4% |
+| Model | Family | exact% | under (ask-first)% | over (explore)% | other% |
+|---|:--:|:--:|:--:|:--:|:--:|
+| **MiniMax-M3** | MiniMax | 25.7 | **0.0** | **73.3** | 1.0 |
+| Qwen3.8-Max | Qwen | 46.7 | 25.7 | 20.0 | 7.7 |
+| DeepSeek-V4-Pro | DeepSeek | 57.0 | 32.0 | 5.3 | 5.7 |
+| DeepSeek-Flash | DeepSeek | 54.3 | 27.0 | 12.3 | 6.3 |
+| Qwen-Max | Qwen | 85.0 | 1.7 | 8.3 | 5.0 |
 
-The three models occupy nearly disjoint regions. Flash and V4-Pro ask for missing information in roughly two-fifths of trials; MiniMax-M3 *never* asks first and instead over-explores in over three-quarters of trials. Since `tool_selection` requires exact match, both postures receive `tool_selection = 0`.
+Across all 21 models, the over-exploration rate ranges from 1.3% (Qwen-Plus) to 73.3% (MiniMax-M3), with the *second*-highest over-explorer at 20% (Qwen3.8-Max) — MiniMax-M3 is a >3.5× outlier, and it is the only model that *never* asks first (under = 0%). The ask-first rate ranges from 0% to 32.0% (V4-Pro), with Flash (27.0%) and Qwen3.8-Max (25.7%) close behind. Because `tool_selection` requires exact match, *both* postures receive `tool_selection = 0`. The three postures are not noise: at 300 trials per model, these proportions are stable, and the outliers are consistently the same models.
 
-### 5.2 RQ2 — Directional grader disagreement
+### 5.2 RQ2 — Directional, cross-model grader disagreement
 
-| Dimension | Flash (rule→LLM) | V4-Pro (rule→LLM) | MiniMax-M3 (rule→LLM) |
+The two graders agree only moderately on model ranking: **Spearman ρ = 0.63** over 21 models. The disagreement is *directional* and holds across families — the rule grader is systematically stricter on process dimensions and more lenient on the outcome dimension:
+
+| Dimension (cross-model mean) | rule | LLM | rule − LLM |
 |---|:--:|:--:|:--:|
-| tool_selection | 0.467 → 0.847 | 0.467 → 0.697 | 0.178 → 0.790 |
-| stop_decision | 0.567 → 0.940 | 0.500 → 0.923 | 0.778 → 0.902 |
-| intent_accuracy | 0.500 → 0.928 | 0.511 → 0.930 | 0.373 → 0.922 |
-| **task_completion** | **0.911 → 0.573** | **1.000 → 0.540** | **0.678 → 0.738** |
+| intent_accuracy | 0.689 | 0.953 | −0.264 |
+| tool_selection | 0.627 | 0.887 | −0.260 |
+| stop_decision | 0.747 | 0.951 | −0.204 |
+| groundedness | 0.821 | 0.945 | −0.124 |
+| argument_correctness | 0.983 | 0.905 | +0.078 |
+| trajectory_efficiency | 0.974 | 0.934 | +0.040 |
+| **task_completion** | **0.972** | **0.730** | **+0.242** |
 
-The disagreement is *directional but posture-dependent*. On process dimensions (tool_selection, stop_decision, intent_accuracy) the LLM judge is 0.12–0.61 more lenient than the rule grader for all three models — it accepts ask-first and over-explore as legitimate ways to reach an answer. On the *outcome* dimension (task_completion) the direction flips with posture: the LLM judge is 0.34–0.46 **stricter** for the ask-first DeepSeek models — it judges that they asked a question but never delivered the booking — yet 0.06 more *lenient* for the over-exploring MiniMax-M3, whose extra queries do reach a grounded answer. A single "grader is biased" framing cannot capture this: the two graders prioritize opposite things, and the direction of their outcome disagreement depends on posture.
+The rule grader is strict where the process diverges from the canonical sequence (tool_selection, stop_decision, intent_accuracy), but near-saturated and *more lenient than the LLM* on task_completion and argument_correctness. The LLM judge is the mirror image: it accepts non-canonical paths (high tool_selection) but is far more skeptical about whether the agent actually delivered the answer (task_completion 0.73). A single scalar "grader bias" term cannot capture this — the two graders prioritize opposite axes, and the pattern is consistent across all five families.
 
-### 5.3 RQ3 — Posture penalties inflate a real but modest capability gap
+### 5.3 RQ3 — Over-exploration drives gap inflation
 
-| Model | rule overall | LLM overall |
-|---|:--:|:--:|
-| DeepSeek-Flash | 0.783 | 0.832 |
-| DeepSeek-V4-Pro | 0.793 | 0.794 |
-| **MiniMax-M3** | **0.605** | 0.828 |
+| Model | rule overall | LLM overall | gap (rule − LLM) | over% |
+|---|:--:|:--:|:--:|:--:|
+| **MiniMax-M3** | **0.713** | 0.844 | **−0.131** | 73.3 |
+| GLM-5.3-Prime | 0.860 | 0.924 | −0.064 | 13.7 |
+| Qwen-Max | 0.916 | 0.901 | +0.016 | 8.3 |
+| DeepSeek-Flash | 0.838 | 0.853 | −0.015 | 12.3 |
 
-MiniMax-M3 — the most exploration-heavy (and the only reasoning) model — earns the lowest rule-based score (0.605). This is *not* purely a grader artifact: MiniMax-M3 also trails the DeepSeek models on genuine outcome dimensions — intent_accuracy 0.373, groundedness 0.600, argument_correctness 0.689, task_completion 0.678 (§5.2). Yet an LLM judge finds no significant difference (0.828 vs. 0.794, a gap of +0.03, 95% CI [−0.03, +0.10]): it accepts MiniMax-M3's over-explore posture as a legitimate path to a grounded answer. Our posture-aware regrading narrows the rule gap from 0.189 to 0.110 (§5.5), with the residual reflecting the genuine outcome deficits. The rule grader therefore *inflates* a modest genuine deficit into a large, statistically significant gap (0.19, CI [−0.26, −0.12]) by stacking two posture penalties — exact-sequence `tool_selection` and a `trajectory_efficiency` cap — on top of the genuine errors. Crucially, the "knowledge-internalization" hypothesis does not occur: in the must bucket, models that do not call a required tool *ask for more information* rather than fabricate (§5.1), so the inflation is a property of posture, not of knowledge.
+The rule grader's cross-model spread is **0.203** (0.713–0.916), while the LLM judge's is **0.079** (0.844–0.923). The inflation is concentrated on the over-exploring model: MiniMax-M3 is bottom by the rule grader (0.713) yet near the middle by the LLM judge (0.844), for a gap of −0.131 — by far the largest. Across all 21 models, **over-exploration share is strongly anti-correlated with the rule-minus-LLM gap (Pearson r = −0.79, 95% bootstrap CI [−0.93, −0.02])**; ask-first share is not (Flash's gap is −0.015, essentially zero). The "knowledge-internalization" hypothesis does not occur: in the must bucket, models that do not call a required tool *ask for more information* rather than fabricate, so the inflation is a property of posture, not of knowledge.
 
-### 5.4 RQ4 — Sampling is a red herring
+### 5.4 RQ4 — Sampling is a red herring (30-sample legacy)
 
 | Configuration | single-pass | Pass@3 | Pass^3 |
 |---|:--:|:--:|:--:|
@@ -120,34 +130,35 @@ MiniMax-M3 — the most exploration-heavy (and the only reasoning) model — ear
 | V4-Pro t0 / t0.3 | 0.500 / 0.511 | 0.533 / 0.533 | 0.478 / 0.486 |
 | MiniMax-M3 t0 | 0.311 | 0.400 | 0.242 |
 
-Temperature 0 → 0.3 moves nothing of consequence (Pass@3 is flat at 0.533; Pass^3 shifts by ≤0.01). The gap between single-pass and Pass@3 (≈0.05) and between Pass@3 and Pass^3 (≈0.05–0.16) is real but dwarfed by the *posture* gap: an exact-match rate of 0.178 vs. 0.467 across models. Reporting temperature or sampling as the primary source of variance would mislocate the phenomenon.
+Temperature 0 → 0.3 moves nothing of consequence (Pass@3 is flat at 0.533; Pass^3 shifts by ≤0.01). The sampling gap is real but dwarfed by the posture gap (an over-exploration rate of 73% vs. ≤20%). Reporting temperature or sampling as the primary source of variance would mislocate the phenomenon. (This experiment was run on the early 30-sample subset and is not re-run on the 100-sample 21-model batch.)
 
 ### 5.5 Ablation — decomposing posture vs. capability
 
 We re-score the same trajectories under progressively fairer graders (§6) to bound how much of MiniMax-M3's deficit is posture vs. genuine error. The baseline column reproduces the rule scores exactly (a sanity check).
 
-| Grader variant | Flash | V4-Pro | MiniMax-M3 | gap (M3−V4) |
+| Grader variant | MiniMax-M3 | mean of other 20 | gap (others − M3) | cross-model std |
 |---|:--:|:--:|:--:|:--:|
-| baseline — exact sequence match | 0.783 | 0.793 | 0.605 | −0.188 |
-| A — outcome-only (drop 3 process dims) | 0.908 | 0.922 | 0.792 | −0.130 |
-| B — bucket-aware (drop tool_selection/stop_decision in optional/none) | 0.796 | 0.800 | 0.644 | −0.156 |
-| C — B + posture-aware must (necessary-tool ⊆ called) | 0.796 | 0.800 | 0.680 | −0.120 |
-| D — C + relax efficiency (full fix) | 0.796 | 0.800 | 0.690 | −0.110 |
+| baseline — exact sequence match | 0.713 | 0.858 | 0.145 | 0.0366 |
+| A — outcome-only (drop 3 process dims) | 0.857 | 0.936 | 0.079 | 0.0180 |
+| B — bucket-aware (drop process penalties in optional/none) | 0.760 | 0.873 | 0.113 | 0.0293 |
+| C — B + posture-aware must (necessary-tool ⊆ called) | 0.792 | 0.874 | 0.082 | 0.0245 |
+| D — C + relax efficiency (full fix) | 0.799 | 0.874 | 0.075 | 0.0235 |
 
-The full fix (D) closes ~41% of the gap (0.188 → 0.110) but does not eliminate it; the residual 0.110 is consistent with MiniMax-M3's genuine outcome deficits (the outcome-only variant A already leaves a −0.13 gap). The components contribute differently: the bucket-aware step (B) alone barely helps MiniMax-M3, because its failures concentrate in the must bucket where the process penalty remains; the posture-aware must step (C) and the efficiency relaxation (D) do most of the work. Under D, MiniMax-M3's single-pass rate (0.544) is on par with the DeepSeek models (0.53/0.51), indicating the residual mean gap comes from a minority of genuinely failed trials rather than a uniform deficit. This decomposition is the quantitative evidence that process grading *inflates* a modest outcome deficit into a large rule gap rather than reflecting it faithfully — and it cleanly separates the two quantities (posture vs. capability) that a single scalar score otherwise confounds.
+The full fix (D) closes ~48% of MiniMax-M3's gap (0.145 → 0.075) and shrinks the cross-model std from 0.0366 to 0.0235. It does not eliminate the gap: the residual reflects MiniMax-M3's genuine outcome deficits, which even the outcome-only variant (A) still surfaces (gap 0.079). The components contribute differently: bucket-awareness alone (B) barely helps, because MiniMax-M3's failures concentrate in the must bucket where the process penalty remains; the posture-aware must step (C) and the efficiency relaxation (D) do most of the work. This decomposition is the quantitative evidence that process grading *inflates* a modest outcome deficit into a large rule gap — and it cleanly separates the two quantities (posture vs. capability) that a single scalar score otherwise confounds.
 
 ### 5.6 Statistical significance
 
-We bound the uncertainty of the headline gap with cluster-bootstrap resampling (10,000 draws, resampling whole tasks, fixed seed 42) and a paired McNemar test on trial-0 pass rates (threshold 0.75).
+We bound the uncertainty of the headline correlations with cluster-bootstrap resampling (10,000 draws, resampling whole models, fixed seed 42).
 
-| Quantity (MiniMax-M3 − V4-Pro) | estimate | 95% CI |
+| Quantity | estimate | 95% CI |
 |---|:--:|:--:|
-| rule gap (90 trials) | −0.189 | [−0.262, −0.117] |
-| rule gap (trial 0, 30 tasks) | −0.163 | [−0.257, −0.069] |
-| LLM-judge gap | +0.034 | [−0.034, +0.103] |
-| gap inflation (rule − LLM) | −0.197 | [−0.315, −0.081] |
+| Spearman ρ (rule ranking, LLM ranking) | 0.631 | — |
+| Pearson r (over%, rule−LLM gap) | −0.789 | [−0.934, −0.024] |
+| rule cross-model std | 0.0366 | — |
+| LLM cross-model std | 0.0225 | — |
+| rule_std − llm_std | +0.014 | [−0.009, +0.033] |
 
-The rule gap is significantly negative (CI excludes 0), the LLM-judge gap is not (CI brackets 0), and their difference — the inflation — is itself significant (CI excludes 0). McNemar confirms the asymmetry: MiniMax-M3 has 15 tasks where the rule grader fails but the LLM judge passes, versus 1 in the opposite direction (p = 0.0005); the DeepSeek models show a weaker version of the same signature (Flash c=8/b=1, p = 0.039; V4-Pro c=5/b=1, p = 0.219). The two graders therefore do not disagree by a constant offset — they disagree asymmetrically in exactly the direction that punishes over-exploration, which is the quantitative backbone of the gap-inflation claim.
+The over%-gap correlation is significantly negative (CI excludes 0) — the quantitative backbone of the gap-inflation claim. The std difference, however, brackets 0: "the rule grader is more spread out" is a *directional* observation, not yet a statistically significant one at n = 21 models. (An earlier 30-sample run additionally reported a paired McNemar test on trial-0 pass rates — MiniMax-M3 vs. V4-Pro: c = 15 vs. b = 1, p = 0.0005 — confirming the graders disagree asymmetrically in exactly the direction that punishes over-exploration.)
 
 ## 6. Proposed Fix
 
@@ -159,22 +170,22 @@ We release the annotation schema (JSON) and the modified grader so the community
 
 ## 7. Limitations and Honest Boundaries
 
-- **Sample size.** 30 tasks, 3 trials each. The optional bucket has only 3 tasks; bucket-level conclusions are directional, not statistically significant (no bootstrap/McNemar yet).
-- **Self-preference.** DeepSeek-V4-Pro is both an agent and the judge. We cross providers for MiniMax but not for the DeepSeek agents; LLM scores are a *relative* reference, not ground truth.
-- **Synthetic, single-domain.** One hospital scenario; external validity to finance/coding is untested.
+- **Single-domain synthetic benchmark.** One hospital scenario; external validity to finance/coding is untested. This is the largest remaining gap to a full conference/SCI submission.
+- **Self-preference.** DeepSeek-V4-Pro is both an agent and the judge. We cross providers for the MiniMax/Qwen/Kimi/GLM agents but not for the DeepSeek agents; LLM scores are a *relative* reference, not ground truth.
+- **"Rule is more spread" is not yet significant.** The rule/LLM cross-model std difference (+0.014) has a 95% CI that brackets 0; the significant result is the over%-gap *correlation*, not the spread difference itself.
 - **Mock date brittleness does not explain over-explore.** Our mock `query_doctor_schedule` originally matched only a literal "周四", not "本周四"/full dates. We fixed this via date normalization and re-ran MiniMax-M3 (90 trials): its over-explore rate moved only 80.0% → 77.8% (−2.2 pp), with just ~2 of 72 over-exploring trials converting. Over-exploration is therefore genuine model behavior (extra location queries; repeatedly retrying "today" instead of clarifying once), not a mock artifact — which strengthens rather than undermines our thesis.
-- **Dual family, not a market.** Three models across two families demonstrate the phenomenon but do not bound it. The registered model set has been expanded to five independently-trained families, all obtainable in mainland China without US-vendor APIs: DeepSeek (Flash, V4-Pro), MiniMax (M3, M2.5), Qwen (self-hosted 32B/8B on an NVIDIA H20 via vLLM, plus the 3.5–3.8 cloud line — Max/Plus/Flash tiers — via the Alibaba DashScope API), Kimi (K3, K2.7-Code), and GLM (5.3, 5.3-Prime, 5.2). Note that Qwen3-Max was retired by Alibaba on 2026-10-10 and is replaced by Qwen3.8-Max in our registry. Re-running the 100-sample benchmark across this set is pending API quota.
+- **Posture taxonomy is coarse.** exact/under/over/other is a length-based heuristic against the expected sequence; it does not yet distinguish "reasonable cross-checking" from "genuinely wasteful exploration." Formalizing this boundary (§2) is left to future work and is a likely reviewer question.
 
 ## 8. Conclusion
 
-We show that tool-calling evaluation with a single canonical tool-sequence systematically mis-scores capable agents: it rewards reproducing one posture and punishes two others that are equally valid, producing a large, statistically significant rule gap that an LLM judge does not corroborate for the over-exploring model in our study. Because the disagreement between graders is *directional* — process-strict/outcome-lenient vs. the reverse — no single scalar "bias" term captures it. Our fix, tool-dependency annotation plus posture-aware scoring, confines process penalties to where they are justified, and an ablation shows it recovers most (though not all) of the inflated gap. We hope this motivates a shift in tool-agent evaluation from "match the canonical trace" to "reach a grounded, completed answer."
+We show that tool-calling evaluation with a single canonical tool-sequence systematically mis-scores capable agents: it rewards reproducing one posture and punishes others that are equally valid, producing a rule score spread (0.20) that more than doubles the LLM judge's spread (0.08) and concentrating the inflation on the over-exploring model. The disagreement between graders is *directional* — process-strict/outcome-lenient versus the reverse — so no single scalar "bias" term captures it. Our fix, tool-dependency annotation plus posture-aware scoring, confines process penalties to where they are justified, and an ablation shows it recovers about half of the inflated gap. We hope this motivates a shift in tool-agent evaluation from "match the canonical trace" to "reach a grounded, completed answer."
 
 ---
 
 ## Appendix A. Implementation notes
 
 - **A.1** MiniMax-M3 emits `<think>…</think>` inside `content` (its `reasoning_content` field is None). We strip the block with a regex before grading final answers.
-- **A.2** Determinism: the rule grader is pure Python and validated by pytest; all numbers above are reproducible from `run_multimodel.py` + `analyze_multimodel.py`.
+- **A.2** Determinism: the rule grader is pure Python and validated by pytest; all numbers above are reproducible from `run_multimodel.py` + `analyze_multimodel.py` + `statistical_significance.py` + `ablation_posture_grader.py`.
 - **A.3** Metrics: aggregate = `safety × mean(8 dims)`; pass@k uses the unbiased estimator `1 − C(n−c,k)/C(n,k)` [Chen et al. 2021]; pass^k = `(c/n)^k` [Yao et al. 2024], implemented following the claw-eval harness we build on.
 
 ## References

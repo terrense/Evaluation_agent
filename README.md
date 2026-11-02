@@ -14,7 +14,7 @@
 agent-eval-lab/
 ├── upstream/          # 三个上游仓库（不改源码）
 ├── experiments/       # 自研实验代码
-│   ├── openjudge/     # Phase 2：医院导诊 Agent + 8 维 grader + 100 样本（22 模型 × 5 家族）
+│   ├── openjudge/     # Phase 2：医院导诊 Agent + 8 维 grader + 100 样本（21 模型 × 5 家族）
 │   ├── claweval/      # Phase 3：3 任务 × 3 trial + 6 failure injection
 │   ├── aiginfra/      # Phase 4：6 类安全用例 + 静态预扫描
 │   └── lab/           # Phase 5/6：统一 Harness + 四方案对比 + RQ 实验
@@ -65,7 +65,7 @@ bash scripts/run_all.sh
 
 ## 诚实标注
 
-- LLM-as-Judge 已端到端跑通（DeepSeek `deepseek-v4-pro`）；22 模型 × 5 家族 × 100 样本对比正在重跑（2026-11-02）。
+- LLM-as-Judge 已端到端跑通（DeepSeek `deepseek-v4-pro`）；21 模型 × 5 家族 × 100 样本对比已完成（2026-11-02）。
 - 早期 Phase 2-6 的 Agent 是确定性模拟；`run_multimodel.py` 已接入真实 LLM Agent。评分公式 / Pass@k/Pass^k / 静态检测来自真实上游源码。
 - AI-Infra-Guard 的 LLM 完整审计（Code Audit → Verdict Review）与 MCP/Agent 动态扫描仍待接入。
 - 本机 DLP 加密 `.md`/`.go`，读文档用 `git show`；Go 服务端未编译。

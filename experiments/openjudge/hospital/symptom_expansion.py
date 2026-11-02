@@ -6,7 +6,7 @@
 「子串匹配」脆弱性（患者说「嗓子疼」匹配不到 canonical「咽痛」→ 工具误返回未找到，
 把 mock 工具的缺陷算到模型头上，污染 groundedness / completion 评分）。
 
-**合并步骤（实验 1 —— 100 样本 × 22 模型跑完后执行，避免污染在跑的实验）：**
+**合并步骤（实验 1 —— 100 样本 × 21 模型跑完后执行，避免污染在跑的实验）：**
   1. tools.py：`SYMPTOM_TO_DEPARTMENT` += `NEW_MAPPINGS`；`query_department` 加别名归一化
      （见下方 `query_department_v2` 参考实现）；`DEPARTMENT_LOCATION`/`DOCTOR_SCHEDULE`
      补 `NEW_DEPARTMENTS`（否则 over-explore 姿态查新科室会撞「无此科室」假失败）。

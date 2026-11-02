@@ -1,198 +1,651 @@
 {
   "overview": [
     {
-      "key": "flash",
-      "disp": "deepseek-flash",
+      "key": "qwen-max",
+      "disp": "Qwen-Max",
       "temp": 0.0,
-      "single_pass": 0.4777777777777778,
-      "pass_at_3": 0.5333333333333333,
-      "pass_hat_3": 0.44567901234567897,
-      "rule_overall": 0.7833333333333333,
-      "llm_overall": 0.8323333333333333,
+      "single_pass": 0.89,
+      "pass_at_3": 0.93,
+      "pass_hat_3": 0.8633333333333332,
+      "rule_overall": 0.9164000000000001,
+      "llm_overall": 0.90075,
       "dim_rule": {
-        "intent_accuracy": 0.5,
-        "tool_selection": 0.4666666666666667,
-        "argument_correctness": 0.9666666666666667,
-        "task_completion": 0.9111111111111111,
-        "groundedness": 0.8888888888888888,
+        "intent_accuracy": 0.8945333333333334,
+        "tool_selection": 0.85,
+        "argument_correctness": 0.98,
+        "task_completion": 0.9766666666666667,
+        "groundedness": 0.73,
         "safety": 1.0,
         "trajectory_efficiency": 0.9666666666666667,
-        "stop_decision": 0.5666666666666667
+        "stop_decision": 0.9333333333333333
       },
       "dim_llm": {
-        "intent_accuracy": 0.9283333333333333,
-        "tool_selection": 0.8466666666666666,
-        "argument_correctness": 0.86,
-        "task_completion": 0.5733333333333334,
-        "groundedness": 0.9616666666666667,
+        "intent_accuracy": 0.9570000000000001,
+        "tool_selection": 0.946,
+        "argument_correctness": 0.9059999999999999,
+        "task_completion": 0.7635,
+        "groundedness": 0.9490000000000001,
+        "safety": 0.985,
+        "trajectory_efficiency": 0.934,
+        "stop_decision": 0.9325
+      }
+    },
+    {
+      "key": "qwen-flash",
+      "disp": "Qwen-Flash",
+      "temp": 0.0,
+      "single_pass": 0.7666666666666667,
+      "pass_at_3": 0.82,
+      "pass_hat_3": 0.7251851851851852,
+      "rule_overall": 0.88075,
+      "llm_overall": 0.894825,
+      "dim_rule": {
+        "intent_accuracy": 0.8193333333333334,
+        "tool_selection": 0.75,
+        "argument_correctness": 0.99,
+        "task_completion": 0.98,
+        "groundedness": 0.6866666666666666,
         "safety": 1.0,
-        "trajectory_efficiency": 0.91,
-        "stop_decision": 0.94
+        "trajectory_efficiency": 0.9733333333333334,
+        "stop_decision": 0.8466666666666667
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.9495,
+        "tool_selection": 0.934,
+        "argument_correctness": 0.919,
+        "task_completion": 0.763,
+        "groundedness": 0.9325,
+        "safety": 0.991,
+        "trajectory_efficiency": 0.948,
+        "stop_decision": 0.9495
+      }
+    },
+    {
+      "key": "glm-5.2",
+      "disp": "GLM-5.2",
+      "temp": 0.0,
+      "single_pass": 0.77,
+      "pass_at_3": 0.77,
+      "pass_hat_3": 0.77,
+      "rule_overall": 0.8758208333333333,
+      "llm_overall": 0.90545,
+      "dim_rule": {
+        "intent_accuracy": 0.7465666666666667,
+        "tool_selection": 0.6733333333333333,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.8166666666666667,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.77
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.9704999999999999,
+        "tool_selection": 0.925,
+        "argument_correctness": 0.945,
+        "task_completion": 0.769,
+        "groundedness": 0.9365000000000001,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9775,
+        "stop_decision": 0.9684999999999999
+      }
+    },
+    {
+      "key": "qwen3.7-max",
+      "disp": "Qwen3.7-Max",
+      "temp": 0.0,
+      "single_pass": 0.7233333333333334,
+      "pass_at_3": 0.74,
+      "pass_hat_3": 0.7092592592592593,
+      "rule_overall": 0.8677,
+      "llm_overall": 0.8981,
+      "dim_rule": {
+        "intent_accuracy": 0.6982666666666666,
+        "tool_selection": 0.67,
+        "argument_correctness": 0.9933333333333333,
+        "task_completion": 0.99,
+        "groundedness": 0.8466666666666667,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9933333333333333,
+        "stop_decision": 0.75
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.9725,
+        "tool_selection": 0.8955,
+        "argument_correctness": 0.9309999999999999,
+        "task_completion": 0.7415,
+        "groundedness": 0.96,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9655,
+        "stop_decision": 0.972
+      }
+    },
+    {
+      "key": "qwen3.7-flash",
+      "disp": "Qwen3.7-Flash",
+      "temp": 0.0,
+      "single_pass": 0.72,
+      "pass_at_3": 0.78,
+      "pass_hat_3": 0.6755555555555557,
+      "rule_overall": 0.8657625,
+      "llm_overall": 0.8955500000000001,
+      "dim_rule": {
+        "intent_accuracy": 0.7227666666666667,
+        "tool_selection": 0.6533333333333333,
+        "argument_correctness": 0.9933333333333333,
+        "task_completion": 0.99,
+        "groundedness": 0.8266666666666667,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9933333333333333,
+        "stop_decision": 0.7466666666666667
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.9634999999999999,
+        "tool_selection": 0.9095,
+        "argument_correctness": 0.9329999999999999,
+        "task_completion": 0.7505,
+        "groundedness": 0.9545,
+        "safety": 0.9975,
+        "trajectory_efficiency": 0.96,
+        "stop_decision": 0.9640000000000001
+      }
+    },
+    {
+      "key": "qwen3.6-plus",
+      "disp": "Qwen3.6-Plus",
+      "temp": 0.0,
+      "single_pass": 0.7066666666666667,
+      "pass_at_3": 0.76,
+      "pass_hat_3": 0.6651851851851853,
+      "rule_overall": 0.8653500000000001,
+      "llm_overall": 0.8904000000000001,
+      "dim_rule": {
+        "intent_accuracy": 0.6961333333333334,
+        "tool_selection": 0.6633333333333333,
+        "argument_correctness": 0.9966666666666667,
+        "task_completion": 0.9933333333333333,
+        "groundedness": 0.83,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9966666666666667,
+        "stop_decision": 0.7466666666666667
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.9634999999999999,
+        "tool_selection": 0.909,
+        "argument_correctness": 0.9229999999999999,
+        "task_completion": 0.7495,
+        "groundedness": 0.948,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.973,
+        "stop_decision": 0.9704999999999999
+      }
+    },
+    {
+      "key": "qwen3-32b",
+      "disp": "Qwen3-32B",
+      "temp": 0.0,
+      "single_pass": 0.7166666666666667,
+      "pass_at_3": 0.78,
+      "pass_hat_3": 0.6640740740740741,
+      "rule_overall": 0.8645875000000001,
+      "llm_overall": 0.8488500000000001,
+      "dim_rule": {
+        "intent_accuracy": 0.7300333333333333,
+        "tool_selection": 0.6866666666666666,
+        "argument_correctness": 0.9733333333333334,
+        "task_completion": 0.9566666666666667,
+        "groundedness": 0.8266666666666667,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9733333333333334,
+        "stop_decision": 0.77
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.9159999999999999,
+        "tool_selection": 0.868,
+        "argument_correctness": 0.867,
+        "task_completion": 0.687,
+        "groundedness": 0.9059999999999999,
+        "safety": 0.993,
+        "trajectory_efficiency": 0.9345,
+        "stop_decision": 0.9245
+      }
+    },
+    {
+      "key": "kimi-k3",
+      "disp": "Kimi-K3",
+      "temp": 0.0,
+      "single_pass": 0.7166666666666667,
+      "pass_at_3": 0.73,
+      "pass_hat_3": 0.7062962962962963,
+      "rule_overall": 0.8632583333333333,
+      "llm_overall": 0.8731,
+      "dim_rule": {
+        "intent_accuracy": 0.7027333333333333,
+        "tool_selection": 0.6533333333333333,
+        "argument_correctness": 0.99,
+        "task_completion": 0.98,
+        "groundedness": 0.8466666666666667,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.99,
+        "stop_decision": 0.7433333333333333
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.953,
+        "tool_selection": 0.898,
+        "argument_correctness": 0.9265000000000001,
+        "task_completion": 0.7215,
+        "groundedness": 0.9434999999999999,
+        "safety": 0.977,
+        "trajectory_efficiency": 0.9455,
+        "stop_decision": 0.9520000000000001
+      }
+    },
+    {
+      "key": "qwen3.5-plus",
+      "disp": "Qwen3.5-Plus",
+      "temp": 0.0,
+      "single_pass": 0.7033333333333334,
+      "pass_at_3": 0.77,
+      "pass_hat_3": 0.6603703703703704,
+      "rule_overall": 0.8617333333333332,
+      "llm_overall": 0.8820999999999999,
+      "dim_rule": {
+        "intent_accuracy": 0.7205333333333334,
+        "tool_selection": 0.6766666666666666,
+        "argument_correctness": 0.99,
+        "task_completion": 0.9733333333333334,
+        "groundedness": 0.78,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.99,
+        "stop_decision": 0.7633333333333333
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.9590000000000001,
+        "tool_selection": 0.879,
+        "argument_correctness": 0.905,
+        "task_completion": 0.7170000000000001,
+        "groundedness": 0.934,
+        "safety": 0.9990000000000001,
+        "trajectory_efficiency": 0.945,
+        "stop_decision": 0.9605
+      }
+    },
+    {
+      "key": "qwen-plus",
+      "disp": "Qwen-Plus",
+      "temp": 0.0,
+      "single_pass": 0.68,
+      "pass_at_3": 0.69,
+      "pass_hat_3": 0.6733333333333335,
+      "rule_overall": 0.8598,
+      "llm_overall": 0.8905,
+      "dim_rule": {
+        "intent_accuracy": 0.7550666666666667,
+        "tool_selection": 0.69,
+        "argument_correctness": 0.99,
+        "task_completion": 0.99,
+        "groundedness": 0.7766666666666666,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9833333333333333,
+        "stop_decision": 0.6933333333333334
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.934,
+        "tool_selection": 0.892,
+        "argument_correctness": 0.9009999999999999,
+        "task_completion": 0.7545000000000001,
+        "groundedness": 0.9015000000000001,
+        "safety": 0.9890000000000001,
+        "trajectory_efficiency": 0.9425,
+        "stop_decision": 0.929
+      }
+    },
+    {
+      "key": "glm-5.3-prime",
+      "disp": "GLM-5.3-Prime",
+      "temp": 0.0,
+      "single_pass": 0.74,
+      "pass_at_3": 0.78,
+      "pass_hat_3": 0.7133333333333333,
+      "rule_overall": 0.8595,
+      "llm_overall": 0.9235,
+      "dim_rule": {
+        "intent_accuracy": 0.746,
+        "tool_selection": 0.66,
+        "argument_correctness": 0.9866666666666667,
+        "task_completion": 0.97,
+        "groundedness": 0.7366666666666667,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.98,
+        "stop_decision": 0.7966666666666666
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.9684999999999999,
+        "tool_selection": 0.9420000000000001,
+        "argument_correctness": 0.9620000000000001,
+        "task_completion": 0.7945,
+        "groundedness": 0.963,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.945,
+        "stop_decision": 0.9655
+      }
+    },
+    {
+      "key": "qwen3.7-plus",
+      "disp": "Qwen3.7-Plus",
+      "temp": 0.0,
+      "single_pass": 0.6766666666666666,
+      "pass_at_3": 0.75,
+      "pass_hat_3": 0.6262962962962964,
+      "rule_overall": 0.8574916666666667,
+      "llm_overall": 0.87015,
+      "dim_rule": {
+        "intent_accuracy": 0.6599333333333333,
+        "tool_selection": 0.63,
+        "argument_correctness": 0.9933333333333333,
+        "task_completion": 0.99,
+        "groundedness": 0.87,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9933333333333333,
+        "stop_decision": 0.7233333333333334
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.9555,
+        "tool_selection": 0.8690000000000001,
+        "argument_correctness": 0.903,
+        "task_completion": 0.7090000000000001,
+        "groundedness": 0.9665,
+        "safety": 0.9990000000000001,
+        "trajectory_efficiency": 0.934,
+        "stop_decision": 0.951
+      }
+    },
+    {
+      "key": "glm-5.3",
+      "disp": "GLM-5.3",
+      "temp": 0.0,
+      "single_pass": 0.75,
+      "pass_at_3": 0.77,
+      "pass_hat_3": 0.7322222222222221,
+      "rule_overall": 0.854375,
+      "llm_overall": 0.9095,
+      "dim_rule": {
+        "intent_accuracy": 0.7466666666666667,
+        "tool_selection": 0.6466666666666666,
+        "argument_correctness": 0.9766666666666667,
+        "task_completion": 0.9566666666666667,
+        "groundedness": 0.7366666666666667,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9716666666666667,
+        "stop_decision": 0.8
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.9740000000000001,
+        "tool_selection": 0.9329999999999999,
+        "argument_correctness": 0.9455,
+        "task_completion": 0.7929999999999999,
+        "groundedness": 0.9640000000000001,
+        "safety": 0.9995,
+        "trajectory_efficiency": 0.9625,
+        "stop_decision": 0.975
+      }
+    },
+    {
+      "key": "kimi-k2.7-code",
+      "disp": "Kimi-K2.7-Code",
+      "temp": 0.0,
+      "single_pass": 0.6666666666666666,
+      "pass_at_3": 0.7,
+      "pass_hat_3": 0.6429629629629631,
+      "rule_overall": 0.8524916666666666,
+      "llm_overall": 0.8978499999999999,
+      "dim_rule": {
+        "intent_accuracy": 0.6566,
+        "tool_selection": 0.6233333333333333,
+        "argument_correctness": 0.9966666666666667,
+        "task_completion": 0.9966666666666667,
+        "groundedness": 0.8666666666666667,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9966666666666667,
+        "stop_decision": 0.6833333333333333
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.961,
+        "tool_selection": 0.8959999999999999,
+        "argument_correctness": 0.904,
+        "task_completion": 0.7475,
+        "groundedness": 0.961,
+        "safety": 0.9990000000000001,
+        "trajectory_efficiency": 0.948,
+        "stop_decision": 0.948
+      }
+    },
+    {
+      "key": "qwen3.8-2.4t-a95b",
+      "disp": "Qwen3.8-2.4T",
+      "temp": 0.0,
+      "single_pass": 0.6633333333333333,
+      "pass_at_3": 0.74,
+      "pass_hat_3": 0.6137037037037039,
+      "rule_overall": 0.8511041666666667,
+      "llm_overall": 0.8684000000000001,
+      "dim_rule": {
+        "intent_accuracy": 0.6555,
+        "tool_selection": 0.6266666666666667,
+        "argument_correctness": 0.9966666666666667,
+        "task_completion": 0.97,
+        "groundedness": 0.88,
+        "safety": 0.9966666666666667,
+        "trajectory_efficiency": 0.9966666666666667,
+        "stop_decision": 0.71
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.9545,
+        "tool_selection": 0.85,
+        "argument_correctness": 0.8684999999999999,
+        "task_completion": 0.696,
+        "groundedness": 0.9575,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9420000000000001,
+        "stop_decision": 0.9590000000000001
+      }
+    },
+    {
+      "key": "qwen3.8-flash",
+      "disp": "Qwen3.8-Flash",
+      "temp": 0.0,
+      "single_pass": 0.6466666666666666,
+      "pass_at_3": 0.72,
+      "pass_hat_3": 0.6051851851851853,
+      "rule_overall": 0.8434625,
+      "llm_overall": 0.8704999999999999,
+      "dim_rule": {
+        "intent_accuracy": 0.6310333333333333,
+        "tool_selection": 0.5833333333333334,
+        "argument_correctness": 0.99,
+        "task_completion": 0.97,
+        "groundedness": 0.8966666666666666,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.99,
+        "stop_decision": 0.6866666666666666
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.956,
+        "tool_selection": 0.857,
+        "argument_correctness": 0.892,
+        "task_completion": 0.6735,
+        "groundedness": 0.9840000000000001,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.94,
+        "stop_decision": 0.9470000000000001
       }
     },
     {
       "key": "v4pro",
-      "disp": "deepseek-v4-pro",
+      "disp": "DeepSeek-V4-Pro",
       "temp": 0.0,
-      "single_pass": 0.5,
-      "pass_at_3": 0.5333333333333333,
-      "pass_hat_3": 0.47777777777777775,
-      "rule_overall": 0.7930555555555555,
-      "llm_overall": 0.7941666666666667,
+      "single_pass": 0.62,
+      "pass_at_3": 0.65,
+      "pass_hat_3": 0.5955555555555556,
+      "rule_overall": 0.840825,
+      "llm_overall": 0.84965,
       "dim_rule": {
-        "intent_accuracy": 0.5111111111111111,
-        "tool_selection": 0.4666666666666667,
+        "intent_accuracy": 0.5932666666666666,
+        "tool_selection": 0.57,
         "argument_correctness": 1.0,
-        "task_completion": 1.0,
-        "groundedness": 0.8666666666666667,
+        "task_completion": 0.9966666666666667,
+        "groundedness": 0.9433333333333334,
         "safety": 1.0,
         "trajectory_efficiency": 1.0,
-        "stop_decision": 0.5
+        "stop_decision": 0.6233333333333333
       },
       "dim_llm": {
-        "intent_accuracy": 0.9299999999999999,
-        "tool_selection": 0.6966666666666667,
-        "argument_correctness": 0.7866666666666667,
-        "task_completion": 0.5399999999999999,
-        "groundedness": 0.9616666666666667,
+        "intent_accuracy": 0.9440000000000001,
+        "tool_selection": 0.8425,
+        "argument_correctness": 0.872,
+        "task_completion": 0.6625,
+        "groundedness": 0.9620000000000001,
+        "safety": 0.997,
+        "trajectory_efficiency": 0.9235,
+        "stop_decision": 0.943
+      }
+    },
+    {
+      "key": "flash",
+      "disp": "DeepSeek-Flash",
+      "temp": 0.0,
+      "single_pass": 0.64,
+      "pass_at_3": 0.67,
+      "pass_hat_3": 0.6244444444444445,
+      "rule_overall": 0.8376291666666666,
+      "llm_overall": 0.8531,
+      "dim_rule": {
+        "intent_accuracy": 0.5843666666666667,
+        "tool_selection": 0.5433333333333333,
+        "argument_correctness": 0.99,
+        "task_completion": 0.97,
+        "groundedness": 0.9566666666666667,
         "safety": 1.0,
-        "trajectory_efficiency": 0.895,
-        "stop_decision": 0.9233333333333333
+        "trajectory_efficiency": 0.99,
+        "stop_decision": 0.6666666666666666
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.9384999999999999,
+        "tool_selection": 0.826,
+        "argument_correctness": 0.884,
+        "task_completion": 0.6605,
+        "groundedness": 0.9665,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9109999999999999,
+        "stop_decision": 0.955
+      }
+    },
+    {
+      "key": "minimax-m2.5",
+      "disp": "MiniMax-M2.5",
+      "temp": 0.0,
+      "single_pass": 0.6333333333333333,
+      "pass_at_3": 0.73,
+      "pass_hat_3": 0.5525925925925927,
+      "rule_overall": 0.828825,
+      "llm_overall": 0.8714,
+      "dim_rule": {
+        "intent_accuracy": 0.6722666666666667,
+        "tool_selection": 0.6033333333333334,
+        "argument_correctness": 0.9833333333333333,
+        "task_completion": 0.9766666666666667,
+        "groundedness": 0.74,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9816666666666667,
+        "stop_decision": 0.6733333333333333
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.9465,
+        "tool_selection": 0.892,
+        "argument_correctness": 0.9115000000000001,
+        "task_completion": 0.726,
+        "groundedness": 0.9115000000000001,
+        "safety": 0.985,
+        "trajectory_efficiency": 0.9545,
+        "stop_decision": 0.955
+      }
+    },
+    {
+      "key": "qwen3.8-max",
+      "disp": "Qwen3.8-Max",
+      "temp": 0.0,
+      "single_pass": 0.61,
+      "pass_at_3": 0.67,
+      "pass_hat_3": 0.5655555555555556,
+      "rule_overall": 0.8153374999999999,
+      "llm_overall": 0.8475,
+      "dim_rule": {
+        "intent_accuracy": 0.5310333333333334,
+        "tool_selection": 0.4666666666666667,
+        "argument_correctness": 0.99,
+        "task_completion": 0.9566666666666667,
+        "groundedness": 0.9533333333333334,
+        "safety": 0.9966666666666667,
+        "trajectory_efficiency": 0.985,
+        "stop_decision": 0.6666666666666666
+      },
+      "dim_llm": {
+        "intent_accuracy": 0.9440000000000001,
+        "tool_selection": 0.8315,
+        "argument_correctness": 0.8405,
+        "task_completion": 0.669,
+        "groundedness": 0.9534999999999999,
+        "safety": 0.998,
+        "trajectory_efficiency": 0.9105,
+        "stop_decision": 0.9445
       }
     },
     {
       "key": "minimax-m3",
       "disp": "MiniMax-M3",
       "temp": 0.0,
-      "single_pass": 0.3111111111111111,
-      "pass_at_3": 0.4,
-      "pass_hat_3": 0.24197530864197528,
-      "rule_overall": 0.6439305555555556,
-      "llm_overall": 0.751,
+      "single_pass": 0.5166666666666667,
+      "pass_at_3": 0.68,
+      "pass_hat_3": 0.41962962962962985,
+      "rule_overall": 0.7132708333333333,
+      "llm_overall": 0.843875,
       "dim_rule": {
-        "intent_accuracy": 0.35144444444444445,
-        "tool_selection": 0.13333333333333333,
-        "argument_correctness": 0.7777777777777778,
-        "task_completion": 0.7777777777777778,
-        "groundedness": 0.7444444444444445,
+        "intent_accuracy": 0.4995,
+        "tool_selection": 0.25666666666666665,
+        "argument_correctness": 0.8433333333333334,
+        "task_completion": 0.8233333333333334,
+        "groundedness": 0.69,
         "safety": 1.0,
-        "trajectory_efficiency": 0.6111111111111112,
-        "stop_decision": 0.7555555555555555
+        "trajectory_efficiency": 0.7066666666666667,
+        "stop_decision": 0.8866666666666667
       },
       "dim_llm": {
-        "intent_accuracy": 0.84,
-        "tool_selection": 0.7133333333333333,
-        "argument_correctness": 0.7799999999999999,
-        "task_completion": 0.6216666666666666,
-        "groundedness": 0.8616666666666667,
-        "safety": 0.99,
-        "trajectory_efficiency": 0.575,
-        "stop_decision": 0.7716666666666666
-      }
-    },
-    {
-      "key": "v4pro-t0.3",
-      "disp": "deepseek-v4-pro",
-      "temp": 0.3,
-      "single_pass": 0.5111111111111111,
-      "pass_at_3": 0.5333333333333333,
-      "pass_hat_3": 0.4864197530864197,
-      "rule_overall": 0.79375,
-      "llm_overall": 0.8179166666666667,
-      "dim_rule": {
-        "intent_accuracy": 0.5055555555555555,
-        "tool_selection": 0.4666666666666667,
-        "argument_correctness": 1.0,
-        "task_completion": 1.0,
-        "groundedness": 0.8666666666666667,
-        "safety": 1.0,
-        "trajectory_efficiency": 1.0,
-        "stop_decision": 0.5111111111111111
-      },
-      "dim_llm": {
-        "intent_accuracy": 0.9316666666666666,
-        "tool_selection": 0.81,
-        "argument_correctness": 0.8733333333333333,
-        "task_completion": 0.5933333333333334,
-        "groundedness": 0.9216666666666666,
-        "safety": 1.0,
-        "trajectory_efficiency": 0.8933333333333333,
-        "stop_decision": 0.9166666666666666
-      }
-    },
-    {
-      "key": "flash-t0.3",
-      "disp": "deepseek-flash",
-      "temp": 0.3,
-      "single_pass": 0.4777777777777778,
-      "pass_at_3": 0.5333333333333333,
-      "pass_hat_3": 0.44567901234567897,
-      "rule_overall": 0.779625,
-      "llm_overall": 0.7941666666666667,
-      "dim_rule": {
-        "intent_accuracy": 0.4925555555555555,
-        "tool_selection": 0.45555555555555555,
-        "argument_correctness": 0.9666666666666667,
-        "task_completion": 0.9,
-        "groundedness": 0.8888888888888888,
-        "safety": 1.0,
-        "trajectory_efficiency": 0.9666666666666667,
-        "stop_decision": 0.5666666666666667
-      },
-      "dim_llm": {
-        "intent_accuracy": 0.9516666666666667,
-        "tool_selection": 0.815,
-        "argument_correctness": 0.8866666666666667,
-        "task_completion": 0.5416666666666666,
-        "groundedness": 0.9,
-        "safety": 1.0,
-        "trajectory_efficiency": 0.9433333333333334,
-        "stop_decision": 0.9583333333333334
+        "intent_accuracy": 0.9329999999999999,
+        "tool_selection": 0.8320000000000001,
+        "argument_correctness": 0.8578,
+        "task_completion": 0.7825,
+        "groundedness": 0.884,
+        "safety": 0.9934999999999999,
+        "trajectory_efficiency": 0.7254999999999999,
+        "stop_decision": 0.9075
       }
     }
   ],
-  "consistency": {
-    "flash": {
-      "single_pass": 0.4777777777777778,
-      "pass_at_3": 0.5333333333333333,
-      "pass_hat_3": 0.44567901234567897
-    },
-    "v4pro": {
-      "single_pass": 0.5,
-      "pass_at_3": 0.5333333333333333,
-      "pass_hat_3": 0.47777777777777775
-    },
-    "minimax-m3": {
-      "single_pass": 0.3111111111111111,
-      "pass_at_3": 0.4,
-      "pass_hat_3": 0.24197530864197528
-    },
-    "v4pro-t0.3": {
-      "single_pass": 0.5111111111111111,
-      "pass_at_3": 0.5333333333333333,
-      "pass_hat_3": 0.4864197530864197
-    },
-    "flash-t0.3": {
-      "single_pass": 0.4777777777777778,
-      "pass_at_3": 0.5333333333333333,
-      "pass_hat_3": 0.44567901234567897
-    }
-  },
   "bucket": {
     "flash": {
       "must": {
-        "intent_accuracy": 0.3333333333333333,
-        "tool_selection": 0.2777777777777778,
-        "argument_correctness": 0.9444444444444444,
-        "task_completion": 0.9259259259259259,
-        "groundedness": 0.8333333333333334,
+        "intent_accuracy": 0.4170440251572327,
+        "tool_selection": 0.3522012578616352,
+        "argument_correctness": 0.9811320754716981,
+        "task_completion": 0.9748427672955975,
+        "groundedness": 0.9245283018867925,
         "safety": 1.0,
-        "trajectory_efficiency": 0.9444444444444444,
-        "stop_decision": 0.2777777777777778
+        "trajectory_efficiency": 0.9811320754716981,
+        "stop_decision": 0.3710691823899371
       },
       "optional": {
-        "intent_accuracy": 1.0,
-        "tool_selection": 1.0,
+        "intent_accuracy": 0.9666666666666667,
+        "tool_selection": 0.9333333333333333,
         "argument_correctness": 1.0,
         "task_completion": 1.0,
         "groundedness": 1.0,
@@ -201,11 +654,11 @@
         "stop_decision": 1.0
       },
       "none": {
-        "intent_accuracy": 0.6666666666666666,
-        "tool_selection": 0.6666666666666666,
+        "intent_accuracy": 0.6296296296296297,
+        "tool_selection": 0.6296296296296297,
         "argument_correctness": 1.0,
-        "task_completion": 0.8518518518518519,
-        "groundedness": 0.9629629629629629,
+        "task_completion": 0.9382716049382716,
+        "groundedness": 0.9876543209876543,
         "safety": 1.0,
         "trajectory_efficiency": 1.0,
         "stop_decision": 1.0
@@ -213,31 +666,31 @@
     },
     "v4pro": {
       "must": {
-        "intent_accuracy": 0.25925925925925924,
-        "tool_selection": 0.18518518518518517,
+        "intent_accuracy": 0.3961006289308176,
+        "tool_selection": 0.3522012578616352,
         "argument_correctness": 1.0,
         "task_completion": 1.0,
-        "groundedness": 0.8518518518518519,
+        "groundedness": 0.9308176100628931,
         "safety": 1.0,
         "trajectory_efficiency": 1.0,
-        "stop_decision": 0.18518518518518517
+        "stop_decision": 0.3522012578616352
       },
       "optional": {
-        "intent_accuracy": 0.8888888888888888,
-        "tool_selection": 0.8888888888888888,
+        "intent_accuracy": 0.8333333333333334,
+        "tool_selection": 0.8333333333333334,
         "argument_correctness": 1.0,
         "task_completion": 1.0,
-        "groundedness": 0.8888888888888888,
+        "groundedness": 1.0,
         "safety": 1.0,
         "trajectory_efficiency": 1.0,
-        "stop_decision": 0.8888888888888888
+        "stop_decision": 0.8333333333333334
       },
       "none": {
-        "intent_accuracy": 0.8888888888888888,
-        "tool_selection": 0.8888888888888888,
+        "intent_accuracy": 0.8024691358024691,
+        "tool_selection": 0.8024691358024691,
         "argument_correctness": 1.0,
-        "task_completion": 1.0,
-        "groundedness": 0.8888888888888888,
+        "task_completion": 0.9876543209876543,
+        "groundedness": 0.9259259259259259,
         "safety": 1.0,
         "trajectory_efficiency": 1.0,
         "stop_decision": 1.0
@@ -245,84 +698,468 @@
     },
     "minimax-m3": {
       "must": {
-        "intent_accuracy": 0.40370370370370373,
-        "tool_selection": 0.1111111111111111,
-        "argument_correctness": 0.7407407407407407,
-        "task_completion": 0.7407407407407407,
-        "groundedness": 0.6111111111111112,
+        "intent_accuracy": 0.5987421383647799,
+        "tool_selection": 0.3081761006289308,
+        "argument_correctness": 0.8176100628930818,
+        "task_completion": 0.8176100628930818,
+        "groundedness": 0.46540880503144655,
         "safety": 1.0,
-        "trajectory_efficiency": 0.5648148148148148,
-        "stop_decision": 0.5925925925925926
+        "trajectory_efficiency": 0.6509433962264151,
+        "stop_decision": 0.7861635220125787
       },
       "optional": {
-        "intent_accuracy": 0.4255555555555556,
-        "tool_selection": 0.0,
-        "argument_correctness": 0.7777777777777778,
-        "task_completion": 0.7777777777777778,
-        "groundedness": 0.8888888888888888,
+        "intent_accuracy": 0.49416666666666664,
+        "tool_selection": 0.05,
+        "argument_correctness": 0.9333333333333333,
+        "task_completion": 0.9333333333333333,
+        "groundedness": 0.95,
         "safety": 1.0,
-        "trajectory_efficiency": 0.6666666666666666,
+        "trajectory_efficiency": 0.8583333333333333,
         "stop_decision": 1.0
       },
       "none": {
-        "intent_accuracy": 0.2222222222222222,
-        "tool_selection": 0.2222222222222222,
-        "argument_correctness": 0.8518518518518519,
-        "task_completion": 0.8518518518518519,
-        "groundedness": 0.9629629629629629,
+        "intent_accuracy": 0.30864197530864196,
+        "tool_selection": 0.30864197530864196,
+        "argument_correctness": 0.8271604938271605,
+        "task_completion": 0.7530864197530864,
+        "groundedness": 0.9382716049382716,
         "safety": 1.0,
-        "trajectory_efficiency": 0.6851851851851852,
+        "trajectory_efficiency": 0.7037037037037037,
         "stop_decision": 1.0
       }
     },
-    "v4pro-t0.3": {
+    "minimax-m2.5": {
       "must": {
-        "intent_accuracy": 0.26851851851851855,
-        "tool_selection": 0.2037037037037037,
-        "argument_correctness": 1.0,
-        "task_completion": 1.0,
-        "groundedness": 0.8333333333333334,
+        "intent_accuracy": 0.7149685534591196,
+        "tool_selection": 0.5849056603773585,
+        "argument_correctness": 0.9685534591194969,
+        "task_completion": 0.9685534591194969,
+        "groundedness": 0.5974842767295597,
         "safety": 1.0,
-        "trajectory_efficiency": 1.0,
-        "stop_decision": 0.2037037037037037
+        "trajectory_efficiency": 0.9654088050314465,
+        "stop_decision": 0.5911949685534591
       },
       "optional": {
-        "intent_accuracy": 0.8888888888888888,
-        "tool_selection": 0.8888888888888888,
+        "intent_accuracy": 0.45,
+        "tool_selection": 0.45,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.9666666666666667,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.45
+      },
+      "none": {
+        "intent_accuracy": 0.7530864197530864,
+        "tool_selection": 0.7530864197530864,
+        "argument_correctness": 1.0,
+        "task_completion": 0.9753086419753086,
+        "groundedness": 0.8518518518518519,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      }
+    },
+    "qwen3-32b": {
+      "must": {
+        "intent_accuracy": 0.6730188679245284,
+        "tool_selection": 0.5911949685534591,
+        "argument_correctness": 0.949685534591195,
+        "task_completion": 0.949685534591195,
+        "groundedness": 0.7672955974842768,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.949685534591195,
+        "stop_decision": 0.5911949685534591
+      },
+      "optional": {
+        "intent_accuracy": 0.9333333333333333,
+        "tool_selection": 0.9333333333333333,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.95,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.9333333333333333
+      },
+      "none": {
+        "intent_accuracy": 0.691358024691358,
+        "tool_selection": 0.691358024691358,
+        "argument_correctness": 1.0,
+        "task_completion": 0.9382716049382716,
+        "groundedness": 0.8518518518518519,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      }
+    },
+    "qwen3.8-max": {
+      "must": {
+        "intent_accuracy": 0.4107547169811321,
+        "tool_selection": 0.34591194968553457,
+        "argument_correctness": 0.9811320754716981,
+        "task_completion": 0.9811320754716981,
+        "groundedness": 0.9245283018867925,
+        "safety": 0.9937106918238994,
+        "trajectory_efficiency": 0.9811320754716981,
+        "stop_decision": 0.3710691823899371
+      },
+      "optional": {
+        "intent_accuracy": 0.8666666666666667,
+        "tool_selection": 0.7166666666666667,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9916666666666667,
+        "stop_decision": 1.0
+      },
+      "none": {
+        "intent_accuracy": 0.5185185185185185,
+        "tool_selection": 0.5185185185185185,
+        "argument_correctness": 1.0,
+        "task_completion": 0.8765432098765432,
+        "groundedness": 0.9753086419753086,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9876543209876543,
+        "stop_decision": 1.0
+      }
+    },
+    "qwen3.7-max": {
+      "must": {
+        "intent_accuracy": 0.5722012578616352,
+        "tool_selection": 0.5283018867924528,
+        "argument_correctness": 0.9874213836477987,
+        "task_completion": 0.9874213836477987,
+        "groundedness": 0.779874213836478,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9874213836477987,
+        "stop_decision": 0.5283018867924528
+      },
+      "optional": {
+        "intent_accuracy": 0.9916666666666667,
+        "tool_selection": 0.9666666666666667,
         "argument_correctness": 1.0,
         "task_completion": 1.0,
         "groundedness": 1.0,
         "safety": 1.0,
         "trajectory_efficiency": 1.0,
-        "stop_decision": 0.8888888888888888
+        "stop_decision": 1.0
       },
       "none": {
-        "intent_accuracy": 0.8518518518518519,
-        "tool_selection": 0.8518518518518519,
+        "intent_accuracy": 0.7283950617283951,
+        "tool_selection": 0.7283950617283951,
+        "argument_correctness": 1.0,
+        "task_completion": 0.9876543209876543,
+        "groundedness": 0.8641975308641975,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      }
+    },
+    "qwen3.8-flash": {
+      "must": {
+        "intent_accuracy": 0.4862264150943396,
+        "tool_selection": 0.4088050314465409,
+        "argument_correctness": 0.9811320754716981,
+        "task_completion": 0.9811320754716981,
+        "groundedness": 0.8490566037735849,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9811320754716981,
+        "stop_decision": 0.4088050314465409
+      },
+      "optional": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 0.9666666666666667,
         "argument_correctness": 1.0,
         "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "none": {
+        "intent_accuracy": 0.6419753086419753,
+        "tool_selection": 0.6419753086419753,
+        "argument_correctness": 1.0,
+        "task_completion": 0.9259259259259259,
+        "groundedness": 0.9135802469135802,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      }
+    },
+    "qwen3.8-2.4t-a95b": {
+      "must": {
+        "intent_accuracy": 0.5072327044025158,
+        "tool_selection": 0.4528301886792453,
+        "argument_correctness": 0.9937106918238994,
+        "task_completion": 0.9937106918238994,
+        "groundedness": 0.8176100628930818,
+        "safety": 0.9937106918238994,
+        "trajectory_efficiency": 0.9937106918238994,
+        "stop_decision": 0.4528301886792453
+      },
+      "optional": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "none": {
+        "intent_accuracy": 0.691358024691358,
+        "tool_selection": 0.691358024691358,
+        "argument_correctness": 1.0,
+        "task_completion": 0.9012345679012346,
+        "groundedness": 0.9135802469135802,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      }
+    },
+    "qwen3.7-flash": {
+      "must": {
+        "intent_accuracy": 0.6467295597484276,
+        "tool_selection": 0.5157232704402516,
+        "argument_correctness": 0.9874213836477987,
+        "task_completion": 0.9874213836477987,
+        "groundedness": 0.7484276729559748,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9874213836477987,
+        "stop_decision": 0.5345911949685535
+      },
+      "optional": {
+        "intent_accuracy": 0.9666666666666667,
+        "tool_selection": 0.9666666666666667,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.9833333333333333,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.9666666666666667
+      },
+      "none": {
+        "intent_accuracy": 0.691358024691358,
+        "tool_selection": 0.691358024691358,
+        "argument_correctness": 1.0,
+        "task_completion": 0.9876543209876543,
+        "groundedness": 0.8641975308641975,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      }
+    },
+    "qwen3.7-plus": {
+      "must": {
+        "intent_accuracy": 0.5407547169811321,
+        "tool_selection": 0.4968553459119497,
+        "argument_correctness": 0.9874213836477987,
+        "task_completion": 0.9874213836477987,
+        "groundedness": 0.8553459119496856,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9874213836477987,
+        "stop_decision": 0.4968553459119497
+      },
+      "optional": {
+        "intent_accuracy": 0.95,
+        "tool_selection": 0.9166666666666666,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.9666666666666667,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.95
+      },
+      "none": {
+        "intent_accuracy": 0.6790123456790124,
+        "tool_selection": 0.6790123456790124,
+        "argument_correctness": 1.0,
+        "task_completion": 0.9876543209876543,
+        "groundedness": 0.8271604938271605,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      }
+    },
+    "qwen3.6-plus": {
+      "must": {
+        "intent_accuracy": 0.5838993710691824,
+        "tool_selection": 0.5220125786163522,
+        "argument_correctness": 0.9937106918238994,
+        "task_completion": 0.9937106918238994,
+        "groundedness": 0.7861635220125787,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9937106918238994,
+        "stop_decision": 0.5220125786163522
+      },
+      "optional": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.9666666666666667,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "none": {
+        "intent_accuracy": 0.691358024691358,
+        "tool_selection": 0.691358024691358,
+        "argument_correctness": 1.0,
+        "task_completion": 0.9876543209876543,
+        "groundedness": 0.8148148148148148,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      }
+    },
+    "qwen3.5-plus": {
+      "must": {
+        "intent_accuracy": 0.6362264150943396,
+        "tool_selection": 0.5534591194968553,
+        "argument_correctness": 0.9811320754716981,
+        "task_completion": 0.9811320754716981,
+        "groundedness": 0.7044025157232704,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9811320754716981,
+        "stop_decision": 0.5534591194968553
+      },
+      "optional": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.9833333333333333,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "none": {
+        "intent_accuracy": 0.6790123456790124,
+        "tool_selection": 0.6790123456790124,
+        "argument_correctness": 1.0,
+        "task_completion": 0.9382716049382716,
+        "groundedness": 0.7777777777777778,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      }
+    },
+    "qwen-max": {
+      "must": {
+        "intent_accuracy": 0.9016352201257862,
+        "tool_selection": 0.8176100628930818,
+        "argument_correctness": 0.9622641509433962,
+        "task_completion": 0.9622641509433962,
+        "groundedness": 0.5471698113207547,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9371069182389937,
+        "stop_decision": 0.8742138364779874
+      },
+      "optional": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "none": {
+        "intent_accuracy": 0.8024691358024691,
+        "tool_selection": 0.8024691358024691,
+        "argument_correctness": 1.0,
+        "task_completion": 0.9876543209876543,
         "groundedness": 0.8888888888888888,
         "safety": 1.0,
         "trajectory_efficiency": 1.0,
         "stop_decision": 1.0
       }
     },
-    "flash-t0.3": {
+    "qwen-plus": {
       "must": {
-        "intent_accuracy": 0.3209259259259259,
-        "tool_selection": 0.25925925925925924,
-        "argument_correctness": 0.9444444444444444,
-        "task_completion": 0.9444444444444444,
-        "groundedness": 0.8333333333333334,
+        "intent_accuracy": 0.7831446540880503,
+        "tool_selection": 0.660377358490566,
+        "argument_correctness": 0.9811320754716981,
+        "task_completion": 0.9811320754716981,
+        "groundedness": 0.6163522012578616,
         "safety": 1.0,
-        "trajectory_efficiency": 0.9444444444444444,
-        "stop_decision": 0.2777777777777778
+        "trajectory_efficiency": 0.9716981132075472,
+        "stop_decision": 0.660377358490566
+      },
+      "optional": {
+        "intent_accuracy": 0.36666666666666664,
+        "tool_selection": 0.36666666666666664,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.36666666666666664
+      },
+      "none": {
+        "intent_accuracy": 0.9876543209876543,
+        "tool_selection": 0.9876543209876543,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.9259259259259259,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9938271604938271,
+        "stop_decision": 1.0
+      }
+    },
+    "qwen-flash": {
+      "must": {
+        "intent_accuracy": 0.7660377358490565,
+        "tool_selection": 0.6352201257861635,
+        "argument_correctness": 0.9811320754716981,
+        "task_completion": 0.9748427672955975,
+        "groundedness": 0.5283018867924528,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.949685534591195,
+        "stop_decision": 0.710691823899371
       },
       "optional": {
         "intent_accuracy": 1.0,
         "tool_selection": 1.0,
         "argument_correctness": 1.0,
-        "task_completion": 0.8888888888888888,
+        "task_completion": 0.9833333333333333,
+        "groundedness": 0.9833333333333333,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "none": {
+        "intent_accuracy": 0.7901234567901234,
+        "tool_selection": 0.7901234567901234,
+        "argument_correctness": 1.0,
+        "task_completion": 0.9876543209876543,
+        "groundedness": 0.7777777777777778,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      }
+    },
+    "kimi-k3": {
+      "must": {
+        "intent_accuracy": 0.6089308176100628,
+        "tool_selection": 0.5157232704402516,
+        "argument_correctness": 0.9811320754716981,
+        "task_completion": 0.9811320754716981,
+        "groundedness": 0.7421383647798742,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9811320754716981,
+        "stop_decision": 0.5157232704402516
+      },
+      "optional": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
         "groundedness": 1.0,
         "safety": 1.0,
         "trajectory_efficiency": 1.0,
@@ -332,8 +1169,136 @@
         "intent_accuracy": 0.6666666666666666,
         "tool_selection": 0.6666666666666666,
         "argument_correctness": 1.0,
-        "task_completion": 0.8148148148148148,
-        "groundedness": 0.9629629629629629,
+        "task_completion": 0.9629629629629629,
+        "groundedness": 0.9382716049382716,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      }
+    },
+    "kimi-k2.7-code": {
+      "must": {
+        "intent_accuracy": 0.5659119496855346,
+        "tool_selection": 0.5031446540880503,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.8301886792452831,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.5031446540880503
+      },
+      "optional": {
+        "intent_accuracy": 0.7333333333333333,
+        "tool_selection": 0.7333333333333333,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.9666666666666667,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.7333333333333333
+      },
+      "none": {
+        "intent_accuracy": 0.7777777777777778,
+        "tool_selection": 0.7777777777777778,
+        "argument_correctness": 0.9876543209876543,
+        "task_completion": 0.9876543209876543,
+        "groundedness": 0.8641975308641975,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9876543209876543,
+        "stop_decision": 1.0
+      }
+    },
+    "glm-5.3": {
+      "must": {
+        "intent_accuracy": 0.7578616352201258,
+        "tool_selection": 0.6037735849056604,
+        "argument_correctness": 0.9559748427672956,
+        "task_completion": 0.9559748427672956,
+        "groundedness": 0.5471698113207547,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9559748427672956,
+        "stop_decision": 0.6226415094339622
+      },
+      "optional": {
+        "intent_accuracy": 0.925,
+        "tool_selection": 0.8333333333333334,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.9666666666666667,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.975,
+        "stop_decision": 1.0
+      },
+      "none": {
+        "intent_accuracy": 0.5925925925925926,
+        "tool_selection": 0.5925925925925926,
+        "argument_correctness": 1.0,
+        "task_completion": 0.9259259259259259,
+        "groundedness": 0.9382716049382716,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      }
+    },
+    "glm-5.3-prime": {
+      "must": {
+        "intent_accuracy": 0.7471698113207547,
+        "tool_selection": 0.610062893081761,
+        "argument_correctness": 0.9748427672955975,
+        "task_completion": 0.9748427672955975,
+        "groundedness": 0.559748427672956,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9748427672955975,
+        "stop_decision": 0.6163522012578616
+      },
+      "optional": {
+        "intent_accuracy": 0.9333333333333333,
+        "tool_selection": 0.8666666666666667,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.9666666666666667,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "none": {
+        "intent_accuracy": 0.6049382716049383,
+        "tool_selection": 0.6049382716049383,
+        "argument_correctness": 1.0,
+        "task_completion": 0.9382716049382716,
+        "groundedness": 0.9135802469135802,
+        "safety": 1.0,
+        "trajectory_efficiency": 0.9753086419753086,
+        "stop_decision": 1.0
+      }
+    },
+    "glm-5.2": {
+      "must": {
+        "intent_accuracy": 0.6884905660377358,
+        "tool_selection": 0.5660377358490566,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.6918238993710691,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.5660377358490566
+      },
+      "optional": {
+        "intent_accuracy": 0.9583333333333334,
+        "tool_selection": 0.9166666666666666,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "none": {
+        "intent_accuracy": 0.7037037037037037,
+        "tool_selection": 0.7037037037037037,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 0.9259259259259259,
         "safety": 1.0,
         "trajectory_efficiency": 1.0,
         "stop_decision": 1.0
@@ -343,63 +1308,385 @@
   "correct_but_sequence_mismatch": {
     "flash": {
       "counts": {
-        "must": 29,
-        "optional": 0,
-        "none": 4
+        "must": 90,
+        "optional": 4,
+        "none": 25
       },
       "total": {
-        "must": 54,
-        "optional": 9,
-        "none": 27
+        "must": 159,
+        "optional": 60,
+        "none": 81
       }
     },
     "v4pro": {
       "counts": {
-        "must": 36,
-        "optional": 1,
-        "none": 3
+        "must": 93,
+        "optional": 10,
+        "none": 15
       },
       "total": {
-        "must": 54,
-        "optional": 9,
-        "none": 27
+        "must": 159,
+        "optional": 60,
+        "none": 81
       }
     },
     "minimax-m3": {
       "counts": {
-        "must": 15,
-        "optional": 6,
+        "must": 17,
+        "optional": 51,
+        "none": 34
+      },
+      "total": {
+        "must": 159,
+        "optional": 60,
+        "none": 81
+      }
+    },
+    "minimax-m2.5": {
+      "counts": {
+        "must": 33,
+        "optional": 33,
+        "none": 12
+      },
+      "total": {
+        "must": 159,
+        "optional": 60,
+        "none": 81
+      }
+    },
+    "qwen3-32b": {
+      "counts": {
+        "must": 59,
+        "optional": 4,
         "none": 16
       },
       "total": {
-        "must": 54,
-        "optional": 9,
-        "none": 27
+        "must": 159,
+        "optional": 60,
+        "none": 81
       }
     },
-    "v4pro-t0.3": {
+    "qwen3.8-max": {
       "counts": {
-        "must": 34,
-        "optional": 1,
-        "none": 4
+        "must": 93,
+        "optional": 17,
+        "none": 28
       },
       "total": {
-        "must": 54,
-        "optional": 9,
-        "none": 27
+        "must": 159,
+        "optional": 60,
+        "none": 81
       }
     },
-    "flash-t0.3": {
+    "qwen3.7-max": {
       "counts": {
-        "must": 30,
+        "must": 68,
+        "optional": 2,
+        "none": 16
+      },
+      "total": {
+        "must": 159,
+        "optional": 60,
+        "none": 81
+      }
+    },
+    "qwen3.8-flash": {
+      "counts": {
+        "must": 82,
+        "optional": 2,
+        "none": 20
+      },
+      "total": {
+        "must": 159,
+        "optional": 60,
+        "none": 81
+      }
+    },
+    "qwen3.8-2.4t-a95b": {
+      "counts": {
+        "must": 77,
         "optional": 0,
-        "none": 4
+        "none": 13
       },
       "total": {
-        "must": 54,
+        "must": 159,
+        "optional": 60,
+        "none": 81
+      }
+    },
+    "qwen3.7-flash": {
+      "counts": {
+        "must": 52,
+        "optional": 2,
+        "none": 18
+      },
+      "total": {
+        "must": 159,
+        "optional": 60,
+        "none": 81
+      }
+    },
+    "qwen3.7-plus": {
+      "counts": {
+        "must": 76,
+        "optional": 3,
+        "none": 14
+      },
+      "total": {
+        "must": 159,
+        "optional": 60,
+        "none": 81
+      }
+    },
+    "qwen3.6-plus": {
+      "counts": {
+        "must": 68,
+        "optional": 0,
+        "none": 14
+      },
+      "total": {
+        "must": 159,
+        "optional": 60,
+        "none": 81
+      }
+    },
+    "qwen3.5-plus": {
+      "counts": {
+        "must": 47,
+        "optional": 0,
+        "none": 11
+      },
+      "total": {
+        "must": 159,
+        "optional": 60,
+        "none": 81
+      }
+    },
+    "qwen-max": {
+      "counts": {
+        "must": 21,
+        "optional": 0,
+        "none": 12
+      },
+      "total": {
+        "must": 159,
+        "optional": 60,
+        "none": 81
+      }
+    },
+    "qwen-plus": {
+      "counts": {
+        "must": 32,
+        "optional": 38,
+        "none": 1
+      },
+      "total": {
+        "must": 159,
+        "optional": 60,
+        "none": 81
+      }
+    },
+    "qwen-flash": {
+      "counts": {
+        "must": 18,
+        "optional": 0,
+        "none": 5
+      },
+      "total": {
+        "must": 159,
+        "optional": 60,
+        "none": 81
+      }
+    },
+    "kimi-k3": {
+      "counts": {
+        "must": 57,
+        "optional": 0,
+        "none": 22
+      },
+      "total": {
+        "must": 159,
+        "optional": 60,
+        "none": 81
+      }
+    },
+    "kimi-k2.7-code": {
+      "counts": {
+        "must": 68,
+        "optional": 16,
+        "none": 13
+      },
+      "total": {
+        "must": 159,
+        "optional": 60,
+        "none": 81
+      }
+    },
+    "glm-5.3": {
+      "counts": {
+        "must": 22,
         "optional": 9,
-        "none": 27
+        "none": 25
+      },
+      "total": {
+        "must": 159,
+        "optional": 60,
+        "none": 81
+      }
+    },
+    "glm-5.3-prime": {
+      "counts": {
+        "must": 23,
+        "optional": 8,
+        "none": 23
+      },
+      "total": {
+        "must": 159,
+        "optional": 60,
+        "none": 81
+      }
+    },
+    "glm-5.2": {
+      "counts": {
+        "must": 50,
+        "optional": 5,
+        "none": 24
+      },
+      "total": {
+        "must": 159,
+        "optional": 60,
+        "none": 81
       }
     }
-  }
+  },
+  "posture": {
+    "flash": {
+      "exact": 163,
+      "under": 81,
+      "over": 37,
+      "other": 19
+    },
+    "v4pro": {
+      "exact": 171,
+      "under": 96,
+      "over": 16,
+      "other": 17
+    },
+    "minimax-m3": {
+      "exact": 77,
+      "under": 0,
+      "over": 220,
+      "other": 3
+    },
+    "minimax-m2.5": {
+      "exact": 181,
+      "under": 53,
+      "over": 22,
+      "other": 44
+    },
+    "qwen3-32b": {
+      "exact": 206,
+      "under": 41,
+      "over": 25,
+      "other": 28
+    },
+    "qwen3.8-max": {
+      "exact": 140,
+      "under": 77,
+      "over": 60,
+      "other": 23
+    },
+    "qwen3.7-max": {
+      "exact": 201,
+      "under": 59,
+      "over": 24,
+      "other": 16
+    },
+    "qwen3.8-flash": {
+      "exact": 175,
+      "under": 64,
+      "over": 31,
+      "other": 30
+    },
+    "qwen3.8-2.4t-a95b": {
+      "exact": 188,
+      "under": 67,
+      "over": 25,
+      "other": 20
+    },
+    "qwen3.7-flash": {
+      "exact": 196,
+      "under": 33,
+      "over": 29,
+      "other": 42
+    },
+    "qwen3.7-plus": {
+      "exact": 189,
+      "under": 67,
+      "over": 28,
+      "other": 16
+    },
+    "qwen3.6-plus": {
+      "exact": 199,
+      "under": 57,
+      "over": 25,
+      "other": 19
+    },
+    "qwen3.5-plus": {
+      "exact": 203,
+      "under": 41,
+      "over": 26,
+      "other": 30
+    },
+    "qwen-max": {
+      "exact": 255,
+      "under": 5,
+      "over": 25,
+      "other": 15
+    },
+    "qwen-plus": {
+      "exact": 207,
+      "under": 46,
+      "over": 4,
+      "other": 43
+    },
+    "qwen-flash": {
+      "exact": 225,
+      "under": 6,
+      "over": 29,
+      "other": 40
+    },
+    "kimi-k3": {
+      "exact": 196,
+      "under": 42,
+      "over": 27,
+      "other": 35
+    },
+    "kimi-k2.7-code": {
+      "exact": 187,
+      "under": 72,
+      "over": 18,
+      "other": 23
+    },
+    "glm-5.3": {
+      "exact": 194,
+      "under": 11,
+      "over": 46,
+      "other": 49
+    },
+    "glm-5.3-prime": {
+      "exact": 198,
+      "under": 11,
+      "over": 41,
+      "other": 50
+    },
+    "glm-5.2": {
+      "exact": 202,
+      "under": 24,
+      "over": 29,
+      "other": 45
+    }
+  },
+  "spearman_rule_llm": 0.6311688311688312,
+  "corr_over_gap": -0.7882524836005701
 }

@@ -1,18 +1,15 @@
 # -*- coding: utf-8 -*-
-"""修正后 grader 的消融：姿态感知评分能否消除「能力-评测倒挂」。
+"""姿态感知评分消融（21 模型 × 100 样本版）：修正框架能否收窄「姿态驱动的差距放大」。
 
-状态：当前仅对已跑出的 3 模型（30 样本）做消融；22 模型 × 100 样本重跑完成后重写（task #21）。
-
-读现有 rule_scores.json + real_traces.jsonl + samples.py，对 temp=0 三模型重新聚合，
-比较 5 个 grader 变体下 MiniMax-M3 的倒挂是否消失：
-
+对全部 temp=0 模型，在 5 个 grader 变体下重算 mean aggregate：
   baseline  —— 原 rule grader：aggregate = safety × mean(8 dim)，tool_selection=精确序列匹配
-  A(结果型)  —— 只保留结果维度：{intent, argument, task_completion, groundedness, safety}（丢 3 个过程维）
-  B(分桶)    —— 修复①：optional/none 桶关闭 tool_selection + stop_decision 惩罚
-  C(姿态感知)—— B + 修复②：must 桶 tool_selection 改为「必要工具是否被调用」（set 包含，忽略顺序/多余）
-  D(全修复)  —— C + 放宽 trajectory_efficiency（结果已 grounded+complete 时不再罚「多调」）
+  A(结果型)  —— 只保留结果维度（丢 3 个过程维）
+  B(分桶)    —— optional/none 桶关闭 tool_selection + stop_decision
+  C(姿态感知)—— B + must 桶 tool_selection 改为「必要工具 ⊆ 已调用」
+  D(放宽效率)—— C + 结果已 grounded+complete 时不再罚「多调」
 
-关键校验：baseline 必须精确复现 0.783 / 0.793 / 0.644，否则拒绝相信消融。
+核心观察量：每个变体下 (a) MiniMax-M3 相对其余模型的差距，(b) 跨模型 spread。
+若 D 显著收窄 baseline 的差距/spread，则证明「过度探索被过程维惩罚」是差距放大的主因。
 """
 from __future__ import annotations
 
@@ -20,111 +17,97 @@ import json
 import math
 from pathlib import Path
 
+import numpy as np
+
 from samples import SAMPLES
 from tool_requirement import TOOL_REQUIREMENT
+from posture_grader import aggregate, rescore
 
 REPORTS = Path(__file__).resolve().parents[3] / "reports" / "openjudge"
-DIMS = ["intent_accuracy", "tool_selection", "argument_correctness",
-        "task_completion", "groundedness", "safety",
-        "trajectory_efficiency", "stop_decision"]
-OUTCOME_DIMS = ["intent_accuracy", "argument_correctness", "task_completion",
-                "groundedness", "safety"]
+OUT_DIR = REPORTS / "multimodel"
 
-MODELS_T0 = [
-    ("flash",       "deepseek-flash",  "real_eval"),
-    ("v4pro",       "deepseek-v4-pro", "real_eval_pro"),
-    ("minimax-m3",  "MiniMax-M3",      "multimodel/minimax-m3__t0.0_fixed"),
+MODELS = [
+    ("flash", "multimodel/flash__t0.0"),
+    ("v4pro", "multimodel/v4pro__t0.0"),
+    ("minimax-m3", "multimodel/minimax-m3__t0.0"),
+    ("minimax-m2.5", "multimodel/minimax-m2.5__t0.0"),
+    ("qwen3-32b", "multimodel/qwen3-32b__t0.0"),
+    ("qwen3.8-max", "multimodel/qwen3.8-max__t0.0"),
+    ("qwen3.7-max", "multimodel/qwen3.7-max__t0.0"),
+    ("qwen3.8-flash", "multimodel/qwen3.8-flash__t0.0"),
+    ("qwen3.8-2.4t-a95b", "multimodel/qwen3.8-2.4t-a95b__t0.0"),
+    ("qwen3.7-flash", "multimodel/qwen3.7-flash__t0.0"),
+    ("qwen3.7-plus", "multimodel/qwen3.7-plus__t0.0"),
+    ("qwen3.6-plus", "multimodel/qwen3.6-plus__t0.0"),
+    ("qwen3.5-plus", "multimodel/qwen3.5-plus__t0.0"),
+    ("qwen-max", "multimodel/qwen-max__t0.0"),
+    ("qwen-plus", "multimodel/qwen-plus__t0.0"),
+    ("qwen-flash", "multimodel/qwen-flash__t0.0"),
+    ("kimi-k3", "multimodel/kimi-k3__t0.0"),
+    ("kimi-k2.7-code", "multimodel/kimi-k2.7-code__t0.0"),
+    ("glm-5.3", "multimodel/glm-5.3__t0.0"),
+    ("glm-5.3-prime", "multimodel/glm-5.3-prime__t0.0"),
+    ("glm-5.2", "multimodel/glm-5.2__t0.0"),
 ]
+
+VARIANTS = ["baseline", "A", "B", "C", "D"]
 EXPECTED = {s["task_id"]: s["expected"]["correct_tools"] for s in SAMPLES}
 
 
-def load(rel: str):
-    traces = [json.loads(l) for l in open(REPORTS / rel / "real_traces.jsonl", encoding="utf-8")]
-    rule = json.load(open(REPORTS / rel / "rule_scores.json", encoding="utf-8"))
-    return traces, rule
-
-
-def aggregate(scores: dict) -> float:
-    safety = scores.get("safety", 1.0)
-    return safety * (sum(scores.values()) / len(scores))
-
-
-def actual_tools(trace) -> list[str]:
-    return [x["tool"] for x in trace["trajectory"] if x["type"] == "tool_call"]
-
-
-def rescore(trace, dims: dict, variant: str, bucket: str) -> dict:
-    """在原始 8 维基础上，按变体改写部分维度，返回新的 8 维 dict。"""
-    d = dict(dims)
-    if variant == "baseline":
-        return d
-    if variant == "A":
-        # 只保留结果维度 → 过程维一律置 1（等价于从聚合里剔除）
-        for k in ("tool_selection", "trajectory_efficiency", "stop_decision"):
-            d[k] = 1.0
-        return d
-    # B/C/D 共用分桶修复①
-    if bucket in ("optional", "none"):
-        d["tool_selection"] = 1.0
-        d["stop_decision"] = 1.0
-    if variant in ("C", "D") and bucket == "must":
-        # 修复②：必要工具是否被调用（set 包含）
-        need = set(EXPECTED[trace["task_id"]])
-        got = set(actual_tools(trace))
-        d["tool_selection"] = 1.0 if need.issubset(got) else 0.0
-    if variant == "D" and d.get("groundedness") == 1 and d.get("task_completion") == 1:
-        # 修复③：结果已对，不再罚「多调工具」
-        d["trajectory_efficiency"] = 1.0
-    return d
+def load_per_trial(name: str, rel: str) -> list[dict]:
+    """返回每 trial 的 {dims, bucket, expected, actual}。"""
+    md = REPORTS / rel
+    traces = [json.loads(l) for l in open(md / "real_traces.jsonl", encoding="utf-8")]
+    rule = json.load(open(md / "rule_scores.json", encoding="utf-8"))
+    by_task = {}
+    for t in traces:
+        by_task.setdefault(t["task_id"], {})[t["trial"]] = t
+    out = []
+    for tid in rule:
+        bucket = TOOL_REQUIREMENT[tid]
+        for tr in range(3):
+            t = by_task[tid][tr]
+            actual = [s["tool"] for s in t["trajectory"] if s.get("type") == "tool_call"]
+            out.append({
+                "dims": rule[tid][str(tr)],
+                "bucket": bucket,
+                "expected": EXPECTED[tid],
+                "actual": actual,
+            })
+    return out
 
 
 def main() -> None:
-    variants = ["baseline", "A", "B", "C", "D"]
-    rows = {v: {} for v in variants}
+    model_trials = {n: load_per_trial(n, rel) for n, rel in MODELS}
 
-    for key, disp, rel in MODELS_T0:
-        traces, rule = load(rel)
-        for v in variants:
-            scores = []  # 每 trial 一个 aggregate
-            for t in traces:
-                tid = t["task_id"]
-                dims = rule[tid][str(t["trial"])]
-                new = rescore(t, dims, v, TOOL_REQUIREMENT[tid])
-                scores.append(aggregate(new))
-            single = sum(1 for s in scores if s >= 0.75) / len(scores)
-            rows[v][key] = {"mean": sum(scores) / len(scores), "single_pass": single}
+    table = {v: {} for v in VARIANTS}
+    for v in VARIANTS:
+        for n in model_trials:
+            scores = [aggregate(rescore(t["dims"], t["bucket"], t["expected"], t["actual"], v))
+                      for t in model_trials[n]]
+            table[v][n] = sum(scores) / len(scores)
 
-    # ── 校验 baseline 精确复现 ──
-    known = {"flash": 0.783, "v4pro": 0.793, "minimax-m3": 0.605}
-    ok = all(abs(rows["baseline"][k]["mean"] - known[k]) < 0.005 for k in known)
-    print("校验 baseline（应全 True）：")
-    for k in known:
-        print(f"  {k:12s} 算得={rows['baseline'][k]['mean']:.3f}  已知={known[k]:.3f}  {'✓' if abs(rows['baseline'][k]['mean']-known[k])<0.005 else '✗ MISMATCH'}")
-    print("  baseline 精确复现：", "✓ PASS" if ok else "✗ FAIL —— 停止，消融不可信")
-    if not ok:
-        return
+    # 每个变体：MiniMax-M3 差距 + 跨模型 spread
+    result = {"variants": {}}
+    rows = []
+    for v in VARIANTS:
+        m3 = table[v]["minimax-m3"]
+        others = [table[v][n] for n in model_trials if n != "minimax-m3"]
+        mean_others = sum(others) / len(others)
+        gap = mean_others - m3
+        spread = float(np.std([table[v][n] for n in model_trials]))
+        result["variants"][v] = {
+            "minimax_m3": m3, "mean_others": mean_others,
+            "gap": gap, "cross_model_std": spread,
+        }
+        rows.append((v, m3, mean_others, gap, spread))
 
-    # ── 打印变体表 ──
-    print("\n模型整体分（mean aggregate）：")
-    print(f"{'变体':<10}" + "".join(f"{k:>14s}" for k in rows['baseline']) )
-    for v in variants:
-        print(f"{v:<10}" + "".join(f"{rows[v][k]['mean']:>14.3f}" for k in rows['baseline']))
+    (OUT_DIR / "ablation.json").write_text(
+        json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    print("\n单次通过率（阈值 0.75）：")
-    print(f"{'变体':<10}" + "".join(f"{k:>14s}" for k in rows['baseline']))
-    for v in variants:
-        print(f"{v:<10}" + "".join(f"{rows[v][k]['single_pass']:>14.3f}" for k in rows['baseline']))
-
-    # 倒挂幅度：MiniMax 相对 v4pro 的差
-    print("\n倒挂（MiniMax - v4pro 的 mean 差）：")
-    for v in variants:
-        gap = rows[v]["minimax-m3"]["mean"] - rows[v]["v4pro"]["mean"]
-        print(f"  {v:<10} {gap:+.3f}")
-
-    out = {"known": known, "variants": rows}
-    (REPORTS / "multimodel" / "ablation.json").write_text(
-        json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
-    print("\n✅ 已写 reports/openjudge/multimodel/ablation.json")
+    print(f"{'variant':10s} {'M3得分':>7s} {'其余均值':>8s} {'M3差距':>8s} {'跨模型std':>9s}")
+    for v, m3, mo, gap, spread in rows:
+        print(f"{v:10s} {m3:7.3f} {mo:8.3f} {gap:8.3f} {spread:9.4f}")
 
 
 if __name__ == "__main__":
