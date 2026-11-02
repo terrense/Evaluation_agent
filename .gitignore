@@ -9,3 +9,6 @@ __pycache__/
 upstream/
 logs/
 *.log
+
+# 会话日志（自动追加，可能含 key，不进仓库）
+WORKLOG.md
