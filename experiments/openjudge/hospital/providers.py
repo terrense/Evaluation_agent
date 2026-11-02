@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """多模型 provider 注册表：统一 OpenAI 兼容 client 工厂。
 
-三家公司（DeepSeek / MiniMax）均暴露 OpenAI 兼容接口，区别仅在 base_url + model 名。
+五家公司（DeepSeek / MiniMax / Qwen / Kimi / GLM）均暴露 OpenAI 兼容接口，区别仅在 base_url + model 名。
 新增模型只需在此登记一条。
 """
 from __future__ import annotations

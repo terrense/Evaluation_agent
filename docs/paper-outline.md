@@ -2,8 +2,9 @@
 
 > 目标：Workshop / Short Paper（先投 arXiv + 评测/Agent 方向 workshop，再图正会）。
 > 现状：**100 样本已设计**（optional 20 / must 53 / none 27，见 samples.py + tool_requirement.py + annotation.json），
-> 但仅前 30 条有三模型真实分数（flash、v4-pro、MiniMax-M3 × 温度 0/0.3），后 70 条待重跑。
-> 模型注册已扩到 **5 家族 22 模型**（DeepSeek / MiniMax / Qwen / Kimi / GLM，见 providers.py），待充值重跑。
+> 但仅前 30 条有三模型真实分数（flash、v4-pro、MiniMax-M3 × 温度 0/0.3）。
+> 模型注册已扩到 **5 家族 22 模型**（DeepSeek / MiniMax / Qwen / Kimi / GLM，见 providers.py），
+> **已充值，2026-11-02 起正在重跑 22 模型 × 100 样本**；重跑完成后本节数字整体更新。
 > 现有分数足以支撑 workshop paper；正会需重跑 100 样本 + 多模型 × 2-3 场景。
 
 ## 1. 候选标题（按锋芒排序）
@@ -53,10 +54,10 @@
 
 ## 7. 待补（正会门槛）
 
-- [ ] 模型数 5-6 → **代码已登记 5 家族 22 模型**（DeepSeek / MiniMax / Qwen / Kimi / GLM；qwen3-max 已下线改 qwen3.8-max），真实分数待重跑
+- [ ] 模型数 5-6 → **代码已登记 5 家族 22 模型**（DeepSeek / MiniMax / Qwen / Kimi / GLM；qwen3-max 已下线改 qwen3.8-max），真实分数正在重跑（2026-11-02）
 - [ ] 场景 2-3（医院 + 金融/客服 + 编码）
 - [x] 样本 ≥100，optional 桶 20+（**设计完成**：100 样本，optional 20 / must 53 / none 27，2026-11-02）
-- [ ] 重跑 100 样本得新分数（需模型 + API 额度，建议与 #17 扩模型一并跑）
+- [ ] 重跑 100 样本得新分数（2026-11-02 已启动，与 #17 扩模型一并跑）
 - [ ] 与 SABench / oracle-audit 的 head-to-head
 - [ ] 开源评测集 + 姿态标注工具（可被他人复用，novelty 关键）
 - [ ] 统计显著性（bootstrap / McNemar）

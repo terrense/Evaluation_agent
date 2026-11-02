@@ -1,7 +1,9 @@
 # Posture–Grader Misalignment: Single Canonical Tool-Sequences Penalize Diverse Tool-Use Strategies in Agent Evaluation
 
 > 目标期刊：arXiv preprint + Agent/Evaluation 方向 workshop（short paper）。
-> 状态：完整草稿。所有数字来自 `reports/openjudge/multimodel/comparison.json`，未作任何加工。
+> 状态：**草稿仍基于 3 模型 × 30 样本实测结果**（DeepSeek-Flash / V4-Pro / MiniMax-M3）。
+>       22 模型 × 5 家族 × 100 样本重跑正在执行（2026-11-02 启动），完成后本稿所有数字
+>       与 `comparison.json` 将整体替换为 22 模型真实值。当前先看结论骨架，勿引用具体分数。
 > 标注：`[REF]` 为待核实引用（提交前必须替换为真实文献条目）。
 
 ---
