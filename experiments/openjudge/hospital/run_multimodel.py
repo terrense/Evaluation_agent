@@ -45,7 +45,7 @@ CONFIGS = [
     ("minimax-m2.5", 0.0, "minimax-m2.5__t0.0"),
     # Qwen 自托管（H20）
     ("qwen3-32b",    0.0, "qwen3-32b__t0.0"),
-    ("qwen3-8b",     0.0, "qwen3-8b__t0.0"),
+    # ("qwen3-8b",     0.0, "qwen3-8b__t0.0"),  # 8B 未部署（显卡不够），以后再说
     # Qwen 云端
     ("qwen3.8-max",  0.0, "qwen3.8-max__t0.0"),
     ("qwen3.7-max",  0.0, "qwen3.7-max__t0.0"),
@@ -76,10 +76,21 @@ async def run_agents(client, model: str, temperature: float) -> list[dict]:
 
     async def _one(sample: dict, trial: int) -> dict:
         async with sem:
-            traj, final = await run_agent(client, model, sample["input"], temperature=temperature)
+            last_err = None
+            for attempt in range(2):  # 容忍瞬时限流/超时，重试一次
+                try:
+                    traj, final = await run_agent(client, model, sample["input"], temperature=temperature)
+                    return {"task_id": sample["task_id"], "scenario": sample["scenario"],
+                            "trial": trial, "query": sample["input"],
+                            "trajectory": traj, "final": final}
+                except Exception as e:
+                    last_err = e
+                    await asyncio.sleep(3)
+            # 两次都失败：记成错误轨迹，不让整个 run 崩掉
+            traj = [{"type": "final_answer", "text": f"(运行异常：{type(last_err).__name__})"}]
             return {"task_id": sample["task_id"], "scenario": sample["scenario"],
                     "trial": trial, "query": sample["input"],
-                    "trajectory": traj, "final": final}
+                    "trajectory": traj, "final": traj[-1]["text"]}
 
     tasks = [_one(s, t) for s in SAMPLES for t in range(N_TRIALS)]
     results = []
@@ -106,56 +117,95 @@ async def rule_score(traces: list[dict]) -> dict:
 
 async def llm_score(judge_client, judge_model: str, traces: list[dict]) -> list[dict]:
     trial0 = [t for t in traces if t["trial"] == 0]
-    out = []
-    for t in trial0:
-        traj = json.dumps(t["trajectory"], ensure_ascii=False)
-        user = f"用户输入：{t['query']}\n\nAgent 轨迹（JSON）：\n{traj}"
-        resp = await asyncio.to_thread(
-            judge_client.chat.completions.create,
-            model=judge_model,
-            messages=[{"role": "system", "content": JUDGE_SYSTEM},
-                      {"role": "user", "content": user}],
-            response_format={"type": "json_object"}, temperature=0.0,
-        )
-        raw = resp.choices[0].message.content or "{}"
-        try:
-            parsed = _parse_json(raw)
-        except Exception as e:
-            print(f"    [judge parse fail {t['task_id']}] {e}")
-            parsed = {}
-        dims = {k: float(parsed.get(k, 0.0)) for k in DIMS}
-        out.append({"task_id": t["task_id"], "scenario": t["scenario"],
+    sem = asyncio.Semaphore(CONCURRENCY)  # 与 agent 阶段一致：并发 6，只改墙钟不改 token
+
+    async def _one(t: dict) -> dict:
+        async with sem:
+            traj = json.dumps(t["trajectory"], ensure_ascii=False)
+            user = f"用户输入：{t['query']}\n\nAgent 轨迹（JSON）：\n{traj}"
+            last_err = None
+            resp = None
+            for _ in range(2):  # 容忍瞬时限流/超时，重试一次
+                try:
+                    resp = await asyncio.to_thread(
+                        judge_client.chat.completions.create,
+                        model=judge_model,
+                        messages=[{"role": "system", "content": JUDGE_SYSTEM},
+                                  {"role": "user", "content": user}],
+                        response_format={"type": "json_object"}, temperature=0.0,
+                    )
+                    break
+                except Exception as e:
+                    last_err = e
+                    await asyncio.sleep(3)
+            if resp is None:
+                raise last_err  # 两次都失败：抛给 main 记录 ❌，保留 agent+rule 待续跑
+            raw = resp.choices[0].message.content or "{}"
+            try:
+                parsed = _parse_json(raw)
+            except Exception as e:
+                print(f"    [judge parse fail {t['task_id']}] {e}")
+                parsed = {}
+            dims = {k: float(parsed.get(k, 0.0)) for k in DIMS}
+            return {"task_id": t["task_id"], "scenario": t["scenario"],
                     "query": t["query"], "score": float(parsed.get("score", 0.0)),
-                    "reason": str(parsed.get("reason", ""))[:300], "dims": dims})
-    return out
+                    "reason": str(parsed.get("reason", ""))[:300], "dims": dims}
+
+    # 并发 gather；return_exceptions 保证收集全部结果后才统一判断，不残留孤儿任务。
+    results = await asyncio.gather(*(_one(t) for t in trial0), return_exceptions=True)
+    errs = [r for r in results if isinstance(r, BaseException)]
+    if errs:
+        raise errs[0]  # 保留原始异常类型（如 APIStatusError 402），供 main 记录 ❌
+    results.sort(key=lambda r: r["task_id"])
+    return results
 
 
 async def run_one(provider: str, temperature: float, out_name: str) -> Path:
     out_dir = BASE / out_name
     out_dir.mkdir(parents=True, exist_ok=True)
+    traces_path = out_dir / "real_traces.jsonl"
+    rule_path = out_dir / "rule_scores.json"
+    llm_path = out_dir / "llm_scores.jsonl"
+
     client, model = get_client(provider)
     judge_client, judge_model = get_client(JUDGE_PROVIDER)
     print(f"\n=== [{out_name}] provider={provider} model={model} temp={temperature} ===")
 
-    traces = await run_agents(client, model, temperature)
-    (out_dir / "real_traces.jsonl").write_text(
-        "\n".join(json.dumps(t, ensure_ascii=False) for t in traces) + "\n", encoding="utf-8")
-    print(f"  ✅ traces {len(traces)} 条")
+    # 阶段级断点续跑：agent/rule/judge 各自独立，只补缺失阶段。
+    # 避免「judge 失败→整模型重跑→白做一遍贵的 agent 阶段」。
+    if traces_path.exists():
+        traces = [json.loads(l) for l in traces_path.read_text(encoding="utf-8").splitlines() if l.strip()]
+        print(f"  ⏭ 复用 traces {len(traces)} 条")
+    else:
+        traces = await run_agents(client, model, temperature)
+        traces_path.write_text(
+            "\n".join(json.dumps(t, ensure_ascii=False) for t in traces) + "\n", encoding="utf-8")
+        print(f"  ✅ traces {len(traces)} 条")
 
-    rule = await rule_score(traces)
-    (out_dir / "rule_scores.json").write_text(json.dumps(rule, ensure_ascii=False, indent=2), encoding="utf-8")
-    print("  ✅ rule 8 维")
+    if rule_path.exists():
+        rule = json.loads(rule_path.read_text(encoding="utf-8"))
+        print("  ⏭ 复用 rule 8 维")
+    else:
+        rule = await rule_score(traces)
+        rule_path.write_text(json.dumps(rule, ensure_ascii=False, indent=2), encoding="utf-8")
+        print("  ✅ rule 8 维")
 
-    llm = await llm_score(judge_client, judge_model, traces)
-    (out_dir / "llm_scores.jsonl").write_text(
-        "\n".join(json.dumps(r, ensure_ascii=False) for r in llm) + "\n", encoding="utf-8")
-    print("  ✅ LLM-as-Judge")
+    if llm_path.exists():
+        print("  ⏭ 复用 LLM-as-Judge")
+    else:
+        llm = await llm_score(judge_client, judge_model, traces)
+        llm_path.write_text(
+            "\n".join(json.dumps(r, ensure_ascii=False) for r in llm) + "\n", encoding="utf-8")
+        print("  ✅ LLM-as-Judge")
     return out_dir
 
 
 async def main() -> None:
     for provider, temp, name in CONFIGS:
-        await run_one(provider, temp, name)
+        try:
+            await run_one(provider, temp, name)
+        except Exception as e:
+            print(f"\n  ❌ [{name}] 失败：{type(e).__name__}: {e}\n", flush=True)
     print("\n✅ 全部配置完成")
 
 
