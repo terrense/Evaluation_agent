@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""多模型 × 工具依赖分桶 × 姿态 统一分析 + 报告 + 图（21 模型 × 100 样本版）。
+"""多模型 × 工具依赖分桶 × 姿态 统一分析 + 报告 + 图（21 模型 × 172 样本版）。
 
 读 reports/openjudge/multimodel/ 下各模型 temp=0 原始结果，产出四块：
   多模型总览  —— 21 模型 × 8 维（rule vs LLM-as-Judge），Spearman 排序一致性
@@ -285,8 +285,8 @@ def main() -> None:
     sp = dump["spearman_rule_llm"]
     corr = dump["corr_over_gap"]
     L = []
-    L.append(f"# 多模型 × 工具依赖分桶 × 姿态 分析报告（{len(rows)} 模型 × 100 样本）\n")
-    L.append("> 数据：100 样本 × 3 trial（H001-H100），双 Grader（rule 8 维 + LLM-as-Judge `deepseek-v4-pro`）。")
+    L.append(f"# 多模型 × 工具依赖分桶 × 姿态 分析报告（{len(rows)} 模型 × 172 样本）\n")
+    L.append("> 数据：172 样本 × 3 trial（H001-H172），双 Grader（rule 8 维 + LLM-as-Judge `deepseek-v4-pro`）。")
     L.append(f"> 模型数：{len(rows)}（5 家族，temp=0）。\n")
 
     L.append("## 1. 多模型总览（temp=0，按 rule 分降序）\n")
@@ -308,15 +308,16 @@ def main() -> None:
         L.append(f"| {r['disp']} | {st['exact']/tot*100:.0f}% | {st['under']/tot*100:.0f}% | "
                  f"{st['over']/tot*100:.0f}% | {st['other']/tot*100:.0f}% |")
     L.append("")
-    L.append("**结论**：MiniMax-M3 是唯一的过度探索极端（over ~73%）；DeepSeek-Flash / Qwen3.8-Max 以先追问为主（~27%）；")
-    L.append("Qwen-Max / Qwen-Flash 高度标准（exact 75-85%）。姿态是**模型级**特征，不是偶发。\n")
+    L.append("**结论**：MiniMax-M3 是唯一的过度探索极端（over ~84%）；先追问为主的是 Qwen3-32B（~50%）、Qwen-Plus（~38%）、MiniMax-M2.5（~31%）；")
+    L.append("Qwen-Max / Qwen-Flash 高度标准（exact 91%/82%）。姿态是**模型级**特征，不是偶发。\n")
     L.append("![姿态分布](figures/posture_dist.png)\n")
 
-    L.append("## 3. 差距放大（F3：over 姿态驱动 rule−LLM 分歧）\n")
-    L.append(f"**Pearson r(over%, rule−LLM gap) = {corr:.2f}**（负相关：越爱过度探索，rule 相对 LLM 扣分越狠）。")
-    L.append("rule 评分器把模型拉开到 0.71–0.92（全距 ~0.20），LLM judge 挤在 0.84–0.92（全距 ~0.08）。")
-    L.append("分歧集中在过度探索模型（MiniMax-M3 gap −0.131），而非先追问（Flash gap −0.015）。")
-    L.append("⇒ 差距放大的主因是**过度探索**被过程维（tool_selection + trajectory_efficiency）系统性惩罚，而 LLM 对「结果对但多调」更宽松。\n")
+    L.append("## 3. 姿态与评分分歧（F3：over/under 都产生 gap）\n")
+    L.append(f"**Pearson r(over%, rule−LLM gap) = {corr:.2f}**。")
+    L.append("rule 全距 0.733–0.946（0.213），LLM 全距 0.516–0.950（0.434）——LLM 反而拉得更开。")
+    L.append("最大负 gap：MiniMax-M3（over 84%）−0.156；但 Qwen-Plus（over 1%、under 38%）−0.128、MiniMax-M2.5（under 31%）−0.103 同样大。")
+    L.append("Qwen3-32B（under 50%）gap +0.248，是 rule 反向高估的反例。")
+    L.append("⇒ 172 样本下「over→gap」相关性由 −0.788 降到 −0.393，且 under 姿态同样产生大 gap，单一「过度探索驱动差距」叙事证据不足。\n")
     L.append("![over% vs gap](figures/gap_scatter.png)\n")
 
     L.append("## 4. 工具依赖度分桶\n")
@@ -340,7 +341,7 @@ def main() -> None:
     L.append("![分桶 bias](figures/bucket_bias.png)\n")
 
     L.append("## 5. 诚实声明\n")
-    L.append("- 100 条合成样本、单场景（医院导诊）、温度 0，外部效度有限。")
+    L.append("- 172 条合成样本、单场景（医院导诊）、温度 0，外部效度有限。")
     L.append("- LLM judge 是 `deepseek-v4-pro`，同时是被评对象之一（自偏好偏差未消除）。")
     L.append("- 姿态分类基于「与 expected 序列长度关系」的粗分法，非对「合理探索 vs 乱调」的语义判断。\n")
 

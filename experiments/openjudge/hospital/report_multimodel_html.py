@@ -131,13 +131,14 @@ li{{margin:6px 0}}.stats{{display:grid;grid-template-columns:repeat(auto-fit,min
 <header>
   <p class="kicker">Agent Evaluation · Multi-Model</p>
   <h1>工具调用 Agent 评测：多模型 × 工具使用姿态</h1>
-  <p class="sub">5 家族 {n} 模型 · 100 样本 × 3 trial（temp=0）· 双 Grader（rule 8 维 + LLM-as-Judge）</p>
+  <p class="sub">5 家族 {n} 模型 · 172 样本 × 3 trial（temp=0）· 双 Grader（rule 8 维 + LLM-as-Judge）</p>
 </header>
 
 <h2>执行摘要</h2>
-<p>核心结论：<b>不同模型有截然不同的「工具使用姿态」，而 ground truth 只编码了一种「标准动作序列」。
-过程型 Grader 对「过度探索」系统性打低分——over 占比与 (rule−LLM) 分差强负相关（r={corr:.2f}），
-而「先追问」几乎不产生分差。</b>差距放大是<b>姿态驱动的、指向过度探索的</b>，不是「能力」的真实差距。</p>
+<p>核心结论：<b>不同模型有截然不同的「工具使用姿态」，而 ground truth 只编码了一种「标准动作序列」。</b>
+但 over% 与 (rule−LLM) 分差的相关性在 172 样本下仅 r={corr:.2f}，95% CI 跨 0、未达显著；
+「先追问」同样产生大分差（Qwen-Plus −0.128），甚至 rule 会反向高估（Qwen3-32B +0.248）。
+分歧方向并不单一指向「过度探索」，也不能仅凭规则/judge 分歧判定为「能力」差距。</p>
 <div class="stats">
 <div class="stat"><div class="v">{sp:.2f}</div><div class="k">rule vs LLM 排序 Spearman</div></div>
 <div class="stat"><div class="v">{corr:.2f}</div><div class="k">over% 与 gap 的 Pearson r</div></div>
@@ -147,17 +148,20 @@ li{{margin:6px 0}}.stats{{display:grid;grid-template-columns:repeat(auto-fit,min
 </div>
 
 <h2>核心发现</h2>
-<div class="find fail"><h3>F1 · 姿态是模型级特征（MiniMax-M3 是唯一的「过度探索」异常值）</h3>
-<p>MiniMax-M3 在 300 trial 里有 <b>{m3['over_rate']*100:.0f}% 被归为过度探索</b>（其余模型 ≤22%）；
-而 Flash / Qwen3.8-Max 是「先追问」代表（under ~27%）。姿态不是样本噪声，是稳定的模型级行为。</p></div>
-<div class="find"><h3>F2 · 双 Grader 只中等一致（Spearman 0.63）</h3>
-<p>rule 与 LLM 对 {n} 个模型的排序相关只有 {sp:.2f}，分歧集中在过度探索模型——说明两者对「什么算好」有方向性差异，而非随机噪声。</p></div>
-<div class="find warn"><h3>F3 · 差距放大由 over 驱动（r={corr:.2f}）</h3>
-<p>rule 把模型拉开 {rr[1]-rr[0]:.2f}（{rr[0]:.2f}–{rr[1]:.2f}），LLM 却只挤出 {lr[1]-lr[0]:.2f}（{lr[0]:.2f}–{lr[1]:.2f}）。
-消融：把 MiniMax-M3 的被放大差距从 <b>{abl['variants']['baseline']['gap']:.3f} 收窄到 {abl['variants']['D']['gap']:.3f}</b>（D 变体）。
-「先追问」不产生分差（flash gap {stat['models']['flash']['gap']:+.3f}）。</p></div>
-<div class="find"><h3>F4 · 温度是烟雾弹（30 样本遗留）</h3>
-<p>温度 0→0.3 时 Pass@3 纹丝不动（0.533）、Pass^3 只挪 ≤0.01；姿态带来的得分差远大于采样方差——证明<b>姿态 bias 比采样方差更主导得分</b>。</p></div>
+<div class="find fail"><h3>F1 · 姿态是模型级特征（over 与 under 各有极端）</h3>
+<p>MiniMax-M3 在 516 trial 里有 <b>{m3['over_rate']*100:.0f}% 被归为过度探索</b>（次高 Qwen3.8-Max 约 24%）；
+先追问为主的是 Qwen3-32B（~50%）、Qwen-Plus（~38%）、MiniMax-M2.5（~31%）。姿态不是样本噪声，是稳定的模型级行为。</p></div>
+<div class="find"><h3>F2 · 双 Grader 只中等一致（Spearman {sp:.2f}）</h3>
+<p>rule 与 LLM 对 {n} 个模型的排序相关只有 {sp:.2f}；分歧既不集中在过度探索、也不集中在先追问模型——
+两者对「什么算好」有系统性差异，但方向并非单一姿态驱动。</p></div>
+<div class="find warn"><h3>F3 · 姿态与分歧（r={corr:.2f}，95% CI 跨 0）</h3>
+<p>over%-gap 的 Pearson r={corr:.2f}，bootstrap 95% CI [{corr_ci[0]:.2f}, {corr_ci[1]:.2f}] 跨 0，未达统计显著。
+LLM 全距 {lr[1]-lr[0]:.2f}（{lr[0]:.2f}–{lr[1]:.2f}）反而大于 rule 全距 {rr[1]-rr[0]:.2f}。
+最大负 gap 不只在 over 模型：MiniMax-M3（over 83%）−0.156，但 Qwen-Plus（over 1%、under 38%）−0.128、MiniMax-M2.5（under 31%）−0.103 同样大；
+Qwen3-32B（under 50%）gap +0.248 是 rule 反向高估。消融仅改测量函数（M3 差距 {abl['variants']['baseline']['gap']:.3f}→{abl['variants']['D']['gap']:.3f}），不构成真值分解。</p></div>
+<div class="find"><h3>F4 · 温度敏感性（30 样本遗留，未纳入 172 口径）</h3>
+<p>温度 0→0.3 的对照只在 flash / v4pro 两个模型各 30 样本上跑过，未纳入本次 172 样本主分析；
+其 Pass@3 / Pass^3 结论不能推广到全量，留待后续重跑。</p></div>
 
 <h2>21 模型主表（按 rule 总分降序）</h2>
 <div class="tblwrap"><table>
@@ -180,10 +184,10 @@ li{{margin:6px 0}}.stats{{display:grid;grid-template-columns:repeat(auto-fit,min
 <img src="{FIG}/multi_dim_heatmap.png" alt="21 模型 × 8 维 rule/LLM 热力图">
 
 <h2>诚实声明</h2>
-<div class="note">100 条合成样本、单场景（医院导诊）、temp=0，3 trial。v4-pro 同时当 Agent 和 Judge，
+<div class="note">172 条合成样本、单场景（医院导诊）、temp=0，3 trial。v4-pro 同时当 Agent 和 Judge，
 存在自偏好偏差。rule 与 LLM 的跨模型 std 之差（{stat['rule_std']:.4f} − {stat['llm_std']:.4f}）
-的 bootstrap CI [{stat['dstd_ci'][0]:.4f}, {stat['dstd_ci'][1]:.4f}] 跨 0，未达统计显著——「rule 更发散」是方向性观察，
-尚需更多样本/场景确认。本报告的贡献在「现象发现 + 姿态/分桶修正框架」，绝对分数仅供参考。</div>
+的 bootstrap CI [{stat['dstd_ci'][0]:.4f}, {stat['dstd_ci'][1]:.4f}] 跨 0，未达统计显著。
+本报告贡献在「现象发现 + 姿态/分桶修正框架」，绝对分数仅供参考，不构成对「过度探索导致低估」的因果结论。</div>
 </div></body></html>"""
     (OUT / "report.html").write_text(html, encoding="utf-8")
     print("✅ HTML 报告 →", OUT / "report.html")

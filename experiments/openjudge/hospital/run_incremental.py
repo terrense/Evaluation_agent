@@ -65,6 +65,7 @@ async def incremental_one(provider: str, temperature: float, out_name: str) -> b
     rule_path = out_dir / "rule_scores.json"
     llm_path = out_dir / "llm_scores.jsonl"
 
+    # 已有 traces 的 (task_id, trial) 集合
     existing: set = set()
     if traces_path.exists():
         for l in traces_path.read_text(encoding="utf-8").splitlines():
@@ -72,42 +73,79 @@ async def incremental_one(provider: str, temperature: float, out_name: str) -> b
                 t = json.loads(l)
                 existing.add((t["task_id"], t["trial"]))
 
+    # 已有 llm judge 的 task_id 集合（judge 条目无 trial，隐式 trial=0）
+    llm_existing: set = set()
+    if llm_path.exists():
+        for l in llm_path.read_text(encoding="utf-8").splitlines():
+            if l.strip():
+                llm_existing.add(json.loads(l)["task_id"])
+
     need = [(s["task_id"], t) for s in SAMPLES for t in range(N_TRIALS)
             if (s["task_id"], t) not in existing]
-    if not need:
-        print(f"[{out_name}] 已覆盖 {len(existing) // N_TRIALS} 样本，跳过", flush=True)
+    need_llm_ids = [s["task_id"] for s in SAMPLES if s["task_id"] not in llm_existing]
+
+    if not need and not need_llm_ids:
+        print(f"[{out_name}] 已覆盖 {len(existing) // N_TRIALS} 样本 + {len(llm_existing)} judge，跳过", flush=True)
         return False
 
     client, model = get_client(provider)
     judge_client, judge_model = get_client(JUDGE_PROVIDER)
-    print(f"\n=== [{out_name}] 缺 {len(need)} 个 (task,trial)，补跑 ===", flush=True)
+    did_work = False
 
-    # 1) agent 阶段
-    new_traces = await run_missing_agents(client, model, temperature, existing)
-    if new_traces:
-        with open(traces_path, "a", encoding="utf-8") as f:
-            for t in new_traces:
-                f.write(json.dumps(t, ensure_ascii=False) + "\n")
-        print(f"  ✅ 追加 traces {len(new_traces)} 条", flush=True)
+    # 1) agent 阶段（缺 traces 才跑）
+    if need:
+        print(f"\n=== [{out_name}] 缺 {len(need)} 个 (task,trial)，补跑 ===", flush=True)
+        new_traces = await run_missing_agents(client, model, temperature, existing)
+        if new_traces:
+            with open(traces_path, "a", encoding="utf-8") as f:
+                for t in new_traces:
+                    f.write(json.dumps(t, ensure_ascii=False) + "\n")
+            print(f"  ✅ 追加 traces {len(new_traces)} 条", flush=True)
 
-    # 2) rule 阶段（只对新增 traces 重算，再合并）
-    if new_traces:
-        new_rule = await rule_score(new_traces)
-        rule = json.loads(rule_path.read_text(encoding="utf-8")) if rule_path.exists() else {}
-        for tid, trials in new_rule.items():
-            rule.setdefault(tid, {}).update(trials)
-        rule_path.write_text(json.dumps(rule, ensure_ascii=False, indent=2), encoding="utf-8")
-        print(f"  ✅ 合并 rule（新增 {len(new_rule)} task）", flush=True)
+        # 2) rule 阶段（只对新增 traces 重算，再合并）
+        if new_traces:
+            new_rule = await rule_score(new_traces)
+            rule = json.loads(rule_path.read_text(encoding="utf-8")) if rule_path.exists() else {}
+            for tid, trials in new_rule.items():
+                rule.setdefault(tid, {}).update(trials)
+            rule_path.write_text(json.dumps(rule, ensure_ascii=False, indent=2), encoding="utf-8")
+            print(f"  ✅ 合并 rule（新增 {len(new_rule)} task）", flush=True)
 
-    # 3) LLM-as-Judge 阶段（只对新增 trial=0）
-    new_t0 = [t for t in new_traces if t["trial"] == 0]
-    if new_t0:
-        new_llm = await llm_score(judge_client, judge_model, new_t0)
-        with open(llm_path, "a", encoding="utf-8") as f:
-            for r in new_llm:
-                f.write(json.dumps(r, ensure_ascii=False) + "\n")
-        print(f"  ✅ 追加 llm {len(new_llm)} 条", flush=True)
-    return True
+        # 3) LLM-as-Judge 阶段（只对新增 trial=0）
+        new_t0 = [t for t in new_traces if t["trial"] == 0]
+        if new_t0:
+            new_llm = await llm_score(judge_client, judge_model, new_t0)
+            with open(llm_path, "a", encoding="utf-8") as f:
+                for r in new_llm:
+                    f.write(json.dumps(r, ensure_ascii=False) + "\n")
+            print(f"  ✅ 追加 llm {len(new_llm)} 条", flush=True)
+        did_work = True
+
+    # 4) llm-only 补缺：traces 已全、judge 缺（如 judge API 中途挂掉）
+    if need_llm_ids:
+        cur = set()
+        if llm_path.exists():
+            for l in llm_path.read_text(encoding="utf-8").splitlines():
+                if l.strip():
+                    cur.add(json.loads(l)["task_id"])
+        still = [sid for sid in need_llm_ids if sid not in cur]
+        if still:
+            t0: dict[str, dict] = {}
+            for l in traces_path.read_text(encoding="utf-8").splitlines():
+                t = json.loads(l)
+                if t["trial"] == 0 and t["task_id"] in still:
+                    t0[t["task_id"]] = t
+            missing_t0 = [t0[sid] for sid in still if sid in t0]
+            if missing_t0:
+                print(f"[{out_name}] 补 judge {len(missing_t0)} 条（traces 已全）", flush=True)
+                new_llm = await llm_score(judge_client, judge_model, missing_t0)
+                with open(llm_path, "a", encoding="utf-8") as f:
+                    for r in new_llm:
+                        f.write(json.dumps(r, ensure_ascii=False) + "\n")
+                print(f"  ✅ 追加 llm {len(new_llm)} 条", flush=True)
+                did_work = True
+
+    return did_work
 
 
 async def main(limit: int | None = None) -> None:

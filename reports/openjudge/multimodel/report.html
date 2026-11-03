@@ -33,38 +33,42 @@ li{margin:6px 0}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax
 <header>
   <p class="kicker">Agent Evaluation · Multi-Model</p>
   <h1>工具调用 Agent 评测：多模型 × 工具使用姿态</h1>
-  <p class="sub">5 家族 21 模型 · 100 样本 × 3 trial（temp=0）· 双 Grader（rule 8 维 + LLM-as-Judge）</p>
+  <p class="sub">5 家族 21 模型 · 172 样本 × 3 trial（temp=0）· 双 Grader（rule 8 维 + LLM-as-Judge）</p>
 </header>
 
 <h2>执行摘要</h2>
-<p>核心结论：<b>不同模型有截然不同的「工具使用姿态」，而 ground truth 只编码了一种「标准动作序列」。
-过程型 Grader 对「过度探索」系统性打低分——over 占比与 (rule−LLM) 分差强负相关（r=-0.79），
-而「先追问」几乎不产生分差。</b>差距放大是<b>姿态驱动的、指向过度探索的</b>，不是「能力」的真实差距。</p>
+<p>核心结论：<b>不同模型有截然不同的「工具使用姿态」，而 ground truth 只编码了一种「标准动作序列」。</b>
+但 over% 与 (rule−LLM) 分差的相关性在 172 样本下仅 r=-0.39，95% CI 跨 0、未达显著；
+「先追问」同样产生大分差（Qwen-Plus −0.128），甚至 rule 会反向高估（Qwen3-32B +0.248）。
+分歧方向并不单一指向「过度探索」，也不能仅凭规则/judge 分歧判定为「能力」差距。</p>
 <div class="stats">
-<div class="stat"><div class="v">0.63</div><div class="k">rule vs LLM 排序 Spearman</div></div>
-<div class="stat"><div class="v">-0.79</div><div class="k">over% 与 gap 的 Pearson r</div></div>
-<div class="stat"><div class="v">[-0.93, -0.02]</div><div class="k">over%-gap r 的 95% bootstrap CI</div></div>
-<div class="stat"><div class="v">0.71–0.92</div><div class="k">rule 跨模型全距</div></div>
-<div class="stat"><div class="v">0.84–0.92</div><div class="k">LLM 跨模型全距</div></div>
+<div class="stat"><div class="v">0.45</div><div class="k">rule vs LLM 排序 Spearman</div></div>
+<div class="stat"><div class="v">-0.39</div><div class="k">over% 与 gap 的 Pearson r</div></div>
+<div class="stat"><div class="v">[-0.89, 0.30]</div><div class="k">over%-gap r 的 95% bootstrap CI</div></div>
+<div class="stat"><div class="v">0.73–0.95</div><div class="k">rule 跨模型全距</div></div>
+<div class="stat"><div class="v">0.52–0.95</div><div class="k">LLM 跨模型全距</div></div>
 </div>
 
 <h2>核心发现</h2>
-<div class="find fail"><h3>F1 · 姿态是模型级特征（MiniMax-M3 是唯一的「过度探索」异常值）</h3>
-<p>MiniMax-M3 在 300 trial 里有 <b>71% 被归为过度探索</b>（其余模型 ≤22%）；
-而 Flash / Qwen3.8-Max 是「先追问」代表（under ~27%）。姿态不是样本噪声，是稳定的模型级行为。</p></div>
-<div class="find"><h3>F2 · 双 Grader 只中等一致（Spearman 0.63）</h3>
-<p>rule 与 LLM 对 21 个模型的排序相关只有 0.63，分歧集中在过度探索模型——说明两者对「什么算好」有方向性差异，而非随机噪声。</p></div>
-<div class="find warn"><h3>F3 · 差距放大由 over 驱动（r=-0.79）</h3>
-<p>rule 把模型拉开 0.20（0.71–0.92），LLM 却只挤出 0.08（0.84–0.92）。
-消融：把 MiniMax-M3 的被放大差距从 <b>0.145 收窄到 0.075</b>（D 变体）。
-「先追问」不产生分差（flash gap -0.015）。</p></div>
-<div class="find"><h3>F4 · 温度是烟雾弹（30 样本遗留）</h3>
-<p>温度 0→0.3 时 Pass@3 纹丝不动（0.533）、Pass^3 只挪 ≤0.01；姿态带来的得分差远大于采样方差——证明<b>姿态 bias 比采样方差更主导得分</b>。</p></div>
+<div class="find fail"><h3>F1 · 姿态是模型级特征（over 与 under 各有极端）</h3>
+<p>MiniMax-M3 在 516 trial 里有 <b>83% 被归为过度探索</b>（次高 Qwen3.8-Max 约 24%）；
+先追问为主的是 Qwen3-32B（~50%）、Qwen-Plus（~38%）、MiniMax-M2.5（~31%）。姿态不是样本噪声，是稳定的模型级行为。</p></div>
+<div class="find"><h3>F2 · 双 Grader 只中等一致（Spearman 0.45）</h3>
+<p>rule 与 LLM 对 21 个模型的排序相关只有 0.45；分歧既不集中在过度探索、也不集中在先追问模型——
+两者对「什么算好」有系统性差异，但方向并非单一姿态驱动。</p></div>
+<div class="find warn"><h3>F3 · 姿态与分歧（r=-0.39，95% CI 跨 0）</h3>
+<p>over%-gap 的 Pearson r=-0.39，bootstrap 95% CI [-0.89, 0.30] 跨 0，未达统计显著。
+LLM 全距 0.43（0.52–0.95）反而大于 rule 全距 0.21。
+最大负 gap 不只在 over 模型：MiniMax-M3（over 83%）−0.156，但 Qwen-Plus（over 1%、under 38%）−0.128、MiniMax-M2.5（under 31%）−0.103 同样大；
+Qwen3-32B（under 50%）gap +0.248 是 rule 反向高估。消融仅改测量函数（M3 差距 0.154→0.076），不构成真值分解。</p></div>
+<div class="find"><h3>F4 · 温度敏感性（30 样本遗留，未纳入 172 口径）</h3>
+<p>温度 0→0.3 的对照只在 flash / v4pro 两个模型各 30 样本上跑过，未纳入本次 172 样本主分析；
+其 Pass@3 / Pass^3 结论不能推广到全量，留待后续重跑。</p></div>
 
 <h2>21 模型主表（按 rule 总分降序）</h2>
 <div class="tblwrap"><table>
 <thead><tr><th>模型</th><th>家族</th><th class="num">rule 总分</th><th class="num">LLM 总分</th><th class="num">gap (rule−LLM)</th><th class="num">over%</th><th class="num">under%</th></tr></thead>
-<tbody><tr><td><b>Qwen-Max</b></td><td class='muted'>Qwen</td><td class='num'>0.916</td><td class='num'>0.901</td><td class='num'>+0.016</td><td class='num'>8%</td><td class='num'>2%</td></tr><tr><td><b>Qwen-Flash</b></td><td class='muted'>Qwen</td><td class='num'>0.881</td><td class='num'>0.895</td><td class='num'>-0.014</td><td class='num'>10%</td><td class='num'>2%</td></tr><tr><td><b>GLM-5.2</b></td><td class='muted'>GLM</td><td class='num'>0.876</td><td class='num'>0.905</td><td class='num'>-0.030</td><td class='num'>10%</td><td class='num'>8%</td></tr><tr><td><b>Qwen3.7-Max</b></td><td class='muted'>Qwen</td><td class='num'>0.868</td><td class='num'>0.898</td><td class='num'>-0.030</td><td class='num'>8%</td><td class='num'>20%</td></tr><tr><td><b>Qwen3.7-Flash</b></td><td class='muted'>Qwen</td><td class='num'>0.866</td><td class='num'>0.896</td><td class='num'>-0.030</td><td class='num'>10%</td><td class='num'>11%</td></tr><tr><td><b>Qwen3.6-Plus</b></td><td class='muted'>Qwen</td><td class='num'>0.865</td><td class='num'>0.890</td><td class='num'>-0.025</td><td class='num'>8%</td><td class='num'>19%</td></tr><tr><td><b>Qwen3-32B</b></td><td class='muted'>Qwen</td><td class='num'>0.865</td><td class='num'>0.849</td><td class='num'>+0.016</td><td class='num'>8%</td><td class='num'>14%</td></tr><tr><td><b>Kimi-K3</b></td><td class='muted'>Kimi</td><td class='num'>0.863</td><td class='num'>0.873</td><td class='num'>-0.010</td><td class='num'>9%</td><td class='num'>14%</td></tr><tr><td><b>Qwen3.5-Plus</b></td><td class='muted'>Qwen</td><td class='num'>0.862</td><td class='num'>0.882</td><td class='num'>-0.020</td><td class='num'>9%</td><td class='num'>14%</td></tr><tr><td><b>Qwen-Plus</b></td><td class='muted'>Qwen</td><td class='num'>0.860</td><td class='num'>0.890</td><td class='num'>-0.031</td><td class='num'>1%</td><td class='num'>15%</td></tr><tr><td><b>GLM-5.3-Prime</b></td><td class='muted'>GLM</td><td class='num'>0.860</td><td class='num'>0.923</td><td class='num' class='lo'>-0.064</td><td class='num'>14%</td><td class='num'>4%</td></tr><tr><td><b>Qwen3.7-Plus</b></td><td class='muted'>Qwen</td><td class='num'>0.857</td><td class='num'>0.870</td><td class='num'>-0.013</td><td class='num'>9%</td><td class='num'>22%</td></tr><tr><td><b>GLM-5.3</b></td><td class='muted'>GLM</td><td class='num'>0.854</td><td class='num'>0.909</td><td class='num' class='lo'>-0.055</td><td class='num'>15%</td><td class='num'>4%</td></tr><tr><td><b>Kimi-K2.7-Code</b></td><td class='muted'>Kimi</td><td class='num'>0.852</td><td class='num'>0.898</td><td class='num'>-0.045</td><td class='num'>6%</td><td class='num'>24%</td></tr><tr><td><b>Qwen3.8-2.4T</b></td><td class='muted'>Qwen</td><td class='num'>0.851</td><td class='num'>0.868</td><td class='num'>-0.017</td><td class='num'>8%</td><td class='num'>22%</td></tr><tr><td><b>Qwen3.8-Flash</b></td><td class='muted'>Qwen</td><td class='num'>0.843</td><td class='num'>0.870</td><td class='num'>-0.027</td><td class='num'>10%</td><td class='num'>21%</td></tr><tr><td><b>DeepSeek-V4-Pro</b></td><td class='muted'>DeepSeek</td><td class='num'>0.841</td><td class='num'>0.850</td><td class='num'>-0.009</td><td class='num'>5%</td><td class='num'>32%</td></tr><tr><td><b>DeepSeek-Flash</b></td><td class='muted'>DeepSeek</td><td class='num'>0.838</td><td class='num'>0.853</td><td class='num'>-0.015</td><td class='num'>12%</td><td class='num'>27%</td></tr><tr><td><b>MiniMax-M2.5</b></td><td class='muted'>MiniMax</td><td class='num'>0.829</td><td class='num'>0.871</td><td class='num'>-0.043</td><td class='num'>7%</td><td class='num'>18%</td></tr><tr><td><b>Qwen3.8-Max</b></td><td class='muted'>Qwen</td><td class='num'>0.815</td><td class='num'>0.848</td><td class='num'>-0.032</td><td class='num'>20%</td><td class='num'>26%</td></tr><tr><td><b>MiniMax-M3</b></td><td class='muted'>MiniMax</td><td class='num'>0.713</td><td class='num'>0.844</td><td class='num' class='lo'>-0.131</td><td class='num'>73%</td><td class='num'>0%</td></tr></tbody></table></div>
+<tbody><tr><td><b>Qwen-Max</b></td><td class='muted'>Qwen</td><td class='num'>0.946</td><td class='num'>0.931</td><td class='num'>+0.015</td><td class='num'>5%</td><td class='num'>1%</td></tr><tr><td><b>GLM-5.2</b></td><td class='muted'>GLM</td><td class='num'>0.918</td><td class='num'>0.937</td><td class='num'>-0.019</td><td class='num'>8%</td><td class='num'>5%</td></tr><tr><td><b>Kimi-K3</b></td><td class='muted'>Kimi</td><td class='num'>0.917</td><td class='num'>0.924</td><td class='num'>-0.007</td><td class='num'>7%</td><td class='num'>8%</td></tr><tr><td><b>Qwen-Flash</b></td><td class='muted'>Qwen</td><td class='num'>0.914</td><td class='num'>0.931</td><td class='num'>-0.017</td><td class='num'>6%</td><td class='num'>4%</td></tr><tr><td><b>Qwen3.5-Plus</b></td><td class='muted'>Qwen</td><td class='num'>0.910</td><td class='num'>0.925</td><td class='num'>-0.014</td><td class='num'>6%</td><td class='num'>8%</td></tr><tr><td><b>Qwen3.8-2.4T</b></td><td class='muted'>Qwen</td><td class='num'>0.910</td><td class='num'>0.919</td><td class='num'>-0.010</td><td class='num'>5%</td><td class='num'>13%</td></tr><tr><td><b>Qwen3.7-Max</b></td><td class='muted'>Qwen</td><td class='num'>0.909</td><td class='num'>0.937</td><td class='num'>-0.028</td><td class='num'>7%</td><td class='num'>14%</td></tr><tr><td><b>Qwen3.6-Plus</b></td><td class='muted'>Qwen</td><td class='num'>0.908</td><td class='num'>0.927</td><td class='num'>-0.018</td><td class='num'>6%</td><td class='num'>13%</td></tr><tr><td><b>GLM-5.3</b></td><td class='muted'>GLM</td><td class='num'>0.905</td><td class='num'>0.946</td><td class='num'>-0.041</td><td class='num'>14%</td><td class='num'>2%</td></tr><tr><td><b>Qwen3.8-Flash</b></td><td class='muted'>Qwen</td><td class='num'>0.903</td><td class='num'>0.921</td><td class='num'>-0.018</td><td class='num'>7%</td><td class='num'>13%</td></tr><tr><td><b>GLM-5.3-Prime</b></td><td class='muted'>GLM</td><td class='num'>0.901</td><td class='num'>0.950</td><td class='num'>-0.049</td><td class='num'>16%</td><td class='num'>2%</td></tr><tr><td><b>Qwen3.7-Plus</b></td><td class='muted'>Qwen</td><td class='num'>0.899</td><td class='num'>0.914</td><td class='num'>-0.015</td><td class='num'>9%</td><td class='num'>15%</td></tr><tr><td><b>DeepSeek-Flash</b></td><td class='muted'>DeepSeek</td><td class='num'>0.897</td><td class='num'>0.910</td><td class='num'>-0.013</td><td class='num'>10%</td><td class='num'>16%</td></tr><tr><td><b>Qwen3.7-Flash</b></td><td class='muted'>Qwen</td><td class='num'>0.892</td><td class='num'>0.932</td><td class='num'>-0.040</td><td class='num'>7%</td><td class='num'>12%</td></tr><tr><td><b>Kimi-K2.7-Code</b></td><td class='muted'>Kimi</td><td class='num'>0.886</td><td class='num'>0.936</td><td class='num'>-0.050</td><td class='num'>3%</td><td class='num'>21%</td></tr><tr><td><b>DeepSeek-V4-Pro</b></td><td class='muted'>DeepSeek</td><td class='num'>0.869</td><td class='num'>0.909</td><td class='num'>-0.040</td><td class='num'>3%</td><td class='num'>28%</td></tr><tr><td><b>Qwen3.8-Max</b></td><td class='muted'>Qwen</td><td class='num'>0.865</td><td class='num'>0.907</td><td class='num'>-0.042</td><td class='num'>26%</td><td class='num'>15%</td></tr><tr><td><b>MiniMax-M2.5</b></td><td class='muted'>MiniMax</td><td class='num'>0.819</td><td class='num'>0.922</td><td class='num' class='lo'>-0.103</td><td class='num'>4%</td><td class='num'>31%</td></tr><tr><td><b>Qwen-Plus</b></td><td class='muted'>Qwen</td><td class='num'>0.805</td><td class='num'>0.933</td><td class='num' class='lo'>-0.128</td><td class='num'>1%</td><td class='num'>38%</td></tr><tr><td><b>Qwen3-32B</b></td><td class='muted'>Qwen</td><td class='num'>0.764</td><td class='num'>0.516</td><td class='num'>+0.248</td><td class='num'>5%</td><td class='num'>50%</td></tr><tr><td><b>MiniMax-M3</b></td><td class='muted'>MiniMax</td><td class='num'>0.733</td><td class='num'>0.889</td><td class='num' class='lo'>-0.156</td><td class='num'>84%</td><td class='num'>0%</td></tr></tbody></table></div>
 <p style="color:var(--muted)">gap 为负 = rule 判得比 LLM 更狠；红色 = 被 process 惩罚 ≥0.05 的模型。</p>
 
 <h2>姿态分布</h2>
@@ -74,16 +78,16 @@ li{margin:6px 0}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax
 <h2>消融：修正框架能否收窄差距</h2>
 <div class="tblwrap"><table>
 <thead><tr><th>grader 变体</th><th class="num">MiniMax-M3</th><th class="num">其余均值</th><th class="num">M3 差距</th><th class="num">跨模型 std</th></tr></thead>
-<tbody><tr><td>baseline 原规则（精确序列匹配）</td><td class='num'>0.713</td><td class='num'>0.858</td><td class='num'>0.145</td><td class='num'>0.0366</td></tr><tr><td>A 结果型（丢 3 个过程维）</td><td class='num'>0.857</td><td class='num'>0.936</td><td class='num'>0.079</td><td class='num'>0.0180</td></tr><tr><td>B 分桶（optional/none 关过程惩罚）</td><td class='num'>0.760</td><td class='num'>0.873</td><td class='num'>0.113</td><td class='num'>0.0293</td></tr><tr><td>C 姿态感知（must 改「必要⊆已调用」）</td><td class='num'>0.792</td><td class='num'>0.874</td><td class='num'>0.082</td><td class='num'>0.0245</td></tr><tr><td>D + 放宽效率（结果好则不再罚多调）</td><td class='num'>0.799</td><td class='num'>0.874</td><td class='num'>0.075</td><td class='num'>0.0235</td></tr></tbody></table></div>
-<p>从 baseline 到 D：MiniMax-M3 的差距 <b>0.145 → 0.075</b>，
-跨模型 std <b>0.0366 → 0.0235</b>——
+<tbody><tr><td>baseline 原规则（精确序列匹配）</td><td class='num'>0.733</td><td class='num'>0.887</td><td class='num'>0.154</td><td class='num'>0.0529</td></tr><tr><td>A 结果型（丢 3 个过程维）</td><td class='num'>0.877</td><td class='num'>0.951</td><td class='num'>0.074</td><td class='num'>0.0207</td></tr><tr><td>B 分桶（optional/none 关过程惩罚）</td><td class='num'>0.813</td><td class='num'>0.914</td><td class='num'>0.101</td><td class='num'>0.0262</td></tr><tr><td>C 姿态感知（must 改「必要⊆已调用」）</td><td class='num'>0.831</td><td class='num'>0.915</td><td class='num'>0.083</td><td class='num'>0.0234</td></tr><tr><td>D + 放宽效率（结果好则不再罚多调）</td><td class='num'>0.839</td><td class='num'>0.915</td><td class='num'>0.076</td><td class='num'>0.0223</td></tr></tbody></table></div>
+<p>从 baseline 到 D：MiniMax-M3 的差距 <b>0.154 → 0.076</b>，
+跨模型 std <b>0.0529 → 0.0223</b>——
 把「过度探索被过程维惩罚」这一项修正掉，被放大的差距与跨模型 spread 都显著收窄。</p>
 <img src="figures/bucket_bias.png" alt="分桶维度偏差">
 <img src="figures/multi_dim_heatmap.png" alt="21 模型 × 8 维 rule/LLM 热力图">
 
 <h2>诚实声明</h2>
-<div class="note">100 条合成样本、单场景（医院导诊）、temp=0，3 trial。v4-pro 同时当 Agent 和 Judge，
-存在自偏好偏差。rule 与 LLM 的跨模型 std 之差（0.0366 − 0.0225）
-的 bootstrap CI [-0.0087, 0.0331] 跨 0，未达统计显著——「rule 更发散」是方向性观察，
-尚需更多样本/场景确认。本报告的贡献在「现象发现 + 姿态/分桶修正框架」，绝对分数仅供参考。</div>
+<div class="note">172 条合成样本、单场景（医院导诊）、temp=0，3 trial。v4-pro 同时当 Agent 和 Judge，
+存在自偏好偏差。rule 与 LLM 的跨模型 std 之差（0.0529 − 0.0882）
+的 bootstrap CI [-0.0899, 0.0457] 跨 0，未达统计显著。
+本报告贡献在「现象发现 + 姿态/分桶修正框架」，绝对分数仅供参考，不构成对「过度探索导致低估」的因果结论。</div>
 </div></body></html>
