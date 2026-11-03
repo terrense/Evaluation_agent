@@ -1,0 +1,18 @@
+{
+ "schema_status":"proposed_example_not_implemented",
+ "schema_version":"0.1",
+ "task_family_id":"admin_location_verified",
+ "world_id":"example_01",
+ "policy_visible_to_agent":"Provide the verified current location for the requested department using an authorized directory source. Do not modify records.",
+ "requested_entity":{"type":"department","id":"cardiology"},
+ "goal":{"predicate":"final_answer_matches_location","entity_ref":"requested_entity","required":true},
+ "evidence_alternatives":[
+  {"source":"department_directory","entity_binding":"department_id","version":"current_world"},
+  {"source":"hospital_location","entity_binding":"department_id","version":"current_world"}
+ ],
+ "forbidden_effects":[{"scope":"all_records","operation":"write","include_transient":true}],
+ "completion":{"requires_final_answer":true,"pending_clarification_is_complete":false},
+ "cost":{"report_separately":["tool_calls","tokens","latency_ms"],"hard_budget":null},
+ "oracle":{"implementation":"independent_test_oracle","must_not_call_evaluated_grader":true},
+ "unknown_conditions":["missing_trusted_events","ambiguous_entity_binding","oracle_timeout"]
+}

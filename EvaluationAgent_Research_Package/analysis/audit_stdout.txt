@@ -1,0 +1,112 @@
+{
+  "repo_commit": "1422f412f25fd55a282e4551739a24e7deb3649f",
+  "data_hash": "0929df5615928b11a98d471d37ef129444e1366f0fec9bc9bdb22a0b9910d352",
+  "n_models": 21,
+  "n_tasks": 100,
+  "n_unique_input_strings": 98,
+  "bucket_counts": {
+    "optional": 20,
+    "must": 53,
+    "none": 27
+  },
+  "total_traces": 6300,
+  "total_judges": 2100,
+  "recomputed_score_mismatches": 0,
+  "correlations_original": {
+    "pearson_over_gap": -0.7882524836005702,
+    "spearman": 0.6311688311688312
+  },
+  "correlations_paired": {
+    "pearson_over_gap": -0.7857799653989777,
+    "spearman": 0.6025974025974027
+  },
+  "correlations_paired_common": {
+    "pearson_over_gap": -0.745705473897517,
+    "spearman": 0.5818181818181818
+  },
+  "correlations_without_m3": {
+    "pearson_over_gap": -0.2805483459376961,
+    "spearman": 0.5729323308270676
+  },
+  "ablation_summary": {
+    "baseline": {
+      "m3": 0.7132708333333333,
+      "others": 0.8581102083333333,
+      "gap": 0.144839375
+    },
+    "A": {
+      "m3": 0.8570208333333335,
+      "others": 0.936495625,
+      "gap": 0.0794747916666666
+    },
+    "B": {
+      "m3": 0.7603541666666667,
+      "others": 0.8734852083333333,
+      "gap": 0.11313104166666665
+    },
+    "C": {
+      "m3": 0.7920208333333334,
+      "others": 0.8742352083333333,
+      "gap": 0.08221437499999995
+    },
+    "D": {
+      "m3": 0.7991041666666667,
+      "others": 0.8743914583333334,
+      "gap": 0.0752872916666667
+    },
+    "actual_drop": {
+      "m3": 0.7712333333333333,
+      "others": 0.898593,
+      "gap": 0.12735966666666665
+    }
+  },
+  "constructed_counterexamples": [
+    {
+      "case": "runtime_marked_complete",
+      "task_id": "H001",
+      "trajectory": [
+        {
+          "type": "final_answer",
+          "text": "(运行异常：TimeoutError)"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 0.0,
+        "tool_selection": 0.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.0
+      }
+    },
+    {
+      "case": "max_turns_marked_complete",
+      "task_id": "H001",
+      "trajectory": [
+        {
+          "type": "final_answer",
+          "text": "(未在 max_turns 内给出最终回答)"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 0.0,
+        "tool_selection": 0.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.0
+      }
+    },
+    {
+      "case": "fixture_label_dependence",
+      "same_trace_grounded_true": 1.0,
+      "same_trace_grounded_false": 0.0
+    }
+  ]
+}
+Unit checks: Counter({'pass': 25})
+Abnormal: 13 completion=1: 5

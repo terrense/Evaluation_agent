@@ -59,7 +59,7 @@ async def run_missing_agents(client, model: str, temperature: float, existing: s
     return results
 
 
-async def incremental_one(provider: str, temperature: float, out_name: str) -> None:
+async def incremental_one(provider: str, temperature: float, out_name: str) -> bool:
     out_dir = BASE / out_name
     traces_path = out_dir / "real_traces.jsonl"
     rule_path = out_dir / "rule_scores.json"
@@ -76,7 +76,7 @@ async def incremental_one(provider: str, temperature: float, out_name: str) -> N
             if (s["task_id"], t) not in existing]
     if not need:
         print(f"[{out_name}] 已覆盖 {len(existing) // N_TRIALS} 样本，跳过", flush=True)
-        return
+        return False
 
     client, model = get_client(provider)
     judge_client, judge_model = get_client(JUDGE_PROVIDER)
@@ -107,16 +107,26 @@ async def incremental_one(provider: str, temperature: float, out_name: str) -> N
             for r in new_llm:
                 f.write(json.dumps(r, ensure_ascii=False) + "\n")
         print(f"  ✅ 追加 llm {len(new_llm)} 条", flush=True)
+    return True
 
 
-async def main() -> None:
+async def main(limit: int | None = None) -> None:
+    done = 0
     for provider, temp, name in CONFIGS:
+        if limit is not None and done >= limit:
+            break
         try:
-            await incremental_one(provider, temp, name)
+            if await incremental_one(provider, temp, name):
+                done += 1
         except Exception as e:
             print(f"\n  ❌ [{name}] 失败：{type(e).__name__}: {e}\n", flush=True)
-    print("\n✅ 增量补跑完成")
+            done += 1  # 计数失败，避免卡在同一个模型
+    print(f"\n✅ 本批完成（实际处理 {done} 个模型）")
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    import sys
+    limit = None
+    if "--limit" in sys.argv:
+        limit = int(sys.argv[sys.argv.index("--limit") + 1])
+    asyncio.run(main(limit))

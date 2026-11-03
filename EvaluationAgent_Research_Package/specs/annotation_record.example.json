@@ -1,0 +1,13 @@
+{
+ "schema_status":"proposed_example_no_actual_annotation",
+ "item_id":"example_only",
+ "reviewer_id":null,
+ "blind_fields":["model_name","evaluator_scores","intended_mutation_label"],
+ "completion_validity":null,
+ "allowed_completion_validity":["valid","invalid","unknown"],
+ "dialogue_status":null,
+ "allowed_dialogue_status":["complete","valid_pending","failed","unknown"],
+ "violated_obligations":[],"evidence_event_ids":[],"uncertainty_reason":null,
+ "annotation_seconds":null,
+ "adjudication":{"required":null,"adjudicator_id":null,"final_label":null,"reason":null}
+}

@@ -1,0 +1,1398 @@
+{
+  "scope": "Closed-world constructed location probes; no model calls; not a prevalence estimate",
+  "summary": {
+    "reference": {
+      "n": 7,
+      "expected_valid": true,
+      "mean_legacy": 1.0,
+      "legacy_accepted": 7,
+      "mean_D": 1.0,
+      "D_accepted": 7
+    },
+    "duplicate_read": {
+      "n": 7,
+      "expected_valid": true,
+      "mean_legacy": 0.875,
+      "legacy_accepted": 7,
+      "mean_D": 1.0,
+      "D_accepted": 7
+    },
+    "wrong_final_value": {
+      "n": 7,
+      "expected_valid": false,
+      "mean_legacy": 1.0,
+      "legacy_accepted": 7,
+      "mean_D": 1.0,
+      "D_accepted": 7
+    },
+    "missing_final": {
+      "n": 7,
+      "expected_valid": false,
+      "mean_legacy": 0.75,
+      "legacy_accepted": 7,
+      "mean_D": 0.75,
+      "D_accepted": 7
+    },
+    "wrong_entity": {
+      "n": 7,
+      "expected_valid": false,
+      "mean_legacy": 1.0,
+      "legacy_accepted": 7,
+      "mean_D": 1.0,
+      "D_accepted": 7
+    }
+  },
+  "records": [
+    {
+      "task_id": "H007",
+      "kind": "reference",
+      "oracle_valid": true,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "呼吸内科"
+          },
+          "result": {
+            "department": "呼吸内科",
+            "found": true,
+            "location": "门诊楼 3 层 A 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "呼吸内科位于门诊楼 3 层 A 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H007",
+      "kind": "duplicate_read",
+      "oracle_valid": true,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "呼吸内科"
+          },
+          "result": {
+            "department": "呼吸内科",
+            "found": true,
+            "location": "门诊楼 3 层 A 区"
+          }
+        },
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "呼吸内科"
+          },
+          "result": {
+            "department": "呼吸内科",
+            "found": true,
+            "location": "门诊楼 3 层 A 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "呼吸内科位于门诊楼 3 层 A 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 0.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 0.875,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H007",
+      "kind": "wrong_final_value",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "呼吸内科"
+          },
+          "result": {
+            "department": "呼吸内科",
+            "found": true,
+            "location": "门诊楼 3 层 A 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "呼吸内科位于门诊楼 99 层 Z 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H007",
+      "kind": "missing_final",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "呼吸内科"
+          },
+          "result": {
+            "department": "呼吸内科",
+            "found": true,
+            "location": "门诊楼 3 层 A 区"
+          }
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 0.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.0
+      },
+      "legacy_score": 0.75,
+      "legacy_pass": true,
+      "relaxed_D_score": 0.75,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H007",
+      "kind": "wrong_entity",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "儿科"
+          },
+          "result": {
+            "department": "儿科",
+            "found": true,
+            "location": "门诊楼 2 层 D 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "呼吸内科位于门诊楼 2 层 D 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H056",
+      "kind": "reference",
+      "oracle_valid": true,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "眼科"
+          },
+          "result": {
+            "department": "眼科",
+            "found": true,
+            "location": "门诊楼 5 层 G 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "眼科位于门诊楼 5 层 G 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H056",
+      "kind": "duplicate_read",
+      "oracle_valid": true,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "眼科"
+          },
+          "result": {
+            "department": "眼科",
+            "found": true,
+            "location": "门诊楼 5 层 G 区"
+          }
+        },
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "眼科"
+          },
+          "result": {
+            "department": "眼科",
+            "found": true,
+            "location": "门诊楼 5 层 G 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "眼科位于门诊楼 5 层 G 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 0.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 0.875,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H056",
+      "kind": "wrong_final_value",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "眼科"
+          },
+          "result": {
+            "department": "眼科",
+            "found": true,
+            "location": "门诊楼 5 层 G 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "眼科位于门诊楼 99 层 Z 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H056",
+      "kind": "missing_final",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "眼科"
+          },
+          "result": {
+            "department": "眼科",
+            "found": true,
+            "location": "门诊楼 5 层 G 区"
+          }
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 0.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.0
+      },
+      "legacy_score": 0.75,
+      "legacy_pass": true,
+      "relaxed_D_score": 0.75,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H056",
+      "kind": "wrong_entity",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "儿科"
+          },
+          "result": {
+            "department": "儿科",
+            "found": true,
+            "location": "门诊楼 2 层 D 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "眼科位于门诊楼 2 层 D 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H057",
+      "kind": "reference",
+      "oracle_valid": true,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "口腔科"
+          },
+          "result": {
+            "department": "口腔科",
+            "found": true,
+            "location": "门诊楼 5 层 H 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "口腔科位于门诊楼 5 层 H 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H057",
+      "kind": "duplicate_read",
+      "oracle_valid": true,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "口腔科"
+          },
+          "result": {
+            "department": "口腔科",
+            "found": true,
+            "location": "门诊楼 5 层 H 区"
+          }
+        },
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "口腔科"
+          },
+          "result": {
+            "department": "口腔科",
+            "found": true,
+            "location": "门诊楼 5 层 H 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "口腔科位于门诊楼 5 层 H 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 0.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 0.875,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H057",
+      "kind": "wrong_final_value",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "口腔科"
+          },
+          "result": {
+            "department": "口腔科",
+            "found": true,
+            "location": "门诊楼 5 层 H 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "口腔科位于门诊楼 99 层 Z 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H057",
+      "kind": "missing_final",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "口腔科"
+          },
+          "result": {
+            "department": "口腔科",
+            "found": true,
+            "location": "门诊楼 5 层 H 区"
+          }
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 0.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.0
+      },
+      "legacy_score": 0.75,
+      "legacy_pass": true,
+      "relaxed_D_score": 0.75,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H057",
+      "kind": "wrong_entity",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "儿科"
+          },
+          "result": {
+            "department": "儿科",
+            "found": true,
+            "location": "门诊楼 2 层 D 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "口腔科位于门诊楼 2 层 D 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H058",
+      "kind": "reference",
+      "oracle_valid": true,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "骨科"
+          },
+          "result": {
+            "department": "骨科",
+            "found": true,
+            "location": "门诊楼 2 层 E 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "骨科位于门诊楼 2 层 E 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H058",
+      "kind": "duplicate_read",
+      "oracle_valid": true,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "骨科"
+          },
+          "result": {
+            "department": "骨科",
+            "found": true,
+            "location": "门诊楼 2 层 E 区"
+          }
+        },
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "骨科"
+          },
+          "result": {
+            "department": "骨科",
+            "found": true,
+            "location": "门诊楼 2 层 E 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "骨科位于门诊楼 2 层 E 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 0.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 0.875,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H058",
+      "kind": "wrong_final_value",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "骨科"
+          },
+          "result": {
+            "department": "骨科",
+            "found": true,
+            "location": "门诊楼 2 层 E 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "骨科位于门诊楼 99 层 Z 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H058",
+      "kind": "missing_final",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "骨科"
+          },
+          "result": {
+            "department": "骨科",
+            "found": true,
+            "location": "门诊楼 2 层 E 区"
+          }
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 0.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.0
+      },
+      "legacy_score": 0.75,
+      "legacy_pass": true,
+      "relaxed_D_score": 0.75,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H058",
+      "kind": "wrong_entity",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "儿科"
+          },
+          "result": {
+            "department": "儿科",
+            "found": true,
+            "location": "门诊楼 2 层 D 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "骨科位于门诊楼 2 层 D 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H059",
+      "kind": "reference",
+      "oracle_valid": true,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "皮肤科"
+          },
+          "result": {
+            "department": "皮肤科",
+            "found": true,
+            "location": "门诊楼 4 层 F 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "皮肤科位于门诊楼 4 层 F 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H059",
+      "kind": "duplicate_read",
+      "oracle_valid": true,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "皮肤科"
+          },
+          "result": {
+            "department": "皮肤科",
+            "found": true,
+            "location": "门诊楼 4 层 F 区"
+          }
+        },
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "皮肤科"
+          },
+          "result": {
+            "department": "皮肤科",
+            "found": true,
+            "location": "门诊楼 4 层 F 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "皮肤科位于门诊楼 4 层 F 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 0.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 0.875,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H059",
+      "kind": "wrong_final_value",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "皮肤科"
+          },
+          "result": {
+            "department": "皮肤科",
+            "found": true,
+            "location": "门诊楼 4 层 F 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "皮肤科位于门诊楼 99 层 Z 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H059",
+      "kind": "missing_final",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "皮肤科"
+          },
+          "result": {
+            "department": "皮肤科",
+            "found": true,
+            "location": "门诊楼 4 层 F 区"
+          }
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 0.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.0
+      },
+      "legacy_score": 0.75,
+      "legacy_pass": true,
+      "relaxed_D_score": 0.75,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H059",
+      "kind": "wrong_entity",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "儿科"
+          },
+          "result": {
+            "department": "儿科",
+            "found": true,
+            "location": "门诊楼 2 层 D 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "皮肤科位于门诊楼 2 层 D 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H060",
+      "kind": "reference",
+      "oracle_valid": true,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "急诊科"
+          },
+          "result": {
+            "department": "急诊科",
+            "found": true,
+            "location": "急诊楼 1 层"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "急诊科位于急诊楼 1 层。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H060",
+      "kind": "duplicate_read",
+      "oracle_valid": true,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "急诊科"
+          },
+          "result": {
+            "department": "急诊科",
+            "found": true,
+            "location": "急诊楼 1 层"
+          }
+        },
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "急诊科"
+          },
+          "result": {
+            "department": "急诊科",
+            "found": true,
+            "location": "急诊楼 1 层"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "急诊科位于急诊楼 1 层。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 0.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 0.875,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H060",
+      "kind": "wrong_final_value",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "急诊科"
+          },
+          "result": {
+            "department": "急诊科",
+            "found": true,
+            "location": "急诊楼 1 层"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "急诊科位于门诊楼 99 层 Z 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H060",
+      "kind": "missing_final",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "急诊科"
+          },
+          "result": {
+            "department": "急诊科",
+            "found": true,
+            "location": "急诊楼 1 层"
+          }
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 0.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.0
+      },
+      "legacy_score": 0.75,
+      "legacy_pass": true,
+      "relaxed_D_score": 0.75,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H060",
+      "kind": "wrong_entity",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "儿科"
+          },
+          "result": {
+            "department": "儿科",
+            "found": true,
+            "location": "门诊楼 2 层 D 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "急诊科位于门诊楼 2 层 D 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H061",
+      "kind": "reference",
+      "oracle_valid": true,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "体检中心"
+          },
+          "result": {
+            "department": "体检中心",
+            "found": true,
+            "location": "医技楼 6 层"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "体检中心位于医技楼 6 层。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H061",
+      "kind": "duplicate_read",
+      "oracle_valid": true,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "体检中心"
+          },
+          "result": {
+            "department": "体检中心",
+            "found": true,
+            "location": "医技楼 6 层"
+          }
+        },
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "体检中心"
+          },
+          "result": {
+            "department": "体检中心",
+            "found": true,
+            "location": "医技楼 6 层"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "体检中心位于医技楼 6 层。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 0.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 0.875,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H061",
+      "kind": "wrong_final_value",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "体检中心"
+          },
+          "result": {
+            "department": "体检中心",
+            "found": true,
+            "location": "医技楼 6 层"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "体检中心位于门诊楼 99 层 Z 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H061",
+      "kind": "missing_final",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "体检中心"
+          },
+          "result": {
+            "department": "体检中心",
+            "found": true,
+            "location": "医技楼 6 层"
+          }
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 0.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 0.0
+      },
+      "legacy_score": 0.75,
+      "legacy_pass": true,
+      "relaxed_D_score": 0.75,
+      "relaxed_D_pass": true
+    },
+    {
+      "task_id": "H061",
+      "kind": "wrong_entity",
+      "oracle_valid": false,
+      "trajectory": [
+        {
+          "type": "tool_call",
+          "tool": "query_hospital_location",
+          "args": {
+            "department": "儿科"
+          },
+          "result": {
+            "department": "儿科",
+            "found": true,
+            "location": "门诊楼 2 层 D 区"
+          }
+        },
+        {
+          "type": "final_answer",
+          "text": "体检中心位于门诊楼 2 层 D 区。"
+        }
+      ],
+      "scores": {
+        "intent_accuracy": 1.0,
+        "tool_selection": 1.0,
+        "argument_correctness": 1.0,
+        "task_completion": 1.0,
+        "groundedness": 1.0,
+        "safety": 1.0,
+        "trajectory_efficiency": 1.0,
+        "stop_decision": 1.0
+      },
+      "legacy_score": 1.0,
+      "legacy_pass": true,
+      "relaxed_D_score": 1.0,
+      "relaxed_D_pass": true
+    }
+  ]
+}

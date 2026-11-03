@@ -1,0 +1,7 @@
+{
+  "all_assertions_passed": true,
+  "rule_dimension_values": 50400,
+  "constructed_invalid_accepted_legacy": 21,
+  "constructed_invalid_accepted_D": 21,
+  "model_generations_rerun": false
+}
